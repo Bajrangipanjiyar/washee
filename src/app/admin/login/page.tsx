@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
-    defaultValues: { username: 'Bajrangi', password: '' },
+    defaultValues: { username: '', password: '' },
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof loginSchema>> = (data) => {
@@ -65,7 +65,7 @@ export default function AdminLoginPage() {
                   <FormItem>
                     <FormLabel>Username</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter username" {...field} disabled />
+                      <Input placeholder="Enter username" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
