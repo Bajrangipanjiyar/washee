@@ -1,6 +1,8 @@
+
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 // IMPORTANT: Replace this with your own Firebase configuration
 const firebaseConfig = {
@@ -15,6 +17,16 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
+// Initialize App Check
+if (typeof window !== 'undefined') {
+  initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider('6Ld-1g8qAAAAAPX4u2y8x8jZKVx4-9I6K-Kx_ZzP'),
+    isTokenAutoRefreshEnabled: true
+  });
+}
+
+
 const auth = getAuth(app);
 const db = getFirestore(app);
 
