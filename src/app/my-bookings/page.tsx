@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { collection, query, where, getDocs, orderBy, type Timestamp } from 'firebase/firestore';
+import { collection, query, where, getDocs, type Timestamp } from 'firebase/firestore';
 import { format } from 'date-fns';
 
 import { db } from '@/lib/firebase';
@@ -47,8 +47,7 @@ export default function MyBookingsPage() {
     try {
       const q = query(
         collection(db, 'bookings'),
-        where('userPhone', '==', data.phone),
-        orderBy('createdAt', 'desc')
+        where('userPhone', '==', data.phone)
       );
       const querySnapshot = await getDocs(q);
       const foundBookings = querySnapshot.docs.map(doc => {
@@ -58,8 +57,13 @@ export default function MyBookingsPage() {
             id: doc.id,
             ...data,
             date: bookingDate,
+            createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate() : new Date(),
         } as Booking
       });
+
+      // Sort bookings by creation date in descending order
+      foundBookings.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+
       setBookings(foundBookings);
       if (foundBookings.length === 0) {
         toast({ title: 'No bookings found for this number.' });
