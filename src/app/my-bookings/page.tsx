@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 const statusColors: Record<BookingStatus, string> = {
   pending: 'bg-yellow-100 text-yellow-800 border-yellow-300',

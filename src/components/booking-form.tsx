@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useState } from 'react';
 
 import { useAuth } from '@/context/auth-context';
 import { plansData } from '@/lib/plans';

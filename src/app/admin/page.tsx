@@ -27,6 +27,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 
 const statusColors: Record<BookingStatus, string> = {
