@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   signInWithPopup,
@@ -48,18 +48,33 @@ export function LoginForm() {
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const { user, loading: authLoading } = useAuth();
-  const [isClient, setIsClient] = useState(false)
- 
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-  
+  const isMounted = useRef(false);
+
   useEffect(() => {
     if (!authLoading && user) {
       const redirectUrl = searchParams.get('redirect') || '/my-bookings';
       router.push(redirectUrl);
     }
   }, [user, authLoading, router, searchParams]);
+  
+  useEffect(() => {
+    if (isMounted.current) return;
+    isMounted.current = true;
+    
+    // Delay slightly to ensure the container is in the DOM
+    setTimeout(() => {
+        try {
+            if (!window.recaptchaVerifier) {
+                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                    size: 'invisible',
+                });
+            }
+        } catch (error) {
+            console.error("Error initializing RecaptchaVerifier", error);
+        }
+    }, 100);
+
+  }, []);
 
 
   const phoneForm = useForm<z.infer<typeof phoneSchema>>({
@@ -71,15 +86,6 @@ export function LoginForm() {
     resolver: zodResolver(otpSchema),
     defaultValues: { otp: '' },
   });
-
-
-  useEffect(() => {
-    if (isClient) {
-      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        size: 'invisible',
-      });
-    }
-  }, [isClient]);
 
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
