@@ -4,6 +4,7 @@ import { AuthProvider } from '@/context/auth-context';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Washee - Premium Car Wash',
@@ -29,6 +30,10 @@ export default function RootLayout({
           <Footer />
           <Toaster />
         </AuthProvider>
+        <Script
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

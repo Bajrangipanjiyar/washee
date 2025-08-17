@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, MapPin } from 'lucide-react';
 import { format } from 'date-fns';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { useState } from 'react';
 
 import { plansData } from '@/lib/plans';
@@ -49,6 +49,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [locationLoading, setLocationLoading] = useState(false);
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
@@ -72,6 +73,43 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
   const { plan, price } = getPlanDetails();
 
+  const handleGetCurrentLocation = () => {
+    setLocationLoading(true);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await fetch(
+              `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
+            );
+            const data = await response.json();
+            if (data.results && data.results[0]) {
+              form.setValue('address', data.results[0].formatted_address);
+              toast({ title: 'Location Fetched!', description: 'Your address has been filled in.' });
+            } else {
+              throw new Error('No results found');
+            }
+          } catch (error) {
+            console.error('Error fetching address:', error);
+            toast({ variant: 'destructive', title: 'Error', description: 'Could not fetch address from location.' });
+          } finally {
+            setLocationLoading(false);
+          }
+        },
+        (error) => {
+          console.error('Geolocation error:', error);
+          toast({ variant: 'destructive', title: 'Location Error', description: 'Could not get your location. Please check your browser settings.' });
+          setLocationLoading(false);
+        }
+      );
+    } else {
+      toast({ variant: 'destructive', title: 'Unsupported', description: 'Geolocation is not supported by your browser.' });
+      setLocationLoading(false);
+    }
+  };
+
+
   const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = async (data) => {
     if (!price) {
       toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price.' });
@@ -89,12 +127,12 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         variant: variant || (planGroup === 'monthly' || planGroup === 'monthly4' ? 'full' : undefined),
         price,
         address: data.address,
-        date: data.date,
+        date: Timestamp.fromDate(data.date),
         timeSlot: data.timeSlot,
         notes: data.notes || '',
         status: 'pending',
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
+        createdAt: Timestamp.now(),
+        updatedAt: Timestamp.now(),
       });
       toast({ title: 'Booking Successful!', description: "We'll confirm your slot soon." });
       router.push('/booking-success');
@@ -150,9 +188,21 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
               name="address"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Address</FormLabel>
+                    <div className="flex justify-between items-center">
+                        <FormLabel>Full Address</FormLabel>
+                        <Button
+                            type="button"
+                            variant="link"
+                            className="pr-0"
+                            onClick={handleGetCurrentLocation}
+                            disabled={locationLoading}
+                        >
+                            <MapPin className="mr-2 h-4 w-4" />
+                            {locationLoading ? 'Fetching...' : 'Use My Current Location'}
+                        </Button>
+                    </div>
                   <FormControl>
-                    <Textarea placeholder="Enter your full address for the service" {...field} />
+                    <Textarea placeholder="Enter your full address for the service or use current location" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
