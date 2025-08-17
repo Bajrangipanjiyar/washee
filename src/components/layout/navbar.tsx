@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Car, Shield } from 'lucide-react';
+import { Car, Shield, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function Navbar() {
@@ -19,6 +19,12 @@ export function Navbar() {
             className="transition-colors hover:text-primary"
           >
             Plans
+          </Link>
+          <Link
+            href="/my-bookings"
+            className="transition-colors hover:text-primary"
+          >
+            My Bookings
           </Link>
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-4">
