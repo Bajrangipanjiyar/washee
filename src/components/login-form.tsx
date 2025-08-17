@@ -4,7 +4,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
-  signInWithPopup,
+  signInWithRedirect,
   GoogleAuthProvider,
   RecaptchaVerifier,
   signInWithPhoneNumber,
@@ -82,10 +82,7 @@ export function LoginForm() {
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
-      toast({ title: 'Successfully signed in with Google.' });
-      const redirectUrl = searchParams.get('redirect') || '/my-bookings';
-      router.push(redirectUrl);
+      await signInWithRedirect(auth, provider);
     } catch (error: any) {
       toast({
         variant: 'destructive',

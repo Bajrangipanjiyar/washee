@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useState } from 'react';
 import type { User } from 'firebase/auth';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, getRedirectResult } from 'firebase/auth';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 
 import { auth, db } from '@/lib/firebase';
@@ -56,10 +56,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
 
+    // Handle the result from a redirect sign-in
+    getRedirectResult(auth)
+      .catch((error) => {
+        console.error("Error getting redirect result:", error);
+      });
+
     return () => unsubscribe();
   }, []);
 
   const value = { user, firebaseUser, loading };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (<AuthContext.Provider value={value}>{children}</AuthContext.Provider>);
 }
