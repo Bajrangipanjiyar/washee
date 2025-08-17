@@ -29,6 +29,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Handle the result from a redirect sign-in first
+    getRedirectResult(auth)
+      .catch((error) => {
+        console.error("Error getting redirect result:", error);
+      });
+      
     const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
         setFirebaseUser(authUser);
@@ -55,12 +61,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       setLoading(false);
     });
-
-    // Handle the result from a redirect sign-in
-    getRedirectResult(auth)
-      .catch((error) => {
-        console.error("Error getting redirect result:", error);
-      });
 
     return () => unsubscribe();
   }, []);
