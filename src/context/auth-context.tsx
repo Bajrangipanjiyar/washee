@@ -1,73 +1,76 @@
 'use client';
 
-import type { ReactNode } from 'react';
-import { createContext, useContext, useEffect, useState } from 'react';
-import type { User } from 'firebase/auth';
-import { onAuthStateChanged, getRedirectResult } from 'firebase/auth';
-import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
-
-import { auth, db } from '@/lib/firebase';
-import type { UserProfile } from '@/types';
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface AuthContextType {
-  user: UserProfile | null;
-  firebaseUser: User | null;
+  isAuthenticated: boolean;
   loading: boolean;
+  login: (password: string) => boolean;
+  logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType>({
-  user: null,
-  firebaseUser: null,
-  loading: true,
-});
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const useAuth = () => useContext(AuthContext);
+const ADMIN_USERNAME = 'Bajrangi';
+const ADMIN_PASSWORD = '847222';
+const AUTH_KEY = 'washy-admin-auth';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
-  const [user, setUser] = useState<UserProfile | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
-      if (authUser) {
-        setFirebaseUser(authUser);
-        const userRef = doc(db, 'users', authUser.uid);
-        const userSnap = await getDoc(userRef);
-        if (userSnap.exists()) {
-          setUser(userSnap.data() as UserProfile);
+    try {
+      const storedAuth = sessionStorage.getItem(AUTH_KEY);
+      if (storedAuth) {
+        const { username, password, expiry } = JSON.parse(storedAuth);
+        if (
+          new Date().getTime() < expiry &&
+          username === ADMIN_USERNAME &&
+          password === ADMIN_PASSWORD
+        ) {
+          setIsAuthenticated(true);
         } else {
-          // Create new user profile in Firestore from Google redirect
-          const newUserProfile: UserProfile = {
-            uid: authUser.uid,
-            email: authUser.email,
-            name: authUser.displayName,
-            phone: authUser.phoneNumber,
-            role: 'user', // Default role
-            createdAt: serverTimestamp() as any,
-          };
-          await setDoc(userRef, newUserProfile);
-          setUser(newUserProfile);
+          sessionStorage.removeItem(AUTH_KEY);
         }
-      } else {
-        // Handle the result from a redirect sign-in.
-        // This should be checked when no user is signed in.
-        getRedirectResult(auth)
-          .catch((error) => {
-            console.error("Error getting redirect result:", error);
-          });
-        setFirebaseUser(null);
-        setUser(null);
       }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
+    } catch (error) {
+        console.error("Could not parse auth key", error);
+        sessionStorage.removeItem(AUTH_KEY);
+    }
+    setLoading(false);
   }, []);
 
-  const value = { user, firebaseUser, loading };
+  const login = (password: string): boolean => {
+    if (password === ADMIN_PASSWORD) {
+      const expiry = new Date().getTime() + 8 * 60 * 60 * 1000; // 8 hours
+      sessionStorage.setItem(
+        AUTH_KEY,
+        JSON.stringify({ username: ADMIN_USERNAME, password: ADMIN_PASSWORD, expiry })
+      );
+      setIsAuthenticated(true);
+      return true;
+    }
+    return false;
+  };
 
-  return (<AuthContext.Provider value={value}>{children}</AuthContext.Provider>);
+  const logout = () => {
+    sessionStorage.removeItem(AUTH_KEY);
+    setIsAuthenticated(false);
+    router.push('/admin/login');
+  };
+
+  const value = { isAuthenticated, loading, login, logout };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-    
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+}

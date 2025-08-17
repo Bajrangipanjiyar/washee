@@ -21,10 +21,7 @@ export default function Home() {
 
         <div className="space-y-4 md:space-y-0 md:space-x-4">
           <Button className="w-full md:w-1/3" asChild>
-            <Link href="/plans">View Plans</Link>
-          </Button>
-          <Button variant="outline" className="w-full md:w-1/3" asChild>
-            <Link href="/login">Login to Book</Link>
+            <Link href="/plans">View Plans & Book</Link>
           </Button>
         </div>
       </div>

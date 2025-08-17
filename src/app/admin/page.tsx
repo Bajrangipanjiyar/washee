@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { collection, onSnapshot, query, orderBy, doc, updateDoc } from 'firebase/firestore';
 import { format } from 'date-fns';
 
-import { useAuth } from '@/context/auth-context';
 import { db } from '@/lib/firebase';
 import type { Booking, BookingStatus } from '@/types';
 import {
@@ -25,9 +24,10 @@ import {
   } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
-import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/context/auth-context';
 
 
 const statusColors: Record<BookingStatus, string> = {
@@ -75,18 +75,14 @@ function StatusSelector({ booking }: { booking: Booking }) {
 
 export default function AdminPage() {
   const router = useRouter();
-  const { user, loading: authLoading } = useAuth();
+  const { isAuthenticated, loading: authLoading, logout } = useAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (authLoading) return;
-    if (!user) {
-      router.push('/login');
-      return;
-    }
-    if (user.role !== 'admin') {
-      router.push('/my-bookings');
+    if (!isAuthenticated) {
+      router.push('/admin/login');
       return;
     }
 
@@ -98,10 +94,13 @@ export default function AdminPage() {
       } as Booking));
       setBookings(allBookings);
       setLoading(false);
+    }, (error) => {
+      console.error("Error fetching bookings:", error);
+      setLoading(false);
     });
 
     return () => unsubscribe();
-  }, [user, authLoading, router]);
+  }, [isAuthenticated, authLoading, router]);
 
   if (authLoading || loading) {
     return (
@@ -111,14 +110,13 @@ export default function AdminPage() {
         </div>
     );
   }
-  
-  if (user?.role !== 'admin') {
-    return <div className="container py-12 text-center"><p>Access Denied.</p></div>
-  }
 
   return (
     <div className="container py-12">
-      <h1 className="text-3xl font-bold mb-8 font-headline">Admin Dashboard</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold font-headline">Admin Dashboard</h1>
+        <Button onClick={logout} variant="outline">Logout</Button>
+      </div>
       <Card>
         <Table>
           <TableHeader>
@@ -150,7 +148,7 @@ export default function AdminPage() {
             ))}
           </TableBody>
         </Table>
-        {bookings.length === 0 && <p className="p-8 text-center text-muted-foreground">No bookings found.</p>}
+        {bookings.length === 0 && !loading && <p className="p-8 text-center text-muted-foreground">No bookings found.</p>}
       </Card>
     </div>
   );

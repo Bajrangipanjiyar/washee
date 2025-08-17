@@ -1,14 +1,5 @@
 import type { Timestamp } from 'firebase/firestore';
 
-export interface UserProfile {
-  uid: string;
-  name?: string | null;
-  phone?: string | null;
-  email?: string | null;
-  role: 'user' | 'admin';
-  createdAt: Timestamp;
-}
-
 export interface Plan {
   carType: string;
   price?: number;
@@ -21,7 +12,7 @@ export interface Plan {
 }
 
 export type PlanGroup = 'monthly' | 'monthly4' | 'onetime';
-export type CarType = 'hatchback' | 'luxury' | 'suv';
+export type CarType = 'hatchback' | 'luxury-cars' | 'suv';
 export type BookingStatus = 'pending' | 'confirmed' | 'completed' | 'cancelled';
 export type OnetimeVariant = 'basic' | 'premium';
 

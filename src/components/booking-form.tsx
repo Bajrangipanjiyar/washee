@@ -9,7 +9,6 @@ import { format } from 'date-fns';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useState } from 'react';
 
-import { useAuth } from '@/context/auth-context';
 import { plansData } from '@/lib/plans';
 import { cn } from '@/lib/utils';
 import { db } from '@/lib/firebase';
@@ -31,6 +30,8 @@ interface BookingFormProps {
 }
 
 const bookingSchema = z.object({
+  name: z.string().min(2, 'Name is required.'),
+  phone: z.string().regex(/^\d{10}$/, 'Please enter a valid 10-digit phone number.'),
   address: z.string().min(10, 'Address must be at least 10 characters long.'),
   date: z.date({ required_error: 'A date is required.' }),
   timeSlot: z.string({ required_error: 'Please select a time slot.' }),
@@ -46,7 +47,6 @@ const timeSlots = [
 
 export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const router = useRouter();
-  const { user } = useAuth();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
@@ -73,17 +73,17 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const { plan, price } = getPlanDetails();
 
   const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = async (data) => {
-    if (!user || !price) {
-      toast({ variant: 'destructive', title: 'Error', description: 'You must be logged in to book.' });
+    if (!price) {
+      toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price.' });
       return;
     }
     setLoading(true);
 
     try {
       await addDoc(collection(db, 'bookings'), {
-        userId: user.uid,
-        userName: user.name || user.email,
-        userPhone: user.phone || 'N/A',
+        userId: 'anonymous', // No user logged in
+        userName: data.name,
+        userPhone: data.phone,
         planGroup,
         carType,
         variant: variant || (planGroup === 'monthly' || planGroup === 'monthly4' ? 'full' : undefined),
@@ -116,6 +116,35 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+               <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Full Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+               <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                       <Input placeholder="10-digit number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
             <FormField
               control={form.control}
               name="address"
