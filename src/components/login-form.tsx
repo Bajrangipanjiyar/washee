@@ -48,6 +48,11 @@ export function LoginForm() {
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const { user, loading: authLoading } = useAuth();
+  const [isClient, setIsClient] = useState(false)
+ 
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   
   useEffect(() => {
     if (!authLoading && user) {
@@ -69,10 +74,12 @@ export function LoginForm() {
 
 
   useEffect(() => {
-    window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-      size: 'invisible',
-    });
-  }, []);
+    if (isClient) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        size: 'invisible',
+      });
+    }
+  }, [isClient]);
 
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
