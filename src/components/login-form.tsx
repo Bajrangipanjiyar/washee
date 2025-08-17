@@ -51,6 +51,7 @@ export function LoginForm() {
   const { user, loading: authLoading } = useAuth();
   
   const recaptchaVerifierRef = useRef<RecaptchaVerifier | null>(null);
+  const recaptchaContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!authLoading && user) {
@@ -59,21 +60,14 @@ export function LoginForm() {
     }
   }, [user, authLoading, router, searchParams]);
   
-  useEffect(() => {
-    // This effect should only run once on mount.
-    // It initializes the RecaptchaVerifier and stores it in a ref.
-    if (!recaptchaVerifierRef.current) {
-        try {
-            // The 'recaptcha-container' div must be in the DOM for this to work.
-            recaptchaVerifierRef.current = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                size: 'invisible',
-            });
-        } catch (error) {
-            console.error("Error initializing RecaptchaVerifier", error);
-        }
+  const setupRecaptcha = () => {
+    if (!recaptchaVerifierRef.current && recaptchaContainerRef.current) {
+        recaptchaVerifierRef.current = new RecaptchaVerifier(auth, recaptchaContainerRef.current, {
+            size: 'invisible',
+        });
     }
-  }, []);
-
+    return recaptchaVerifierRef.current;
+  }
 
   const phoneForm = useForm<z.infer<typeof phoneSchema>>({
     resolver: zodResolver(phoneSchema),
@@ -103,15 +97,12 @@ export function LoginForm() {
 
   const onSendOtp: SubmitHandler<z.infer<typeof phoneSchema>> = async (data) => {
     setLoading(true);
-    if (!recaptchaVerifierRef.current) {
-        toast({ variant: 'destructive', title: 'Error', description: 'reCAPTCHA not initialized. Please try again.' });
-        setLoading(false);
-        return;
-    }
-
     try {
+      const appVerifier = setupRecaptcha();
+      if (!appVerifier) {
+          throw new Error("reCAPTCHA not initialized.");
+      }
       const phoneNumber = `+91${data.phone}`;
-      const appVerifier = recaptchaVerifierRef.current;
       const result = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
       setConfirmationResult(result);
       toast({ title: 'OTP sent successfully!' });
@@ -227,7 +218,7 @@ export function LoginForm() {
             </Button>
           </TabsContent>
         </Tabs>
-        <div id="recaptcha-container"></div>
+        <div id="recaptcha-container" ref={recaptchaContainerRef}></div>
       </CardContent>
     </Card>
   );
