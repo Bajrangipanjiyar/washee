@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { collection, onSnapshot, query, orderBy, doc, updateDoc } from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy, doc, updateDoc, type Timestamp } from 'firebase/firestore';
 import { format } from 'date-fns';
 
 import { db } from '@/lib/firebase';
@@ -88,10 +88,14 @@ export default function AdminPage() {
 
     const q = query(collection(db, 'bookings'), orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      const allBookings = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      } as Booking));
+      const allBookings = snapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            id: doc.id,
+            ...data,
+            date: (data.date as Timestamp)?.toDate ? (data.date as Timestamp).toDate() : new Date(data.date),
+        } as Booking
+      });
       setBookings(allBookings);
       setLoading(false);
     }, (error) => {

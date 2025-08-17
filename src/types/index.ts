@@ -30,7 +30,7 @@ export interface Booking {
   variant?: OnetimeVariant | 'full' | 'exterior-only';
   price: string;
   address: string;
-  date: string;
+  date: Date;
   timeSlot: string;
   notes?: string;
   status: BookingStatus;

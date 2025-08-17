@@ -89,7 +89,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         variant: variant || (planGroup === 'monthly' || planGroup === 'monthly4' ? 'full' : undefined),
         price,
         address: data.address,
-        date: format(data.date, 'yyyy-MM-dd'),
+        date: data.date,
         timeSlot: data.timeSlot,
         notes: data.notes || '',
         status: 'pending',
@@ -186,7 +186,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                           mode="single"
                           selected={field.value}
                           onSelect={field.onChange}
-                          disabled={(date) => date < new Date() || date < new Date('1900-01-01')}
+                          disabled={(date) => date < new Date(new Date().setHours(0,0,0,0))}
                           initialFocus
                         />
                       </PopoverContent>
