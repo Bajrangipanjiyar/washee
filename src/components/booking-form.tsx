@@ -136,7 +136,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         variant: variant || null,
         price,
         address: data.address,
-        date: Timestamp.fromDate(data.date),
+        date: data.date,
         timeSlot: data.timeSlot,
         notes: data.notes || '',
         status: 'pending',
@@ -158,7 +158,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       <CardHeader>
         <CardTitle>Book Your Wash</CardTitle>
         <CardDescription>You're booking: <span className="font-semibold text-primary">{planName}</span></CardDescription>
-        <p className="text-2xl font-bold">Total: ₹{price}</p>
+        <p className="text-2xl font-bold">Total: {price}</p>
       </CardHeader>
       <CardContent>
         <Form {...form}>
