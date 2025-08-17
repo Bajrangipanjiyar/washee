@@ -29,12 +29,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Handle the result from a redirect sign-in first
-    getRedirectResult(auth)
-      .catch((error) => {
-        console.error("Error getting redirect result:", error);
-      });
-      
     const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
         setFirebaseUser(authUser);
@@ -43,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (userSnap.exists()) {
           setUser(userSnap.data() as UserProfile);
         } else {
-          // Create new user profile in Firestore
+          // Create new user profile in Firestore from Google redirect
           const newUserProfile: UserProfile = {
             uid: authUser.uid,
             email: authUser.email,
@@ -56,6 +50,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(newUserProfile);
         }
       } else {
+        // Handle the result from a redirect sign-in.
+        // This should be checked when no user is signed in.
+        getRedirectResult(auth)
+          .catch((error) => {
+            console.error("Error getting redirect result:", error);
+          });
         setFirebaseUser(null);
         setUser(null);
       }
@@ -69,3 +69,5 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (<AuthContext.Provider value={value}>{children}</AuthContext.Provider>);
 }
+
+    

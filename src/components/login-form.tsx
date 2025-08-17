@@ -46,16 +46,17 @@ export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
-  const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
+  const [confirmationResult, setConfirmationResult = useState<ConfirmationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const { user, loading: authLoading } = useAuth();
   
-  const recaptchaVerifierRef = useRef<RecaptchaVerifier | null>(null);
   const recaptchaContainerRef = useRef<HTMLDivElement>(null);
+  const recaptchaVerifierRef = useRef<RecaptchaVerifier | null>(null);
+
 
   useEffect(() => {
     if (!authLoading && user) {
-      const redirectUrl = searchParams.get('redirect') || '/my-bookings';
+      const redirectUrl = searchParams.get('redirect') || '/';
       router.push(redirectUrl);
     }
   }, [user, authLoading, router, searchParams]);
@@ -121,7 +122,7 @@ export function LoginForm() {
     try {
       await confirmationResult.confirm(data.otp);
       toast({ title: 'Phone number verified successfully!' });
-      const redirectUrl = searchParams.get('redirect') || '/my-bookings';
+      const redirectUrl = searchParams.get('redirect') || '/';
       router.push(redirectUrl);
     } catch (error: any) {
       toast({
@@ -220,3 +221,5 @@ export function LoginForm() {
     </Card>
   );
 }
+
+    
