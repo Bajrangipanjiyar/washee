@@ -3,12 +3,15 @@ import type { Timestamp } from 'firebase/firestore';
 export interface Plan {
   carType: string;
   price?: number;
+  originalPrice?: number;
   split?: {
     exterior: number;
     full: number;
   };
   basic?: number;
   premium?: number;
+  originalBasic?: number;
+  originalPremium?: number;
 }
 
 export type PlanGroup = 'monthly' | 'monthly4' | 'onetime';

@@ -12,7 +12,7 @@ interface PlanCardProps {
 }
 
 export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps) {
-  const { carType, price, split, basic, premium } = plan;
+  const { carType, price, originalPrice, split, basic, premium, originalBasic, originalPremium } = plan;
 
   const getBookingLink = (variant?: 'basic' | 'premium') => {
     const carTypeSlug = carType.toLowerCase().replace(/\s+/g, '-');
@@ -29,14 +29,20 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
         <div className="space-y-4">
           <div className="p-4 border rounded-lg bg-accent/50">
             <h4 className="font-semibold">Basic Wash</h4>
-            <p className="text-2xl font-bold">₹{basic}</p>
+            <p className="text-2xl font-bold flex items-baseline gap-2">
+              <span>₹{basic}</span>
+              <span className="text-base font-normal text-muted-foreground line-through">₹{originalBasic}</span>
+            </p>
             <Button asChild className="w-full mt-2">
               <Link href={getBookingLink('basic')}>Book Basic</Link>
             </Button>
           </div>
           <div className="p-4 border rounded-lg bg-accent/50">
             <h4 className="font-semibold">Premium Wash</h4>
-            <p className="text-2xl font-bold">₹{premium}</p>
+            <p className="text-2xl font-bold flex items-baseline gap-2">
+              <span>₹{premium}</span>
+              <span className="text-base font-normal text-muted-foreground line-through">₹{originalPremium}</span>
+            </p>
             <Button asChild className="w-full mt-2">
               <Link href={getBookingLink('premium')}>Book Premium</Link>
             </Button>
@@ -72,9 +78,17 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
       </CardHeader>
       <CardContent className="flex-grow">
         {price && (
-          <p className="mb-4 text-3xl font-bold">
-            ₹{price} <span className="text-sm font-normal text-muted-foreground">/month</span>
-          </p>
+          <div className="mb-4">
+            <p className="text-3xl font-bold flex items-baseline gap-2">
+                <span>₹{price}</span>
+                {originalPrice && (
+                    <span className="text-xl font-normal text-muted-foreground line-through">
+                        ₹{originalPrice}
+                    </span>
+                )}
+            </p>
+            <p className="text-sm font-normal text-muted-foreground">/month</p>
+          </div>
         )}
         {renderContent()}
       </CardContent>
