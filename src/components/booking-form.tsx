@@ -121,7 +121,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
   const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = async (data) => {
     if (!price) {
-      toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price.' });
+      toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price. Please select a plan again.' });
       return;
     }
     setLoading(true);
