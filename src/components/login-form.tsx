@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -48,7 +49,8 @@ export function LoginForm() {
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const { user, loading: authLoading } = useAuth();
-  const isMounted = useRef(false);
+  
+  const recaptchaVerifierRef = useRef<RecaptchaVerifier | null>(null);
 
   useEffect(() => {
     if (!authLoading && user) {
@@ -58,22 +60,18 @@ export function LoginForm() {
   }, [user, authLoading, router, searchParams]);
   
   useEffect(() => {
-    if (isMounted.current) return;
-    isMounted.current = true;
-    
-    // Delay slightly to ensure the container is in the DOM
-    setTimeout(() => {
+    // This effect should only run once on mount.
+    // It initializes the RecaptchaVerifier and stores it in a ref.
+    if (!recaptchaVerifierRef.current) {
         try {
-            if (!window.recaptchaVerifier) {
-                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                    size: 'invisible',
-                });
-            }
+            // The 'recaptcha-container' div must be in the DOM for this to work.
+            recaptchaVerifierRef.current = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                size: 'invisible',
+            });
         } catch (error) {
             console.error("Error initializing RecaptchaVerifier", error);
         }
-    }, 100);
-
+    }
   }, []);
 
 
@@ -105,9 +103,15 @@ export function LoginForm() {
 
   const onSendOtp: SubmitHandler<z.infer<typeof phoneSchema>> = async (data) => {
     setLoading(true);
+    if (!recaptchaVerifierRef.current) {
+        toast({ variant: 'destructive', title: 'Error', description: 'reCAPTCHA not initialized. Please try again.' });
+        setLoading(false);
+        return;
+    }
+
     try {
       const phoneNumber = `+91${data.phone}`;
-      const appVerifier = window.recaptchaVerifier;
+      const appVerifier = recaptchaVerifierRef.current;
       const result = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
       setConfirmationResult(result);
       toast({ title: 'OTP sent successfully!' });
