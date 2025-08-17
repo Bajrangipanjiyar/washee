@@ -111,7 +111,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       <CardHeader>
         <CardTitle>Book Your Wash</CardTitle>
         <CardDescription>You're booking: <span className="font-semibold text-primary">{plan}</span></CardDescription>
-        <p className="text-2xl font-bold">Total: ₹{price}</p>
+        <p className="text-2xl font-bold">Total: {price}</p>
       </CardHeader>
       <CardContent>
         <Form {...form}>

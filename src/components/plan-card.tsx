@@ -30,8 +30,8 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
           <div className="p-4 border rounded-lg bg-accent/50">
             <h4 className="font-semibold">Basic Wash</h4>
             <p className="text-2xl font-bold flex items-baseline gap-2">
-              <span className="text-base font-normal text-muted-foreground line-through">₹{originalBasic}</span>
-              <span>₹{basic}</span>
+              <span className="text-base font-normal text-muted-foreground line-through">{originalBasic}</span>
+              <span>{basic}</span>
             </p>
             <Button asChild className="w-full mt-2">
               <Link href={getBookingLink('basic')}>Book Basic</Link>
@@ -40,8 +40,8 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
           <div className="p-4 border rounded-lg bg-accent/50">
             <h4 className="font-semibold">Premium Wash</h4>
             <p className="text-2xl font-bold flex items-baseline gap-2">
-              <span className="text-base font-normal text-muted-foreground line-through">₹{originalPremium}</span>
-              <span>₹{premium}</span>
+              <span className="text-base font-normal text-muted-foreground line-through">{originalPremium}</span>
+              <span>{premium}</span>
             </p>
             <Button asChild className="w-full mt-2">
               <Link href={getBookingLink('premium')}>Book Premium</Link>
@@ -82,10 +82,10 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
             <p className="text-3xl font-bold flex items-baseline gap-2">
                 {originalPrice && (
                     <span className="text-xl font-normal text-muted-foreground line-through">
-                        ₹{originalPrice}
+                        {originalPrice}
                     </span>
                 )}
-                <span>₹{price}</span>
+                <span>{price}</span>
             </p>
             <p className="text-sm font-normal text-muted-foreground">/month</p>
           </div>
