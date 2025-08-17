@@ -2,16 +2,16 @@ import type { Timestamp } from 'firebase/firestore';
 
 export interface Plan {
   carType: string;
-  price?: number;
-  originalPrice?: number;
+  price?: string;
+  originalPrice?: string;
   split?: {
     exterior: number;
     full: number;
   };
-  basic?: number;
-  premium?: number;
-  originalBasic?: number;
-  originalPremium?: number;
+  basic?: string;
+  premium?: string;
+  originalBasic?: string;
+  originalPremium?: string;
 }
 
 export type PlanGroup = 'monthly' | 'monthly4' | 'onetime';
@@ -28,7 +28,7 @@ export interface Booking {
   planGroup: PlanGroup;
   carType: CarType;
   variant?: OnetimeVariant | 'full' | 'exterior-only';
-  price: number;
+  price: string;
   address: string;
   date: string;
   timeSlot: string;
