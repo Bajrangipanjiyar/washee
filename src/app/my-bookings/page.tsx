@@ -53,10 +53,11 @@ export default function MyBookingsPage() {
       const querySnapshot = await getDocs(q);
       const foundBookings = querySnapshot.docs.map(doc => {
         const data = doc.data();
+        const bookingDate = (data.date as Timestamp)?.toDate ? (data.date as Timestamp).toDate() : new Date();
         return { 
             id: doc.id,
             ...data,
-            date: (data.date as Timestamp)?.toDate ? (data.date as Timestamp).toDate() : new Date(data.date),
+            date: bookingDate,
         } as Booking
       });
       setBookings(foundBookings);
@@ -122,7 +123,7 @@ export default function MyBookingsPage() {
                     {bookings.map((booking) => (
                         <TableRow key={booking.id}>
                             <TableCell>
-                                {format(new Date(booking.date), 'dd MMM yyyy')}
+                                {format(booking.date, 'dd MMM yyyy')}
                                 <div className="text-sm text-muted-foreground">{booking.timeSlot}</div>
                             </TableCell>
                             <TableCell>{booking.carType} ({booking.planGroup})</TableCell>

@@ -136,7 +136,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         variant: variant || null,
         price,
         address: data.address,
-        date: data.date,
+        date: Timestamp.fromDate(data.date),
         timeSlot: data.timeSlot,
         notes: data.notes || '',
         status: 'pending',

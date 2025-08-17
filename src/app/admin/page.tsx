@@ -90,10 +90,11 @@ export default function AdminPage() {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const allBookings = snapshot.docs.map(doc => {
         const data = doc.data();
+        const bookingDate = (data.date as Timestamp)?.toDate ? (data.date as Timestamp).toDate() : new Date();
         return {
             id: doc.id,
             ...data,
-            date: (data.date as Timestamp)?.toDate ? (data.date as Timestamp).toDate() : new Date(data.date),
+            date: bookingDate,
         } as Booking
       });
       setBookings(allBookings);
@@ -140,7 +141,7 @@ export default function AdminPage() {
                     <div className="text-sm text-muted-foreground">{booking.userPhone}</div>
                 </TableCell>
                 <TableCell>
-                    {format(new Date(booking.date), 'dd MMM yyyy')}
+                    {format(booking.date, 'dd MMM yyyy')}
                     <div className="text-sm text-muted-foreground">{booking.timeSlot}</div>
                 </TableCell>
                 <TableCell>{booking.carType} ({booking.planGroup})</TableCell>
