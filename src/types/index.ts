@@ -27,7 +27,7 @@ export interface Booking {
   userName?: string;
   planGroup: PlanGroup;
   carType: CarType;
-  variant?: OnetimeVariant | 'full' | 'exterior-only';
+  variant?: OnetimeVariant | null;
   price: string;
   address: string;
   date: Date;

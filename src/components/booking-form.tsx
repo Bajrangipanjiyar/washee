@@ -56,22 +56,31 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   });
 
   const getPlanDetails = () => {
-    const carTypeName = carType.charAt(0).toUpperCase() + carType.slice(1).replace(/-/g, ' ');
+    const carTypeName = carType.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    const planGroupMap = {
+      'monthly': `Monthly (6 Services)`,
+      'monthly4': `Monthly 4-Time Service`,
+      'onetime': `One-Time Wash`
+    }
+    const planDescription = planGroupMap[planGroup]
 
-    let plan, price;
+    let planName: string, price: string | undefined;
+
     if (planGroup === 'onetime') {
       const oneTimePlan = plansData.onetime.find(p => p.carType.toLowerCase().replace(/\s+/g, '-') === carType);
-      plan = `${carTypeName} - One-Time ${variant} Wash`;
+      const variantName = variant?.charAt(0).toUpperCase() + variant!.slice(1);
+      planName = `${carTypeName} - ${variantName} Wash`;
       price = variant === 'basic' ? oneTimePlan?.basic : oneTimePlan?.premium;
     } else {
       const monthlyPlan = plansData[planGroup].find(p => p.carType.toLowerCase().replace(/\s+/g, '-') === carType);
-      plan = `${carTypeName} - ${planGroup === 'monthly' ? 'Monthly (6)' : 'Monthly (4)'} Plan`;
+      planName = `${carTypeName} - ${planDescription}`;
       price = monthlyPlan?.price;
     }
-    return { plan, price };
+
+    return { planName, price };
   };
 
-  const { plan, price } = getPlanDetails();
+  const { planName, price } = getPlanDetails();
 
   const handleGetCurrentLocation = () => {
     setLocationLoading(true);
@@ -119,12 +128,12 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
     try {
       await addDoc(collection(db, 'bookings'), {
-        userId: 'anonymous', // No user logged in
+        userId: 'anonymous',
         userName: data.name,
         userPhone: data.phone,
         planGroup,
         carType,
-        variant: variant || (planGroup === 'monthly' || planGroup === 'monthly4' ? 'full' : undefined),
+        variant: variant || null,
         price,
         address: data.address,
         date: Timestamp.fromDate(data.date),
@@ -148,8 +157,8 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle>Book Your Wash</CardTitle>
-        <CardDescription>You're booking: <span className="font-semibold text-primary">{plan}</span></CardDescription>
-        <p className="text-2xl font-bold">Total: {price}</p>
+        <CardDescription>You're booking: <span className="font-semibold text-primary">{planName}</span></CardDescription>
+        <p className="text-2xl font-bold">Total: ₹{price}</p>
       </CardHeader>
       <CardContent>
         <Form {...form}>
