@@ -46,7 +46,7 @@ export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
-  const [confirmationResult, setConfirmationResult = useState<ConfirmationResult | null>(null);
+  const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const { user, loading: authLoading } = useAuth();
   
@@ -221,5 +221,3 @@ export function LoginForm() {
     </Card>
   );
 }
-
-    
