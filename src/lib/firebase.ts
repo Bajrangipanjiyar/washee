@@ -1,7 +1,7 @@
 
 import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
+import { getAuth, type User } from "firebase/auth";
 
 // IMPORTANT: Replace this with your own Firebase configuration
 const firebaseConfig = {
@@ -15,14 +15,26 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-let app: FirebaseApp;
-if (getApps().length === 0) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApp();
-}
+const app: FirebaseApp = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-export { app, db, auth };
+const createUserInFirestore = async (user: User) => {
+    if (!user) return;
+
+    const userRef = doc(db, 'users', user.uid);
+    const userData = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        phoneNumber: user.phoneNumber,
+        lastLogin: new Date()
+    };
+    // Use setDoc with merge: true to create or update the document
+    await setDoc(userRef, userData, { merge: true });
+}
+
+
+export { app, db, auth, createUserInFirestore };

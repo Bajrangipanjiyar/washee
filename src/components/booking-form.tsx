@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { CalendarIcon, MapPin } from 'lucide-react';
 import { format } from 'date-fns';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { plansData } from '@/lib/plans';
 import { cn } from '@/lib/utils';
@@ -22,6 +22,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import { useToast } from '@/hooks/use-toast';
 import type { PlanGroup, CarType, OnetimeVariant } from '@/types';
+import { useCustomerAuth } from '@/context/customer-auth-context';
 
 interface BookingFormProps {
   planGroup: PlanGroup;
@@ -31,7 +32,7 @@ interface BookingFormProps {
 
 const bookingSchema = z.object({
   name: z.string().min(2, 'Name is required.'),
-  phone: z.string().regex(/^\d{10}$/, 'Please enter a valid 10-digit phone number.'),
+  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, 'Please enter a valid phone number with country code.'),
   address: z.string().min(10, 'Address must be at least 10 characters long.'),
   date: z.date({ required_error: 'A date is required.' }),
   timeSlot: z.string({ required_error: 'Please select a time slot.' }),
@@ -48,12 +49,25 @@ const timeSlots = [
 export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
+  const { user } = useCustomerAuth();
   const [loading, setLoading] = useState(false);
   const [locationLoading, setLocationLoading] = useState(false);
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
+    defaultValues: {
+      name: user?.displayName || '',
+      phone: user?.phoneNumber || '',
+    },
   });
+
+  useEffect(() => {
+    if (user) {
+        form.setValue('name', user.displayName || '');
+        form.setValue('phone', user.phoneNumber || '');
+    }
+  }, [user, form]);
+
 
   const getPlanDetails = () => {
     const carTypeName = carType.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -128,7 +142,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
     try {
       await addDoc(collection(db, 'bookings'), {
-        userId: data.phone, // Using phone as a simple user ID
+        userId: user?.uid,
         userName: data.name,
         userPhone: data.phone,
         planGroup,
@@ -183,7 +197,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                   <FormItem>
                     <FormLabel>Phone Number</FormLabel>
                     <FormControl>
-                       <Input placeholder="10-digit number" {...field} />
+                       <Input placeholder="e.g. +919876543210" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

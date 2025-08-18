@@ -1,44 +1,45 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, type User } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { auth, createUserInFirestore } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 
-interface AuthContextType {
+interface CustomerAuthContextType {
   user: User | null;
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const CustomerAuthContext = createContext<CustomerAuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function CustomerAuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const pathname = usePathname();
   const { toast } = useToast();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-      if (currentUser && pathname === '/admin/login') {
-        router.replace('/admin');
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        await createUserInFirestore(currentUser);
+      } else {
+        setUser(null);
       }
+      setLoading(false);
     });
     return () => unsubscribe();
-  }, [router, pathname]);
+  }, []);
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      await createUserInFirestore(result.user);
       toast({ title: 'Login Successful!' });
-      router.push('/admin');
     } catch (error) {
       console.error("Google sign-in error:", error);
       toast({ variant: 'destructive', title: 'Login Failed', description: 'Could not sign in with Google.' });
@@ -48,7 +49,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     try {
       await signOut(auth);
-      router.push('/admin/login');
+      setUser(null);
+      router.push('/login');
     } catch (error) {
         console.error("Logout error:", error);
         toast({ variant: 'destructive', title: 'Logout Failed', description: 'Could not log out.' });
@@ -57,13 +59,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const value = { user, loading, signInWithGoogle, logout };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <CustomerAuthContext.Provider value={value}>{children}</CustomerAuthContext.Provider>;
 }
 
-export function useAuth() {
-  const context = useContext(AuthContext);
+export function useCustomerAuth() {
+  const context = useContext(CustomerAuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useCustomerAuth must be used within a CustomerAuthProvider');
   }
   return context;
 }

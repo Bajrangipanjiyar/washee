@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield, LogOut } from 'lucide-react';
+import { LogOut, LogIn, User as UserIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/context/auth-context';
+import { useCustomerAuth } from '@/context/customer-auth-context';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 function WLogo({ className }: { className?: string }) {
@@ -19,9 +19,8 @@ function WLogo({ className }: { className?: string }) {
   );
 }
 
-
 export function Navbar() {
-  const { user: adminUser, logout, loading: adminLoading } = useAuth();
+  const { user: customerUser, logout: customerLogout, loading: customerLoading } = useCustomerAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -45,26 +44,28 @@ export function Navbar() {
           </Link>
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          {!adminLoading && (
-            adminUser ? (
-              <>
-                <Avatar className="h-8 w-8">
-                    <AvatarImage src={adminUser.photoURL ?? ''} alt={adminUser.displayName ?? 'User'} />
-                    <AvatarFallback>{adminUser.displayName?.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <Button onClick={logout} variant="ghost" size="sm">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <Button asChild variant="ghost" size="sm">
-                <Link href="/admin/login">
-                  <Shield className="mr-2 h-4 w-4" />
-                  Admin
-                </Link>
-              </Button>
-            )
+          { !customerLoading && (
+            <>
+              {customerUser ? (
+                 <>
+                    <Avatar className="h-8 w-8">
+                        <AvatarImage src={customerUser.photoURL ?? ''} alt={customerUser.displayName ?? 'User'} />
+                        <AvatarFallback>{customerUser.displayName?.charAt(0) || <UserIcon/>}</AvatarFallback>
+                    </Avatar>
+                    <Button onClick={customerLogout} variant="ghost" size="sm">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Logout
+                    </Button>
+                </>
+              ) : (
+                  <Button asChild variant="ghost" size="sm">
+                    <Link href="/login">
+                      <LogIn className="mr-2 h-4 w-4" />
+                      Login
+                    </Link>
+                  </Button>
+              )}
+            </>
           )}
         </div>
       </div>

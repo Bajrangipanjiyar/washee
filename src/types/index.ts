@@ -39,6 +39,10 @@ export interface Booking {
 }
 
 export interface Customer {
-    name: string;
-    phone: string;
+    uid: string;
+    email?: string | null;
+    displayName?: string | null;
+    photoURL?: string | null;
+    phoneNumber?: string | null;
+    lastLogin: Date;
 }
