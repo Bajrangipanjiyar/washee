@@ -75,13 +75,13 @@ function StatusSelector({ booking }: { booking: Booking }) {
 
 export default function AdminPage() {
   const router = useRouter();
-  const { isAuthenticated, loading: authLoading, logout } = useAuth();
+  const { user, loading: authLoading, logout } = useAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (authLoading) return;
-    if (!isAuthenticated) {
+    if (!user) {
       router.push('/admin/login');
       return;
     }
@@ -105,7 +105,7 @@ export default function AdminPage() {
     });
 
     return () => unsubscribe();
-  }, [isAuthenticated, authLoading, router]);
+  }, [user, authLoading, router]);
 
   if (authLoading || loading) {
     return (

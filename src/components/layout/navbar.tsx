@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield } from 'lucide-react';
+import { Shield, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/context/auth-context';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 function WLogo({ className }: { className?: string }) {
   return (
@@ -19,6 +21,7 @@ function WLogo({ className }: { className?: string }) {
 
 
 export function Navbar() {
+  const { user, logout, loading } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -42,12 +45,27 @@ export function Navbar() {
           </Link>
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/admin">
-              <Shield className="mr-2 h-4 w-4" />
-              Admin
-            </Link>
-          </Button>
+          {!loading && (
+            user ? (
+              <>
+                <Avatar className="h-8 w-8">
+                    <AvatarImage src={user.photoURL ?? ''} alt={user.displayName ?? 'User'} />
+                    <AvatarFallback>{user.displayName?.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <Button onClick={logout} variant="ghost" size="sm">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button asChild variant="ghost" size="sm">
+                <Link href="/admin/login">
+                  <Shield className="mr-2 h-4 w-4" />
+                  Admin
+                </Link>
+              </Button>
+            )
+          )}
         </div>
       </div>
     </header>
