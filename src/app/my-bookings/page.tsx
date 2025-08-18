@@ -1,14 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { collection, query, where, getDocs, type Timestamp, orderBy } from 'firebase/firestore';
 import { format } from 'date-fns';
 
 import { db } from '@/lib/firebase';
 import type { Booking } from '@/types';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
@@ -24,21 +23,26 @@ const statusColors = {
 };
 
 export default function MyBookingsPage() {
-  const router = useRouter();
   const { toast } = useToast();
   const { user: customerUser, loading: customerLoading } = useCustomerAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (customerLoading) return;
-    if (!customerUser) {
-      router.push('/login?redirect=/my-bookings');
-      return;
-    }
+    // Login check is temporarily disabled
+    // if (customerLoading) return;
+    // if (!customerUser) {
+    //   router.push('/login?redirect=/my-bookings');
+    //   return;
+    // }
 
     const fetchBookings = async () => {
       setLoading(true);
+      if (!customerUser) {
+        setBookings([]);
+        setLoading(false);
+        return;
+      }
       try {
         const q = query(
           collection(db, 'bookings'),
@@ -58,9 +62,6 @@ export default function MyBookingsPage() {
         });
 
         setBookings(foundBookings);
-        if (foundBookings.length === 0) {
-          toast({ title: 'No bookings found.' });
-        }
       } catch (error) {
           if ((error as any).code === 'failed-precondition') {
               toast({ variant: 'destructive', title: 'Database Index Required', description: 'Please create a composite index in Firestore for userId and createdAt.' });
@@ -75,7 +76,7 @@ export default function MyBookingsPage() {
     
     fetchBookings();
 
-  }, [customerUser, customerLoading, router, toast]);
+  }, [customerUser, customerLoading, toast]);
 
   if (customerLoading || loading) {
     return (
@@ -127,6 +128,7 @@ export default function MyBookingsPage() {
               ) : (
               <div className="text-center py-8 text-muted-foreground">
                   <p>You haven't made any bookings yet.</p>
+                  <p className="text-sm">Login to see your bookings or book a new wash.</p>
                   <Button asChild variant="link" className="mt-2">
                     <a href="/plans">Book a wash</a>
                   </Button>
