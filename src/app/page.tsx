@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -59,6 +60,19 @@ const faqs = [
     }
 ]
 
+function WLogo({ className }: { className?: string }) {
+    return (
+      <svg
+        className={className}
+        viewBox="0 0 100 70"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0L20 70L50 20L80 70L100 0H75L50 45L25 0H0Z" />
+      </svg>
+    );
+  }
+
 export default function Home() {
   return (
     <>
@@ -80,16 +94,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative group">
+        <div className="relative group flex items-center justify-center w-full h-full">
            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-          <Image
-            src="https://placehold.co/700x500.png"
-            alt="Shiny clean car"
-            data-ai-hint="shiny car"
-            width={700}
-            height={500}
-            className="rounded-lg shadow-2xl relative"
-          />
+           <div className="relative w-72 h-72 bg-background/80 backdrop-blur-sm rounded-lg shadow-2xl flex items-center justify-center">
+                <WLogo className="w-48 h-48 text-primary" />
+           </div>
         </div>
       </section>
 
