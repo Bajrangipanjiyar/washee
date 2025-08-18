@@ -8,55 +8,55 @@ import { CheckCircle2, MapPin, Rocket, Smile, Calendar, Car, Star } from 'lucide
 const features = [
   {
     icon: <Car className="h-10 w-10 text-primary" />,
-    title: 'Doorstep Service – Bilkul Free Visit 🚗💦',
-    description: 'Aapko kahin jaane ki zaroorat nahi. Hum aapke ghar aakar car wash karenge, aur visit ka koi charge nahi hai.',
+    title: 'Doorstep Service – Absolutely Free Visit 🚗💦',
+    description: 'No need to go anywhere. We come to your home to wash your car, with no visit charges.',
   },
   {
     icon: <Rocket className="h-10 w-10 text-primary" />,
-    title: 'Fast & Reliable – Sirf 30–45 min me sparkling clean',
-    description: 'Humara process tez aur prabhavi hai, jisse aapki car jaldi se saaf aur chamakdar ho jaati hai.',
+    title: 'Fast & Reliable – Sparkling Clean in 30-45 Mins',
+    description: 'Our process is quick and effective, leaving your car sparkling clean in no time.',
   },
   {
     icon: <Star className="h-10 w-10 text-primary" />,
-    title: 'Affordable Packages – Pocket-friendly rates',
-    description: 'Hamare plans aapke budget me fit hote hain, jisse aapko behtareen service kam daam me milti hai.',
+    title: 'Affordable Packages – Pocket-Friendly Rates',
+    description: 'Our plans are designed to fit your budget, offering you premium service at a great price.',
   },
 ];
 
 const howItWorksSteps = [
     {
       icon: <Calendar className="h-8 w-8 text-primary" />,
-      title: "Book your wash online",
-      description: "Hamari website se aasani se apna plan chunein aur booking karein.",
+      title: "Book Your Wash Online",
+      description: "Easily choose your preferred plan and schedule your booking through our website.",
     },
     {
       icon: <Car className="h-8 w-8 text-primary" />,
-      title: "Hamari team aapke doorstep pe aayegi",
-      description: "Hum apne saare zaroori samaan ke saath aapke diye gaye pate par aayenge.",
+      title: "Our Team Arrives at Your Doorstep",
+      description: "We will arrive at your location with all the necessary professional equipment.",
     },
     {
       icon: <Smile className="h-8 w-8 text-primary" />,
-      title: "Relax while we wash your car",
-      description: "Aap aaram karein jab tak hum aapki car ko naya jaisa bana rahe hain.",
+      title: "Relax While We Pamper Your Car",
+      description: "Sit back and relax while our experts make your car look as good as new.",
     },
 ]
 
 const faqs = [
     {
-        question: 'Kya mujhe car workshop leke jaana padega?',
-        answer: '👉 Nahi! Hamari service doorstep hai aur visit bilkul free hai.'
+        question: 'Do I need to bring my car to a workshop?',
+        answer: '👉 No! Our service is at your doorstep, and the visit is completely free.'
     },
     {
-        question: 'Kya wash fast hai?',
-        answer: '👉 Haan, sirf 30–45 min me ho jata hai.'
+        question: 'Is the car wash process fast?',
+        answer: '👉 Yes, your car will be sparkling clean in just 30-45 minutes.'
     },
     {
-        question: 'Kaunse city me available hai?',
-        answer: '👉 Abhi sirf Guwahati me. Jaldi hi aur cities me bhi launch hoga.'
+        question: 'Which cities is the service available in?',
+        answer: '👉 Currently, we are only available in Guwahati. We will be launching in more cities soon.'
     },
     {
-        question: 'Payment kaise karna hoga?',
-        answer: '👉 Sirf Online Payment hi accept hai.'
+        question: 'What are the payment options?',
+        answer: '👉 We currently accept online payments only.'
     }
 ]
 
@@ -107,7 +107,7 @@ export default function Home() {
           <div className="container">
               <div className="text-center mb-12">
                   <h2 className="text-4xl font-bold font-headline">Why Choose Us?</h2>
-                  <p className="mt-2 text-lg text-muted-foreground">Sabse alag, sabse behtar.</p>
+                  <p className="mt-2 text-lg text-muted-foreground">The best choice for your car.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {features.map((feature, index) => (
@@ -140,7 +140,7 @@ export default function Home() {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold font-headline">How It Works</h2>
-            <p className="mt-2 text-lg text-muted-foreground">Char aasaan steps me car wash.</p>
+            <p className="mt-2 text-lg text-muted-foreground">A premium car wash in three simple steps.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             {howItWorksSteps.map((step, index) => (
@@ -154,7 +154,7 @@ export default function Home() {
             ))}
           </div>
            <div className="text-center mt-12">
-                <p className="text-2xl font-bold">Shine & smile 😃</p>
+                <p className="text-2xl font-bold">Shine & Smile 😃</p>
             </div>
         </div>
       </section>
@@ -164,7 +164,7 @@ export default function Home() {
         <div className="container max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold font-headline">Frequently Asked Questions</h2>
-            <p className="mt-2 text-lg text-muted-foreground">Aapke sawal, hamare jawab.</p>
+            <p className="mt-2 text-lg text-muted-foreground">Your questions, our answers.</p>
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
