@@ -5,7 +5,6 @@ import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 import Script from 'next/script';
-import { UserProvider } from '@/context/user-context';
 
 export const metadata: Metadata = {
   title: 'Washee - Premium Car Wash',
@@ -30,12 +29,10 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased min-h-screen bg-background flex flex-col">
         <AuthProvider>
-            <UserProvider>
-                <Navbar />
-                <main className="flex-grow">{children}</main>
-                <Footer />
-                <Toaster />
-            </UserProvider>
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+            <Toaster />
         </AuthProvider>
       </body>
     </html>

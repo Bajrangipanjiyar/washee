@@ -1,10 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield, LogOut, User as UserIcon } from 'lucide-react';
+import { Shield, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/auth-context';
-import { useUser } from '@/context/user-context';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 function WLogo({ className }: { className?: string }) {
@@ -23,7 +22,6 @@ function WLogo({ className }: { className?: string }) {
 
 export function Navbar() {
   const { user: adminUser, logout, loading: adminLoading } = useAuth();
-  const { user: customerUser, loading: customerLoading } = useUser();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -47,23 +45,6 @@ export function Navbar() {
           </Link>
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          {!customerLoading && (
-            customerUser ? (
-                 <Button asChild variant="ghost" size="sm">
-                    <Link href="/profile">
-                        <UserIcon className="mr-2 h-4 w-4" />
-                        Profile
-                    </Link>
-                 </Button>
-            ) : (
-                <Button asChild variant="ghost" size="sm">
-                    <Link href="/profile">
-                        <UserIcon className="mr-2 h-4 w-4" />
-                        Login
-                    </Link>
-                </Button>
-            )
-          )}
           {!adminLoading && (
             adminUser ? (
               <>
