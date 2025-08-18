@@ -1,8 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-import { Car, Shield, List } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+function WLogo({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 100 70"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0 0L20 70L50 20L80 70L100 0H75L50 45L25 0H0Z" />
+    </svg>
+  );
+}
+
 
 export function Navbar() {
 
@@ -10,7 +24,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <Car className="h-6 w-6 text-primary" />
+          <WLogo className="h-6 w-6 text-primary" />
           <span className="font-bold font-headline text-xl">Washee</span>
         </Link>
         <nav className="flex items-center space-x-6 text-sm font-medium">
