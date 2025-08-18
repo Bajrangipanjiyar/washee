@@ -161,7 +161,6 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now(),
       });
-      toast({ title: 'Booking Successful!', description: "We'll confirm your slot soon." });
       router.push('/booking-success');
     } catch (error) {
       console.error("Error creating booking:", error);
