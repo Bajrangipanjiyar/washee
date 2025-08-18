@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { CalendarIcon, MapPin } from 'lucide-react';
 import { format } from 'date-fns';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { plansData } from '@/lib/plans';
 import { cn } from '@/lib/utils';
@@ -22,6 +22,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import { useToast } from '@/hooks/use-toast';
 import type { PlanGroup, CarType, OnetimeVariant } from '@/types';
+import { useUser } from '@/context/user-context';
 
 interface BookingFormProps {
   planGroup: PlanGroup;
@@ -50,10 +51,27 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [locationLoading, setLocationLoading] = useState(false);
+  const { user, loading: userLoading } = useUser();
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
+    defaultValues: {
+      name: user?.name || '',
+      phone: user?.phone || '',
+    },
   });
+
+  useEffect(() => {
+    if (!userLoading && !user) {
+        const currentPath = window.location.pathname + window.location.search;
+        router.push(`/profile?redirect=${encodeURIComponent(currentPath)}`);
+    }
+    if (user) {
+        form.setValue('name', user.name);
+        form.setValue('phone', user.phone);
+    }
+  }, [user, userLoading, router, form]);
+
 
   const getPlanDetails = () => {
     const carTypeName = carType.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -128,7 +146,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
     try {
       await addDoc(collection(db, 'bookings'), {
-        userId: 'anonymous',
+        userId: data.phone, // Using phone as a simple user ID
         userName: data.name,
         userPhone: data.phone,
         planGroup,
@@ -152,9 +170,17 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       setLoading(false);
     }
   };
+  
+  if (userLoading || !user) {
+    return (
+        <div className="container py-12 text-center">
+            <p>Loading...</p>
+        </div>
+    )
+  }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-2xl mx-auto animate-fade-in-up">
       <CardHeader>
         <CardTitle>Book Your Wash</CardTitle>
         <CardDescription>You're booking: <span className="font-semibold text-primary">{planName}</span></CardDescription>
@@ -171,7 +197,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                   <FormItem>
                     <FormLabel>Full Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your name" {...field} />
+                      <Input placeholder="Enter your name" {...field} readOnly className="bg-gray-100" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -184,7 +210,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                   <FormItem>
                     <FormLabel>Phone Number</FormLabel>
                     <FormControl>
-                       <Input placeholder="10-digit number" {...field} />
+                       <Input placeholder="10-digit number" {...field} readOnly className="bg-gray-100" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -37,3 +37,8 @@ export interface Booking {
   createdAt: Timestamp;
   updatedAt: Timestamp;
 }
+
+export interface Customer {
+    name: string;
+    phone: string;
+}

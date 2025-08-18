@@ -27,7 +27,7 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
     if (planGroup === 'onetime') {
       return (
         <div className="space-y-4">
-          <div className="p-4 border rounded-lg bg-accent/50">
+          <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
             <h4 className="font-semibold">Basic Wash</h4>
             <p className="text-2xl font-bold flex items-baseline gap-2">
               <span className="text-base font-normal text-muted-foreground line-through">{originalBasic}</span>
@@ -37,7 +37,7 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
               <Link href={getBookingLink('basic')}>Book Basic</Link>
             </Button>
           </div>
-          <div className="p-4 border rounded-lg bg-accent/50">
+          <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
             <h4 className="font-semibold">Premium Wash</h4>
             <p className="text-2xl font-bold flex items-baseline gap-2">
               <span className="text-base font-normal text-muted-foreground line-through">{originalPremium}</span>
@@ -72,7 +72,7 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
   };
 
   return (
-    <Card className={cn("flex flex-col", isFeatured && "border-primary shadow-lg")}>
+    <Card className={cn("flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-2", isFeatured && "border-primary shadow-lg")}>
       <CardHeader>
         <CardTitle>{carType}</CardTitle>
       </CardHeader>
