@@ -3,7 +3,7 @@ import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
 import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 import { getAuth, type User } from "firebase/auth";
 
-// IMPORTANT: Replace this with your own Firebase configuration
+// IMPORTANT: This Firebase config object is now set up with your project details.
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyB47KGghohQRzELl9NPoONm-d1tU7pIzmg",
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "car-wash-3e724.firebaseapp.com",
