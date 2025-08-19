@@ -95,10 +95,14 @@ export default function Home() {
         </div>
 
         <div className="relative group flex items-center justify-center w-full h-full">
-           <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-           <div className="relative w-72 h-72 bg-background/80 backdrop-blur-sm rounded-lg shadow-2xl flex items-center justify-center">
-                <WLogo className="w-48 h-48 text-primary" />
-           </div>
+            <Image 
+                src="https://placehold.co/600x400.png" 
+                alt="Car Wash" 
+                width={600} 
+                height={400} 
+                className="rounded-lg shadow-2xl object-cover"
+                data-ai-hint="car wash" 
+            />
         </div>
       </section>
 
