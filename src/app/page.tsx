@@ -96,7 +96,7 @@ export default function Home() {
 
         <div className="relative group flex items-center justify-center w-full h-full">
             <Image 
-                src="https://placehold.co/600x400.png" 
+                src="https://storage.googleapis.com/maker-studio-52541.appspot.com/users/temp/2024-08-19T13:47:04.996Z.png" 
                 alt="Car Wash" 
                 width={600} 
                 height={400} 
