@@ -38,6 +38,40 @@ export function Footer() {
         <div className="flex flex-col items-center gap-2 text-sm text-muted-foreground md:flex-row md:gap-4">
              <Link href="tel:+916003151047" className="hover:text-primary">+91 6003151047</Link>
              <Link href="mailto:panjiyarbajrangi@gmail.com" className="hover:text-primary">panjiyarbajrangi@gmail.com</Link>
+            
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Button variant="link" className="text-sm">About Us</Button>
+                </DialogTrigger>
+                <DialogContent className="max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                    <DialogTitle>About Us</DialogTitle>
+                    <DialogDescription>
+                        Welcome to Washee – Your Doorstep Car Care Partner.
+                    </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 text-sm text-muted-foreground">
+                        <p>Washee is not just another car wash service, it is a promise of convenience, quality, and trust. We understand that in today’s fast-paced life, finding time to maintain your car can be difficult. That’s why we bring professional car wash services right to your doorstep – saving you time, effort, and hassle.</p>
+                        <p>The idea of Washee was born with a simple mission:👉 To make car cleaning effortless and accessible for everyone.</p>
+                        
+                        <h3 className="font-bold text-foreground">Our Founders</h3>
+                        <p><strong>Dharmaraj Ram (Founder)</strong> – The visionary behind Washee, whose passion for innovation and service excellence laid the foundation of this venture. His belief is simple – a clean car reflects a clear lifestyle.</p>
+                        <p><strong>Bajrangi Panjiyar (CEO)</strong> – Leading Washee with dedication and strategy, he ensures that our operations are smooth, customer-centric, and future-ready. Under his leadership, Washee is growing as a reliable name in the doorstep car wash industry.</p>
+
+                        <h3 className="font-bold text-foreground">Our Commitment</h3>
+                        <ul className="list-disc pl-5">
+                            <li>Convenience at your door – Book a wash anytime, anywhere.</li>
+                            <li>Professional care – Trained staff with modern techniques.</li>
+                            <li>Affordable plans – From one-time washes to easy subscriptions.</li>
+                            <li>Trust & transparency – No hidden charges, no compromise on quality.</li>
+                        </ul>
+
+                        <p>At Washee, we believe that a car is not just a vehicle, it’s a partner in your journey. Keeping it clean should never be a burden. With us, car care becomes simple, reliable, and stress-free.</p>
+                        <p className="font-bold text-center">🌟 Washee – Because your car deserves the best care.</p>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
             <Dialog>
                 <DialogTrigger asChild>
                     <Button variant="link" className="text-sm">Terms & Conditions</Button>
