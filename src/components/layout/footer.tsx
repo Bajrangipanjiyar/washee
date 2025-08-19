@@ -9,6 +9,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "../ui/button";
+import Link from "next/link";
   
 
 function WLogo({ className }: { className?: string }) {
@@ -34,7 +35,9 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Washee. All rights reserved.
           </p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col items-center gap-2 text-sm text-muted-foreground md:flex-row md:gap-4">
+             <Link href="tel:+916003151047" className="hover:text-primary">+91 6003151047</Link>
+             <Link href="mailto:panjiyarbajrangi@gmail.com" className="hover:text-primary">panjiyarbajrangi@gmail.com</Link>
             <Dialog>
                 <DialogTrigger asChild>
                     <Button variant="link" className="text-sm">Terms & Conditions</Button>
