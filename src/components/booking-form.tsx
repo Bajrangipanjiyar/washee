@@ -40,17 +40,17 @@ const bookingSchema = z.object({
 });
 
 const timeSlots = [
-  "06:00 AM - 07:00 AM",
-  "07:00 AM - 08:00 AM",
-  "08:00 AM - 09:00 AM",
-  "09:00 AM - 10:00 AM",
-  "10:00 AM - 11:00 AM",
-  "11:00 AM - 12:00 PM",
-  "12:00 PM - 01:00 PM",
-  "01:00 PM - 02:00 PM",
-  "02:00 PM - 03:00 PM",
-  "03:00 PM - 04:00 PM",
-  "04:00 PM - 05:00 PM",
+    "06:00 AM - 07:00 AM",
+    "07:00 AM - 08:00 AM",
+    "08:00 AM - 09:00 AM",
+    "09:00 AM - 10:00 AM",
+    "10:00 AM - 11:00 AM",
+    "11:00 AM - 12:00 PM",
+    "12:00 PM - 01:00 PM",
+    "01:00 PM - 02:00 PM",
+    "02:00 PM - 03:00 PM",
+    "03:00 PM - 04:00 PM",
+    "04:00 PM - 05:00 PM",
 ];
 
 export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
@@ -108,24 +108,10 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
-          const { latitude, longitude } = position.coords;
-          try {
-            const response = await fetch(
-              `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
-            );
-            const data = await response.json();
-            if (data.results && data.results[0]) {
-              form.setValue('address', data.results[0].formatted_address);
-              toast({ title: 'Location Fetched!', description: 'Your address has been filled in.' });
-            } else {
-              throw new Error('No results found');
-            }
-          } catch (error) {
-            console.error('Error fetching address:', error);
-            toast({ variant: 'destructive', title: 'Error', description: 'Could not fetch address from location.' });
-          } finally {
-            setLocationLoading(false);
-          }
+          // Geocoding would require Google Maps API, which is removed.
+          // For now, we can inform the user to enter manually.
+           toast({ title: 'Location Found!', description: 'Please enter your address manually for now.' });
+           setLocationLoading(false);
         },
         (error) => {
           console.error('Geolocation error:', error);
@@ -217,21 +203,21 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
               name="address"
               render={({ field }) => (
                 <FormItem>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center mb-2">
                         <FormLabel>Full Address</FormLabel>
                         <Button
                             type="button"
                             variant="link"
-                            className="pr-0"
+                            className="p-0 h-auto"
                             onClick={handleGetCurrentLocation}
                             disabled={locationLoading}
                         >
                             <MapPin className="mr-2 h-4 w-4" />
-                            {locationLoading ? 'Fetching...' : 'Use My Current Location'}
+                            {locationLoading ? 'Fetching...' : 'Get Current Location'}
                         </Button>
                     </div>
                   <FormControl>
-                    <Textarea placeholder="Enter your full address for the service or use current location" {...field} />
+                    <Textarea placeholder="Enter your full address for the service." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
