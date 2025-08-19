@@ -10,7 +10,7 @@ export default function PlansPage() {
       </div>
 
       <section className="mb-16">
-        <h2 className="text-2xl font-bold font-headline mb-6 text-center">Monthly Plans (6 Services)</h2>
+        <h2 className="text-2xl font-bold font-headline mb-6 text-center">Subscription Plans (Monthly - 6 Services)</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {plansData.monthly.map((plan, index) => (
             <PlanCard key={index} plan={plan} planGroup="monthly" isFeatured={plan.carType === 'Luxury Cars'} />
@@ -19,7 +19,7 @@ export default function PlansPage() {
       </section>
 
       <section className="mb-16">
-        <h2 className="text-2xl font-bold font-headline mb-6 text-center">Monthly 4-Time Service</h2>
+        <h2 className="text-2xl font-bold font-headline mb-6 text-center">Subscription Plans (Monthly - 4 Services)</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {plansData.monthly4.map((plan, index) => (
             <PlanCard key={index} plan={plan} planGroup="monthly4" />
