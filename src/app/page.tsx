@@ -95,14 +95,7 @@ export default function Home() {
         </div>
 
         <div className="relative group flex items-center justify-center w-full h-full">
-            <Image 
-                src="https://placehold.co/600x400.png" 
-                alt="Car Wash" 
-                width={600} 
-                height={400} 
-                className="rounded-lg shadow-2xl object-cover"
-                data-ai-hint="car wash" 
-            />
+            <WLogo className="w-48 h-48 lg:w-96 lg:h-96 text-primary drop-shadow-2xl" />
         </div>
       </section>
 
