@@ -23,6 +23,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { useToast } from '@/hooks/use-toast';
 import type { PlanGroup, CarType, OnetimeVariant } from '@/types';
 import { useCustomerAuth } from '@/context/customer-auth-context';
+import { Textarea } from './ui/textarea';
 
 interface BookingFormProps {
   planGroup: PlanGroup;
@@ -33,9 +34,7 @@ interface BookingFormProps {
 const bookingSchema = z.object({
   name: z.string().min(2, 'Name is required.'),
   phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, 'Please enter a valid phone number with country code.'),
-  houseNumber: z.string().min(1, 'House number/street is required.'),
-  city: z.string().min(2, 'City is required.'),
-  pincode: z.string().regex(/^\d{6}$/, 'Please enter a valid 6-digit pincode.'),
+  address: z.string().min(10, 'Please enter a full address.'),
   date: z.date({ required_error: 'A date is required.' }),
   timeSlot: z.string({ required_error: 'Please select a time slot.' }),
   notes: z.string().optional(),
@@ -66,7 +65,8 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     defaultValues: {
       name: user?.displayName || '',
       phone: user?.phoneNumber || '',
-      city: 'Guwahati'
+      address: '',
+      notes: '',
     },
   });
 
@@ -112,8 +112,6 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     }
     setLoading(true);
 
-    const fullAddress = `${data.houseNumber}, ${data.city}, Assam - ${data.pincode}`;
-
     try {
       await addDoc(collection(db, 'bookings'), {
         userId: user?.uid || null,
@@ -123,7 +121,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         carType,
         variant: variant || null,
         price,
-        address: fullAddress,
+        address: data.address,
         date: Timestamp.fromDate(data.date),
         timeSlot: data.timeSlot,
         notes: data.notes || '',
@@ -181,46 +179,17 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
             
              <FormField
                 control={form.control}
-                name="houseNumber"
+                name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>House No / Street</FormLabel>
+                    <FormLabel>Full Address</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your House No. and Street" {...field} />
+                      <Textarea placeholder="Enter your full address" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <FormField
-                    control={form.control}
-                    name="city"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>City</FormLabel>
-                        <FormControl>
-                        <Input placeholder="Enter your city" {...field} disabled />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-                 <FormField
-                    control={form.control}
-                    name="pincode"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Pincode</FormLabel>
-                        <FormControl>
-                        <Input placeholder="Enter your 6-digit pincode" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
