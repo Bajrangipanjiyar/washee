@@ -24,6 +24,12 @@ import { useToast } from '@/hooks/use-toast';
 import type { PlanGroup, CarType, OnetimeVariant } from '@/types';
 import { useCustomerAuth } from '@/context/customer-auth-context';
 
+declare global {
+    interface Window {
+        Razorpay: any;
+    }
+}
+
 interface BookingFormProps {
   planGroup: PlanGroup;
   carType: CarType;
@@ -72,6 +78,13 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       notes: '',
     },
   });
+  
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -108,38 +121,69 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
   const { planName, price } = getPlanDetails();
 
-  const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = async (data) => {
+  const handlePayment = async (formData: z.infer<typeof bookingSchema>) => {
     if (!price) {
-      toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price. Please select a plan again.' });
-      return;
+        toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price.' });
+        return;
     }
     setLoading(true);
 
-    try {
-      const fullAddress = `${data.house}, ${data.city}, ${data.pincode}`;
-      await addDoc(collection(db, 'bookings'), {
-        userId: user?.uid || null,
-        userName: data.name,
-        userPhone: data.phone,
-        planGroup,
-        carType,
-        variant: variant || null,
-        price,
-        address: fullAddress,
-        date: Timestamp.fromDate(data.date),
-        timeSlot: data.timeSlot,
-        notes: data.notes || '',
-        status: 'confirmed',
-        createdAt: Timestamp.now(),
-        updatedAt: Timestamp.now(),
-      });
-      router.push('/booking-success');
-    } catch (error) {
-      console.error("Error creating booking:", error);
-      toast({ variant: 'destructive', title: 'Booking Failed', description: 'Something went wrong. Please try again.' });
-    } finally {
-      setLoading(false);
-    }
+    const options = {
+        key: 'rzp_test_R7d4vkja9D7Suq',
+        amount: Number(price.replace('₹', '')) * 100,
+        currency: 'INR',
+        name: 'Washee',
+        description: `Payment for ${planName}`,
+        handler: async (response: any) => {
+            try {
+                const fullAddress = `${formData.house}, ${formData.city}, ${formData.pincode}`;
+                await addDoc(collection(db, 'bookings'), {
+                    userId: user?.uid || null,
+                    userName: formData.name,
+                    userPhone: formData.phone,
+                    planGroup,
+                    carType,
+                    variant: variant || null,
+                    price,
+                    address: fullAddress,
+                    date: Timestamp.fromDate(formData.date),
+                    timeSlot: formData.timeSlot,
+                    notes: formData.notes || '',
+                    status: 'confirmed',
+                    paymentId: response.razorpay_payment_id,
+                    createdAt: Timestamp.now(),
+                    updatedAt: Timestamp.now(),
+                });
+                router.push('/booking-success');
+            } catch (error) {
+                console.error("Error creating booking after payment:", error);
+                toast({ variant: 'destructive', title: 'Booking Failed', description: 'Payment was successful, but booking failed. Please contact support.' });
+            } finally {
+                setLoading(false);
+            }
+        },
+        prefill: {
+            name: formData.name,
+            contact: formData.phone,
+            email: user?.email || '',
+        },
+        theme: {
+            color: '#2563EB'
+        },
+        modal: {
+            ondismiss: () => {
+                setLoading(false);
+                toast({ variant: 'destructive', title: 'Payment Cancelled', description: 'You cancelled the payment.' });
+            }
+        }
+    };
+    
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  }
+
+  const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = (data) => {
+    handlePayment(data);
   };
   
   return (
@@ -261,31 +305,33 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                   </FormItem>
                 )}
               />
+<FormField
+  control={form.control}
+  name="timeSlot"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>Preferred Time Slot</FormLabel>
+      <Select onValueChange={field.onChange} defaultValue={field.value}>
+        <FormControl>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a time slot" />
+          </SelectTrigger>
+        </FormControl>
+        <SelectContent>
+          {timeSlots.map((slot) => (
+            <SelectItem key={slot} value={slot}>
+              {slot}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
 
-              <FormField
-                control={form.control}
-                name="timeSlot"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Preferred Time Slot</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a time slot" />
-                        </Trigger>
-                      </FormControl>
-                      <SelectContent>
-                        {timeSlots.map((slot) => (
-                          <SelectItem key={slot} value={slot}>
-                            {slot}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                   
+              
             </div>
             
             <FormField
@@ -303,7 +349,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
             />
             
             <Button type="submit" disabled={loading} className="w-full">
-              {loading ? 'Booking...' : 'Confirm Booking'}
+              {loading ? 'Processing...' : 'Pay & Confirm Booking'}
             </Button>
           </form>
         </Form>
@@ -311,3 +357,4 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     </Card>
   );
 }
+

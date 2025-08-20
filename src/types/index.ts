@@ -1,3 +1,4 @@
+
 import type { Timestamp } from 'firebase/firestore';
 
 export interface Plan {
@@ -34,6 +35,7 @@ export interface Booking {
   timeSlot: string;
   notes?: string;
   status: BookingStatus;
+  paymentId?: string;
   createdAt: Timestamp;
   updatedAt: Timestamp;
 }
