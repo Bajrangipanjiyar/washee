@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { CalendarIcon, MapPin } from 'lucide-react';
+import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
@@ -308,5 +308,3 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     </Card>
   );
 }
-
-    
