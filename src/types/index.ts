@@ -46,3 +46,5 @@ export interface Customer {
     phoneNumber?: string | null;
     lastLogin: Date;
 }
+
+    

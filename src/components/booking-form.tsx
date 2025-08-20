@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRouter } from 'next/navigation';
@@ -14,7 +15,6 @@ import { cn } from '@/lib/utils';
 import { db } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -33,7 +33,9 @@ interface BookingFormProps {
 const bookingSchema = z.object({
   name: z.string().min(2, 'Name is required.'),
   phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, 'Please enter a valid phone number with country code.'),
-  address: z.string().min(10, 'Address must be at least 10 characters long.'),
+  houseNumber: z.string().min(1, 'House number/street is required.'),
+  city: z.string().min(2, 'City is required.'),
+  pincode: z.string().regex(/^\d{6}$/, 'Please enter a valid 6-digit pincode.'),
   date: z.date({ required_error: 'A date is required.' }),
   timeSlot: z.string({ required_error: 'Please select a time slot.' }),
   notes: z.string().optional(),
@@ -58,13 +60,13 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const { toast } = useToast();
   const { user } = useCustomerAuth();
   const [loading, setLoading] = useState(false);
-  const [locationLoading, setLocationLoading] = useState(false);
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
       name: user?.displayName || '',
       phone: user?.phoneNumber || '',
+      city: 'Guwahati'
     },
   });
 
@@ -103,35 +105,14 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
   const { planName, price } = getPlanDetails();
 
-  const handleGetCurrentLocation = () => {
-    setLocationLoading(true);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          // Geocoding would require Google Maps API, which is removed.
-          // For now, we can inform the user to enter manually.
-           toast({ title: 'Location Found!', description: 'Please enter your address manually for now.' });
-           setLocationLoading(false);
-        },
-        (error) => {
-          console.error('Geolocation error:', error);
-          toast({ variant: 'destructive', title: 'Location Error', description: 'Could not get your location. Please check your browser settings.' });
-          setLocationLoading(false);
-        }
-      );
-    } else {
-      toast({ variant: 'destructive', title: 'Unsupported', description: 'Geolocation is not supported by your browser.' });
-      setLocationLoading(false);
-    }
-  };
-
-
   const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = async (data) => {
     if (!price) {
       toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price. Please select a plan again.' });
       return;
     }
     setLoading(true);
+
+    const fullAddress = `${data.houseNumber}, ${data.city}, Assam - ${data.pincode}`;
 
     try {
       await addDoc(collection(db, 'bookings'), {
@@ -142,7 +123,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         carType,
         variant: variant || null,
         price,
-        address: data.address,
+        address: fullAddress,
         date: Timestamp.fromDate(data.date),
         timeSlot: data.timeSlot,
         notes: data.notes || '',
@@ -198,31 +179,48 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
               />
             </div>
             
-            <FormField
-              control={form.control}
-              name="address"
-              render={({ field }) => (
-                <FormItem>
-                    <div className="flex justify-between items-center mb-2">
-                        <FormLabel>Full Address</FormLabel>
-                        <Button
-                            type="button"
-                            variant="link"
-                            className="p-0 h-auto"
-                            onClick={handleGetCurrentLocation}
-                            disabled={locationLoading}
-                        >
-                            <MapPin className="mr-2 h-4 w-4" />
-                            {locationLoading ? 'Fetching...' : 'Get Current Location'}
-                        </Button>
-                    </div>
-                  <FormControl>
-                    <Textarea placeholder="Enter your full address for the service." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+             <FormField
+                control={form.control}
+                name="houseNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>House No / Street</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your House No. and Street" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <FormField
+                    control={form.control}
+                    name="city"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>City</FormLabel>
+                        <FormControl>
+                        <Input placeholder="Enter your city" {...field} disabled />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+                 <FormField
+                    control={form.control}
+                    name="pincode"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Pincode</FormLabel>
+                        <FormControl>
+                        <Input placeholder="Enter your 6-digit pincode" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
@@ -271,7 +269,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a time slot" />
-                        </SelectTrigger>
+                        </Trigger>
                       </FormControl>
                       <SelectContent>
                         {timeSlots.map((slot) => (
@@ -310,3 +308,5 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     </Card>
   );
 }
+
+    
