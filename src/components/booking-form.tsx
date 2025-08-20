@@ -116,7 +116,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
     try {
       await addDoc(collection(db, 'bookings'), {
-        userId: user?.uid || null, // Temporarily allow null userId
+        userId: user?.uid || null,
         userName: data.name,
         userPhone: data.phone,
         planGroup,
