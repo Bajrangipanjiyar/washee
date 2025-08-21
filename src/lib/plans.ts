@@ -23,3 +23,5 @@ export const plansData: PlansData = {
     { carType: "SUV", basic: "399", premium: "599", originalBasic: "599", originalPremium: "799" }
   ]
 };
+
+    

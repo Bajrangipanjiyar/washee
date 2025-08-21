@@ -121,7 +121,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   }, [planGroup, carType, variant]);
 
   const { convenienceFee, totalPrice } = useMemo(() => {
-    const numericPrice = planPrice ? parseFloat(planPrice.replace('₹', '')) : 0;
+    const numericPrice = planPrice ? parseFloat(planPrice) : 0;
     if (numericPrice === 0) {
         return { convenienceFee: 0, totalPrice: 0 };
     }
@@ -156,7 +156,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                     planGroup,
                     carType,
                     variant: variant || null,
-                    price: `₹${totalPrice}`,
+                    price: totalPrice.toString(),
                     address: fullAddress,
                     date: Timestamp.fromDate(formData.date),
                     timeSlot: formData.timeSlot,
@@ -210,11 +210,11 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
             </div>
             <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Convenience Fee (2%):</span>
-                <span className="font-semibold">₹{convenienceFee}</span>
+                <span className="font-semibold">{convenienceFee}</span>
             </div>
              <div className="flex justify-between items-center text-xl font-bold border-t pt-2 mt-2">
                 <span>Total Payable:</span>
-                <span>₹{totalPrice}</span>
+                <span>{totalPrice}</span>
             </div>
         </div>
       </CardHeader>
@@ -387,3 +387,4 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   );
 }
 
+    

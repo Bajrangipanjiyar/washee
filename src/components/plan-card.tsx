@@ -102,3 +102,5 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
     </Card>
   );
 }
+
+    
