@@ -66,7 +66,7 @@ const CONVENIENCE_FEE_PERCENTAGE = 0.02;
 export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
-  const { user } = useCustomerAuth();
+  const { user, loading: userLoading } = useCustomerAuth();
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof bookingSchema>>({
@@ -121,7 +121,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   }, [planGroup, carType, variant]);
 
   const { convenienceFee, totalPrice } = useMemo(() => {
-    const numericPrice = planPrice ? parseFloat(planPrice) : 0;
+    const numericPrice = planPrice ? parseFloat(planPrice.replace(/[^0-9.]/g, '')) : 0;
     if (numericPrice === 0) {
         return { convenienceFee: 0, totalPrice: 0 };
     }
@@ -138,6 +138,12 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price.' });
         return;
     }
+    if (!user) {
+        toast({ variant: 'destructive', title: 'Login Required', description: 'You must be logged in to make a booking.' });
+        router.push('/login');
+        return;
+    }
+
     setLoading(true);
 
     const options = {
@@ -148,9 +154,10 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         description: `Payment for ${planName}`,
         handler: async (response: any) => {
             try {
+                if (!user) throw new Error("User not authenticated.");
                 const fullAddress = `${formData.house}, ${formData.city}, ${formData.pincode}`;
                 await addDoc(collection(db, 'bookings'), {
-                    userId: user?.uid || null,
+                    userId: user.uid,
                     userName: formData.name,
                     userPhone: formData.phone,
                     planGroup,
@@ -377,7 +384,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                 A minimal 2% convenience fee is applied to every order to cover secure payment processing and platform maintenance. This small contribution helps us provide you with a smoother, faster, and more reliable car wash booking experience
             </div>
             
-            <Button type="submit" disabled={loading} className="w-full">
+            <Button type="submit" disabled={loading || userLoading} className="w-full">
               {loading ? 'Processing...' : 'Pay & Confirm Booking'}
             </Button>
           </form>
@@ -386,5 +393,3 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     </Card>
   );
 }
-
-    
