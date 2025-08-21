@@ -17,18 +17,25 @@ function LoginPageContent() {
   const searchParams = useSearchParams();
   const { user, loading, signInWithGoogle } = useCustomerAuth();
   const [authLoading, setAuthLoading] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!loading && user) {
         const redirectUrl = searchParams.get('redirect');
-        router.replace(redirectUrl || '/');
+        router.replace(redirectUrl || '/my-bookings');
     }
   }, [user, loading, router, searchParams]);
 
   const handleGoogleSignIn = async () => {
     setAuthLoading(true);
-    await signInWithGoogle();
-    setAuthLoading(false);
+    try {
+        await signInWithGoogle();
+        toast({ title: 'Login Successful!' });
+    } catch(e) {
+        // Error is already handled in the auth context
+    } finally {
+        setAuthLoading(false);
+    }
   }
 
   if (loading) return <div>Loading...</div>;

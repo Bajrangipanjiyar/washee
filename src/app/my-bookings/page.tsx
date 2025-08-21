@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { collection, query, where, getDocs, type Timestamp, orderBy } from 'firebase/firestore';
 import { format } from 'date-fns';
 
@@ -27,14 +28,14 @@ export default function MyBookingsPage() {
   const { user: customerUser, loading: customerLoading } = useCustomerAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    // Login check is temporarily disabled
-    // if (customerLoading) return;
-    // if (!customerUser) {
-    //   router.push('/login?redirect=/my-bookings');
-    //   return;
-    // }
+    if (customerLoading) return;
+    if (!customerUser) {
+      router.push('/login?redirect=/my-bookings');
+      return;
+    }
 
     const fetchBookings = async () => {
       setLoading(true);
@@ -76,7 +77,7 @@ export default function MyBookingsPage() {
     
     fetchBookings();
 
-  }, [customerUser, customerLoading, toast]);
+  }, [customerUser, customerLoading, toast, router]);
 
   if (customerLoading || loading) {
     return (
@@ -128,7 +129,6 @@ export default function MyBookingsPage() {
               ) : (
               <div className="text-center py-8 text-muted-foreground">
                   <p>You haven't made any bookings yet.</p>
-                  <p className="text-sm">Login to see your bookings or book a new wash.</p>
                   <Button asChild variant="link" className="mt-2">
                     <a href="/plans">Book a wash</a>
                   </Button>

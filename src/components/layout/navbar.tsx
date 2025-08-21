@@ -22,8 +22,7 @@ function WLogo({ className }: { className?: string }) {
 export function Navbar() {
   const { user: customerUser, logout: customerLogout, loading: customerLoading } = useCustomerAuth();
   
-  // Temporarily disable login functionality
-  const loginEnabled = false;
+  const loginEnabled = true;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
