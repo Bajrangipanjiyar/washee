@@ -1,4 +1,5 @@
 
+
 import type { Timestamp } from 'firebase/firestore';
 
 export interface Plan {
@@ -36,8 +37,8 @@ export interface Booking {
   notes?: string;
   status: BookingStatus;
   paymentId?: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface Customer {

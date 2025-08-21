@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -6,7 +7,7 @@ import { collection, query, where, getDocs, type Timestamp, orderBy } from 'fire
 import { format } from 'date-fns';
 
 import { db } from '@/lib/firebase';
-import type { Booking } from '@/types';
+import type { Booking, BookingStatus } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
@@ -16,7 +17,7 @@ import { Badge } from '@/components/ui/badge';
 import { useCustomerAuth } from '@/context/customer-auth-context';
 import { Skeleton } from '@/components/ui/skeleton';
 
-const statusColors = {
+const statusColors: Record<BookingStatus, string> = {
     pending: 'bg-yellow-100 text-yellow-800',
     confirmed: 'bg-blue-100 text-blue-800',
     completed: 'bg-green-100 text-green-800',
@@ -52,13 +53,17 @@ export default function MyBookingsPage() {
         );
         const querySnapshot = await getDocs(q);
         const foundBookings = querySnapshot.docs.map(doc => {
-          const data = doc.data();
-          const bookingDate = (data.date as Timestamp)?.toDate ? (data.date as Timestamp).toDate() : new Date();
+          const data = doc.data() as Omit<Booking, 'id' | 'date' | 'createdAt' | 'updatedAt'>;
+          const bookingDate = (doc.data().date as Timestamp)?.toDate ? (doc.data().date as Timestamp).toDate() : new Date();
+          const createdAtDate = (doc.data().createdAt as Timestamp)?.toDate ? (doc.data().createdAt as Timestamp).toDate() : new Date();
+          const updatedAtDate = (doc.data().updatedAt as Timestamp)?.toDate ? (doc.data().updatedAt as Timestamp).toDate() : new Date();
+          
           return {
-              id: doc.id,
               ...data,
+              id: doc.id,
               date: bookingDate,
-              createdAt: (data.createdAt as Timestamp)?.toDate ? (data.createdAt as Timestamp).toDate() : new Date(),
+              createdAt: createdAtDate,
+              updatedAt: updatedAtDate,
           } as Booking
         });
 
