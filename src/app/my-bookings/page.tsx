@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { collection, query, where, getDocs, type Timestamp, orderBy } from 'firebase/firestore';
 import { format } from 'date-fns';
-import type { Metadata } from 'next';
 
 import { db } from '@/lib/firebase';
 import type { Booking } from '@/types';
@@ -22,16 +21,6 @@ const statusColors = {
     confirmed: 'bg-blue-100 text-blue-800',
     completed: 'bg-green-100 text-green-800',
     cancelled: 'bg-red-100 text-red-800',
-};
-
-// Metadata for the page
-export const metadata: Metadata = {
-    title: 'My Bookings',
-    description: 'View your booking history, check the status of your upcoming car washes, and manage your appointments with Washee.',
-    robots: {
-        index: false, // Prevent this page from being indexed by search engines
-        follow: false,
-    }
 };
 
 export default function MyBookingsPage() {
