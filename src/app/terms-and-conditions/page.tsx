@@ -1,4 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Terms and Conditions',
+    description: 'Read the terms and conditions for using Washee\'s doorstep car wash services. Understand our policies on booking, payments, cancellations, and more.',
+};
 
 export default function TermsAndConditionsPage() {
     return (

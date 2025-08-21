@@ -1,4 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Refund & Cancellation Policy',
+    description: 'Review our refund and cancellation policy for one-time and subscription-based car wash services. Learn about the process for cancellations and refunds.',
+};
 
 export default function RefundAndCancellationPage() {
     return (

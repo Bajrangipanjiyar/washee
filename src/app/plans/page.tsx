@@ -1,5 +1,13 @@
 import { plansData } from '@/lib/plans';
 import { PlanCard } from '@/components/plan-card';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Pricing Plans',
+    description: 'Explore our affordable and flexible car wash plans. Choose from monthly subscriptions or one-time washes for your hatchback, SUV, or luxury car.',
+    keywords: ['car wash plans', 'car wash price', 'subscription car wash', 'monthly car wash', 'one-time car wash'],
+};
+
 
 export default function PlansPage() {
   return (

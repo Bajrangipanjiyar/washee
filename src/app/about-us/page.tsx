@@ -1,4 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'About Us',
+    description: 'Learn about Washee, our mission to provide convenient and high-quality doorstep car wash services, and the team behind our success.',
+};
 
 export default function AboutUsPage() {
     return (

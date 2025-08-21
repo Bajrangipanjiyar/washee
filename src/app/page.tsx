@@ -100,7 +100,7 @@ export default function Home() {
       </section>
 
        {/* Features Section */}
-      <section className="py-20 bg-secondary">
+      <section id="features" className="py-20 bg-secondary">
           <div className="container">
               <div className="text-center mb-12">
                   <h2 className="text-4xl font-bold font-headline">Why Choose Us?</h2>
@@ -133,7 +133,7 @@ export default function Home() {
       </section>
       
       {/* How it Works Section */}
-      <section className="py-20">
+      <section id="how-it-works" className="py-20">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold font-headline">How It Works</h2>
@@ -157,7 +157,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-secondary">
+      <section id="faq" className="py-20 bg-secondary">
         <div className="container max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold font-headline">Frequently Asked Questions</h2>

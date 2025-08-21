@@ -1,4 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Privacy Policy',
+    description: 'Your privacy is important to us. Read the Washee privacy policy to understand how we collect, use, and protect your personal information.',
+};
 
 export default function PrivacyPolicyPage() {
     return (
