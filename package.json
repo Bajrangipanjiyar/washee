@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@genkit-ai/googleai": "0.5.1",
-    "@genkit-ai/next": "0.5.1",
+    "@genkit-ai/next": "latest",
     "@hookform/resolvers": "^4.1.3",
     "@radix-ui/react-avatar": "^1.1.3",
     "@radix-ui/react-dialog": "^1.1.6",
