@@ -50,7 +50,7 @@ export function CustomerAuthProvider({ children }: { children: ReactNode }) {
     try {
       await signOut(auth);
       setUser(null);
-      router.push('/login');
+      router.push('/');
     } catch (error) {
         console.error("Logout error:", error);
         toast({ variant: 'destructive', title: 'Logout Failed', description: 'Could not log out.' });

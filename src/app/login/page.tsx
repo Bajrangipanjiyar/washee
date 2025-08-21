@@ -14,17 +14,15 @@ const GoogleIcon = () => (
 
 function LoginPageContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { user, loading, signInWithGoogle } = useCustomerAuth();
   const [authLoading, setAuthLoading] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
     if (!loading && user) {
-        const redirectUrl = searchParams.get('redirect');
-        router.replace(redirectUrl || '/my-bookings');
+        router.replace('/');
     }
-  }, [user, loading, router, searchParams]);
+  }, [user, loading, router]);
 
   const handleGoogleSignIn = async () => {
     setAuthLoading(true);
