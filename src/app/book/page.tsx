@@ -20,7 +20,7 @@ function BookingPageContent() {
   useEffect(() => {
     if (!loading && !user) {
         const queryString = `?planGroup=${planGroup}&carType=${carType}${variant ? `&variant=${variant}` : ''}`;
-        router.push(`/login?redirect=/book${encodeURIComponent(queryString)}`);
+        router.replace(`/login?redirect=/book${encodeURIComponent(queryString)}`);
     }
   }, [user, loading, router, planGroup, carType, variant]);
 
