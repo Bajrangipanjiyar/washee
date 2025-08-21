@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import { plansData } from '@/lib/plans';
 import { cn } from '@/lib/utils';
@@ -61,6 +61,8 @@ const timeSlots = [
     "04:00 PM - 05:00 PM",
 ];
 
+const CONVENIENCE_FEE_PERCENTAGE = 0.02;
+
 export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
@@ -94,7 +96,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   }, [user, form]);
 
 
-  const getPlanDetails = () => {
+  const { planName, price: planPrice } = useMemo(() => {
     const carTypeName = carType.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     const planGroupMap = {
       'monthly': `Monthly (6 Services)`,
@@ -115,14 +117,24 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       planName = `${carTypeName} - ${planDescription}`;
       price = monthlyPlan?.price;
     }
-
     return { planName, price };
-  };
+  }, [planGroup, carType, variant]);
 
-  const { planName, price } = getPlanDetails();
+  const { convenienceFee, totalPrice } = useMemo(() => {
+    const numericPrice = planPrice ? parseFloat(planPrice.replace('₹', '')) : 0;
+    if (numericPrice === 0) {
+        return { convenienceFee: 0, totalPrice: 0 };
+    }
+    const fee = numericPrice * CONVENIENCE_FEE_PERCENTAGE;
+    const total = numericPrice + fee;
+    return {
+        convenienceFee: Math.ceil(fee), // rounding up to nearest rupee
+        totalPrice: Math.ceil(total)
+    };
+  }, [planPrice]);
 
   const handlePayment = async (formData: z.infer<typeof bookingSchema>) => {
-    if (!price) {
+    if (!totalPrice || !planPrice) {
         toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price.' });
         return;
     }
@@ -130,7 +142,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
 
     const options = {
         key: 'rzp_test_R7d4vkja9D7Suq',
-        amount: Number(price.replace('₹', '')) * 100,
+        amount: totalPrice * 100, // Amount in paise
         currency: 'INR',
         name: 'Washee',
         description: `Payment for ${planName}`,
@@ -144,7 +156,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                     planGroup,
                     carType,
                     variant: variant || null,
-                    price,
+                    price: `₹${totalPrice}`,
                     address: fullAddress,
                     date: Timestamp.fromDate(formData.date),
                     timeSlot: formData.timeSlot,
@@ -191,7 +203,20 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       <CardHeader>
         <CardTitle>Book Your Wash</CardTitle>
         <CardDescription>You're booking: <span className="font-semibold text-primary">{planName}</span></CardDescription>
-        <p className="text-2xl font-bold">Total: {price}</p>
+        <div className="space-y-2 pt-4">
+            <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Plan Price:</span>
+                <span className="font-semibold">{planPrice}</span>
+            </div>
+            <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Convenience Fee (2%):</span>
+                <span className="font-semibold">₹{convenienceFee}</span>
+            </div>
+             <div className="flex justify-between items-center text-xl font-bold border-t pt-2 mt-2">
+                <span>Total Payable:</span>
+                <span>₹{totalPrice}</span>
+            </div>
+        </div>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -347,6 +372,10 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                 </FormItem>
               )}
             />
+
+            <div className="text-xs text-muted-foreground p-3 bg-accent/50 rounded-md">
+                A minimal 2% convenience fee is applied to every order to cover secure payment processing and platform maintenance. This small contribution helps us provide you with a smoother, faster, and more reliable car wash booking experience
+            </div>
             
             <Button type="submit" disabled={loading} className="w-full">
               {loading ? 'Processing...' : 'Pay & Confirm Booking'}
