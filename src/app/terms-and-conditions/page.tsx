@@ -13,67 +13,70 @@ export default function TermsAndConditionsPage() {
                 <CardHeader>
                     <CardTitle className="text-3xl">Terms and Conditions</CardTitle>
                     <CardDescription>
-                         Last Updated: Aug 19, 2025
+                         Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="space-y-4 text-muted-foreground">
-                        <p>Welcome to Washee – a doorstep car wash service operated by Dharamraj Ram, located at Rukmini Gao, S.K. Baruah Road, Kamrup, Assam – 781006.</p>
-                        <p>By booking our services or using our website/app, you agree to the following Terms &amp; Conditions:</p>
+                    <div className="space-y-6 text-muted-foreground">
+                        <p>Welcome to Washee. These Terms and Conditions govern your use of our website, services, and mobile application. By accessing or using our service, you agree to be bound by these terms.</p>
                         
-                        <h3 className="font-bold text-foreground pt-4">1. Services</h3>
-                        <p>We provide doorstep car wash services under two categories:</p>
-                        <ul className="list-disc pl-5">
-                            <li>One-Time Car Wash Service</li>
-                            <li>Subscription-based Car Wash Plans</li>
-                        </ul>
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">1. Services</h3>
+                            <p>Washee provides professional doorstep car wash services, available as both one-time bookings and monthly subscription plans. Service details, scope, and limitations are described on our "Plans" page.</p>
+                        </div>
 
-                        <h3 className="font-bold text-foreground pt-4">2. Booking &amp; Payments</h3>
-                        <ul className="list-disc pl-5 space-y-1">
-                            <li>All bookings must be made through our official website/app.</li>
-                            <li>Payments are processed securely through Razorpay or other authorized payment partners.</li>
-                            <li>Prices displayed at the time of booking are final and inclusive of applicable taxes (if any).</li>
-                        </ul>
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">2. User Accounts</h3>
+                            <p>To access most features, you must register for an account. You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account. You agree to provide accurate and complete information.</p>
+                        </div>
+
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">3. Bookings, Payments, and Pricing</h3>
+                             <ul className="list-disc pl-5 space-y-2">
+                                <li>All bookings must be made through our official website or app.</li>
+                                <li>We accept payments via our secure payment partner, Razorpay, and also offer a "Cash on Service" option.</li>
+                                <li>All prices are listed in Indian Rupees (INR) and are inclusive of applicable taxes, unless stated otherwise. We reserve the right to change our prices at any time.</li>
+                            </ul>
+                        </div>
                         
-                        <h3 className="font-bold text-foreground pt-4">3. Cancellation &amp; Refund Policy</h3>
-                        <h4 className="font-semibold text-foreground">One-Time Service:</h4>
-                        <ul className="list-disc pl-5">
-                            <li>Once booked, one-time services cannot be cancelled or refunded.</li>
-                        </ul>
-                         <h4 className="font-semibold text-foreground">Subscription Service:</h4>
-                        <ul className="list-disc pl-5 space-y-1">
-                            <li>Subscriptions can only be cancelled by contacting our official support number at least 24 hours before the next scheduled wash.</li>
-                            <li>If cancellation is not made within this time frame, the scheduled wash will be considered valid and cannot be refunded.</li>
-                            <li>In case of operational issues (bad weather, unavailability of staff, etc.), Washee reserves the right to reschedule or cancel the service. Refunds/credits may be provided in such cases.</li>
-                        </ul>
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">4. Cancellation and Refund Policy</h3>
+                            <p>Our Cancellation and Refund Policy is an integral part of these terms. Please refer to our <a href="/refund-and-cancellation" className="text-primary underline">Refund &amp; Cancellation Policy</a> page for detailed information.</p>
+                        </div>
+
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">5. Customer Responsibilities</h3>
+                             <ul className="list-disc pl-5 space-y-2">
+                                <li>You must provide a safe, accessible location for our team to perform the service, with adequate space around the vehicle.</li>
+                                <li>Please remove all valuable personal belongings from your vehicle before the service begins. Washee is not liable for any loss or damage to personal items left in the vehicle.</li>
+                                <li>You are responsible for ensuring your vehicle is in a suitable condition for the service. We are not liable for pre-existing damages.</li>
+                            </ul>
+                        </div>
                         
-                        <h3 className="font-bold text-foreground pt-4">4. Customer Responsibility</h3>
-                        <ul className="list-disc pl-5 space-y-1">
-                            <li>The customer must provide proper access to the vehicle for cleaning.</li>
-                            <li>Valuable items should be removed from the car before service. Washee is not responsible for loss/damage of personal belongings inside the vehicle.</li>
-                            <li>Service may be refused if the vehicle location is unsafe or inaccessible.</li>
-                        </ul>
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">6. Limitation of Liability</h3>
+                            <p>To the fullest extent permitted by law, Washee shall not be liable for any indirect, incidental, special, or consequential damages resulting from the use or inability to use our services. Our total liability for any claim arising out of these terms or our services will not exceed the amount you paid us for the service in question.</p>
+                        </div>
                         
-                        <h3 className="font-bold text-foreground pt-4">5. Service Quality &amp; Limitations</h3>
-                        <ul className="list-disc pl-5 space-y-1">
-                            <li>We ensure professional service, but results may vary depending on the condition of the car.</li>
-                            <li>Heavy stains, dents, or damages may not be completely removed.</li>
-                            <li>Washee is not responsible for pre-existing damages on the vehicle.</li>
-                        </ul>
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">7. Intellectual Property</h3>
+                            <p>The Washee name, logo, and all related content, designs, and materials on our website and app are the exclusive property of Washee. Unauthorized use, reproduction, or distribution is strictly prohibited.</p>
+                        </div>
+
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">8. Governing Law and Dispute Resolution</h3>
+                            <p>These Terms shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the courts in Guwahati, Assam.</p>
+                        </div>
                         
-                        <h3 className="font-bold text-foreground pt-4">6. Intellectual Property</h3>
-                        <p>All content, logos, designs, and material on our website/app are owned by Washee. Unauthorized use is strictly prohibited.</p>
-                        
-                        <h3 className="font-bold text-foreground pt-4">7. Limitation of Liability</h3>
-                        <ul className="list-disc pl-5 space-y-1">
-                            <li>Washee will not be liable for any indirect, incidental, or consequential damages arising from the use of our services.</li>
-                            <li>Any disputes shall be subject to the jurisdiction of Assam, India.</li>
-                        </ul>
-                        
-                        <h3 className="font-bold text-foreground pt-4">8. Contact Us</h3>
-                        <p>For cancellations, queries, or support, please contact us at:<br/>
-                        📞 [6003151047 and 9365520395]<br/>
-                        📧 [panjiyarbajrangi@gmail.com]</p>
+                        <div className="space-y-2">
+                            <h3 className="font-bold text-foreground text-lg">9. Contact Us</h3>
+                            <p>For any questions, support, or concerns regarding these terms, please contact us at:</p>
+                            <ul className="list-none space-y-1">
+                                <li><strong>Email:</strong> <a href="mailto:panjiyarbajrangi@gmail.com" className="text-primary">panjiyarbajrangi@gmail.com</a></li>
+                                <li><strong>Phone:</strong> <a href="tel:+916003151047" className="text-primary">+91 6003151047</a>, <a href="tel:+919365520395" className="text-primary">+91 9365520395</a></li>
+                                <li><strong>Address:</strong> Rukmini Gao, S.K. Baruah Road, Kamrup, Assam – 781006</li>
+                            </ul>
+                        </div>
                     </div>
                 </CardContent>
             </Card>
