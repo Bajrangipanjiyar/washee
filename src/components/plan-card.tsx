@@ -11,6 +11,10 @@ interface PlanCardProps {
   isFeatured?: boolean;
 }
 
+const FreeVisitCharge = () => (
+    <p className="text-sm font-medium text-green-600">Visit Charge Free</p>
+)
+
 export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps) {
   const { carType, price, originalPrice, split, basic, premium, originalBasic, originalPremium } = plan;
 
@@ -29,20 +33,26 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
         <div className="space-y-4">
           <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
             <h4 className="font-semibold">Basic Wash</h4>
-            <p className="text-2xl font-bold flex items-baseline gap-2">
-              <span className="text-base font-normal text-muted-foreground line-through">{originalBasic}</span>
-              <span>{basic}</span>
-            </p>
+            <div className='my-2'>
+                <p className="text-2xl font-bold flex items-baseline gap-2">
+                <span className="text-base font-normal text-muted-foreground line-through">{originalBasic}</span>
+                <span>{basic}</span>
+                </p>
+                <FreeVisitCharge />
+            </div>
             <Button asChild className="w-full mt-2">
               <Link href={getBookingLink('basic')}>Book Basic</Link>
             </Button>
           </div>
           <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
             <h4 className="font-semibold">Premium Wash</h4>
-            <p className="text-2xl font-bold flex items-baseline gap-2">
-              <span className="text-base font-normal text-muted-foreground line-through">{originalPremium}</span>
-              <span>{premium}</span>
-            </p>
+            <div className='my-2'>
+                <p className="text-2xl font-bold flex items-baseline gap-2">
+                <span className="text-base font-normal text-muted-foreground line-through">{originalPremium}</span>
+                <span>{premium}</span>
+                </p>
+                <FreeVisitCharge />
+            </div>
             <Button asChild className="w-full mt-2">
               <Link href={getBookingLink('premium')}>Book Premium</Link>
             </Button>
@@ -87,7 +97,8 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
                 )}
                 <span>{price}</span>
             </p>
-            <p className="text-sm font-normal text-muted-foreground">/month</p>
+            <p className="text-sm font-normal text-muted-foreground mb-1">/month</p>
+            <FreeVisitCharge />
           </div>
         )}
         {renderContent()}
@@ -102,5 +113,3 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
     </Card>
   );
 }
-
-    
