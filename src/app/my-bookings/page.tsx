@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -7,7 +8,7 @@ import { collection, query, where, getDocs, type Timestamp, orderBy } from 'fire
 import { format } from 'date-fns';
 
 import { db } from '@/lib/firebase';
-import type { Booking, BookingStatus } from '@/types';
+import type { Booking, BookingStatus, PaymentMethod } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
@@ -23,6 +24,11 @@ const statusColors: Record<BookingStatus, string> = {
     completed: 'bg-green-100 text-green-800',
     cancelled: 'bg-red-100 text-red-800',
 };
+
+const paymentMethodColors: Record<PaymentMethod, string> = {
+    online: 'bg-purple-100 text-purple-800',
+    cash: 'bg-orange-100 text-orange-800',
+}
 
 export default function MyBookingsPage() {
   const { toast } = useToast();
@@ -110,6 +116,7 @@ export default function MyBookingsPage() {
                       <TableHead>Service Date</TableHead>
                       <TableHead>Plan</TableHead>
                       <TableHead>Price</TableHead>
+                      <TableHead>Payment</TableHead>
                       <TableHead>Status</TableHead>
                   </TableRow>
                   </TableHeader>
@@ -122,6 +129,11 @@ export default function MyBookingsPage() {
                           </TableCell>
                           <TableCell>{booking.carType} ({booking.planGroup})</TableCell>
                           <TableCell>₹{booking.price}</TableCell>
+                          <TableCell>
+                              <Badge className={cn("capitalize", paymentMethodColors[booking.paymentMethod as keyof typeof paymentMethodColors])} variant="outline">
+                                  {booking.paymentMethod}
+                              </Badge>
+                          </TableCell>
                           <TableCell>
                               <Badge className={cn("capitalize", statusColors[booking.status as keyof typeof statusColors])} variant="outline">
                                   {booking.status}

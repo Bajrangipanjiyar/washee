@@ -16,13 +16,14 @@ import { db } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import { useToast } from '@/hooks/use-toast';
-import type { PlanGroup, CarType, OnetimeVariant } from '@/types';
+import type { PlanGroup, CarType, OnetimeVariant, PaymentMethod } from '@/types';
 import { useCustomerAuth } from '@/context/customer-auth-context';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 
 declare global {
     interface Window {
@@ -45,6 +46,7 @@ const bookingSchema = z.object({
   date: z.date({ required_error: 'A date is required.' }),
   timeSlot: z.string({ required_error: 'Please select a time slot.' }),
   notes: z.string().optional(),
+  paymentMethod: z.enum(['online', 'cash'], { required_error: 'Please select a payment method.' }),
 });
 
 const timeSlots = [
@@ -78,6 +80,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       city: '',
       pincode: '',
       notes: '',
+      paymentMethod: 'online',
     },
   });
   
@@ -133,6 +136,32 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     };
   }, [planPrice]);
 
+  const saveBookingToFirestore = async (formData: z.infer<typeof bookingSchema>, paymentMethod: PaymentMethod, paymentId?: string) => {
+    if (!user) throw new Error("User not authenticated.");
+    if (!totalPrice) throw new Error("Could not determine price.");
+
+    const fullAddress = `${formData.house}, ${formData.city}, ${formData.pincode}`;
+    await addDoc(collection(db, 'bookings'), {
+        userId: user.uid,
+        userName: formData.name,
+        userPhone: formData.phone,
+        planGroup,
+        carType,
+        variant: variant || null,
+        price: totalPrice.toString(),
+        address: fullAddress,
+        date: Timestamp.fromDate(formData.date),
+        timeSlot: formData.timeSlot,
+        notes: formData.notes || '',
+        status: paymentMethod === 'online' ? 'confirmed' : 'pending',
+        paymentMethod,
+        paymentId: paymentId || null,
+        createdAt: Timestamp.now(),
+        updatedAt: Timestamp.now(),
+    });
+    router.push('/booking-success');
+  }
+
   const handlePayment = async (formData: z.infer<typeof bookingSchema>) => {
     if (!totalPrice || !planPrice) {
         toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price.' });
@@ -154,26 +183,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         description: `Payment for ${planName}`,
         handler: async (response: any) => {
             try {
-                if (!user) throw new Error("User not authenticated.");
-                const fullAddress = `${formData.house}, ${formData.city}, ${formData.pincode}`;
-                await addDoc(collection(db, 'bookings'), {
-                    userId: user.uid,
-                    userName: formData.name,
-                    userPhone: formData.phone,
-                    planGroup,
-                    carType,
-                    variant: variant || null,
-                    price: totalPrice.toString(),
-                    address: fullAddress,
-                    date: Timestamp.fromDate(formData.date),
-                    timeSlot: formData.timeSlot,
-                    notes: formData.notes || '',
-                    status: 'confirmed',
-                    paymentId: response.razorpay_payment_id,
-                    createdAt: Timestamp.now(),
-                    updatedAt: Timestamp.now(),
-                });
-                router.push('/booking-success');
+                await saveBookingToFirestore(formData, 'online', response.razorpay_payment_id);
             } catch (error) {
                 console.error("Error creating booking after payment:", error);
                 toast({ variant: 'destructive', title: 'Booking Failed', description: 'Payment was successful, but booking failed. Please contact support.' });
@@ -201,8 +211,20 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     rzp.open();
   }
 
-  const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = (data) => {
-    handlePayment(data);
+  const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = async (data) => {
+    if (data.paymentMethod === 'online') {
+        handlePayment(data);
+    } else {
+        setLoading(true);
+        try {
+            await saveBookingToFirestore(data, 'cash');
+        } catch (error) {
+             console.error("Error creating cash booking:", error);
+             toast({ variant: 'destructive', title: 'Booking Failed', description: 'Could not create your booking. Please try again.' });
+        } finally {
+            setLoading(false);
+        }
+    }
   };
   
   return (
@@ -337,33 +359,30 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                   </FormItem>
                 )}
               />
-<FormField
-  control={form.control}
-  name="timeSlot"
-  render={({ field }) => (
-    <FormItem>
-      <FormLabel>Preferred Time Slot</FormLabel>
-      <Select onValueChange={field.onChange} defaultValue={field.value}>
-        <FormControl>
-          <SelectTrigger>
-            <SelectValue placeholder="Select a time slot" />
-          </SelectTrigger>
-        </FormControl>
-        <SelectContent>
-          {timeSlots.map((slot) => (
-            <SelectItem key={slot} value={slot}>
-              {slot}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
-
-                   
-              
+              <FormField
+                control={form.control}
+                name="timeSlot"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Preferred Time Slot</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a time slot" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {timeSlots.map((slot) => (
+                          <SelectItem key={slot} value={slot}>
+                            {slot}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
             
             <FormField
@@ -380,12 +399,47 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="paymentMethod"
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>Payment Method</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex flex-col space-y-1"
+                    >
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="online" />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                          Pay Online
+                        </FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="cash" />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                         Cash on Service
+                        </FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <div className="text-xs text-muted-foreground p-3 bg-accent/50 rounded-md">
                 A minimal 2% convenience fee is applied to every order to cover secure payment processing and platform maintenance. This small contribution helps us provide you with a smoother, faster, and more reliable car wash booking experience
             </div>
             
             <Button type="submit" disabled={loading || userLoading} className="w-full">
-              {loading ? 'Processing...' : 'Pay & Confirm Booking'}
+              {loading ? 'Processing...' : (form.getValues('paymentMethod') === 'online' ? 'Pay & Confirm Booking' : 'Confirm Booking')}
             </Button>
           </form>
         </Form>

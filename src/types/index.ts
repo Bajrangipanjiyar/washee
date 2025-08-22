@@ -20,6 +20,7 @@ export type PlanGroup = 'monthly' | 'monthly4' | 'onetime';
 export type CarType = 'hatchback' | 'luxury-cars' | 'suv';
 export type BookingStatus = 'pending' | 'confirmed' | 'completed' | 'cancelled';
 export type OnetimeVariant = 'basic' | 'premium';
+export type PaymentMethod = 'online' | 'cash';
 
 
 export interface Booking {
@@ -36,6 +37,7 @@ export interface Booking {
   timeSlot: string;
   notes?: string;
   status: BookingStatus;
+  paymentMethod: PaymentMethod;
   paymentId?: string;
   createdAt: Date;
   updatedAt: Date;
