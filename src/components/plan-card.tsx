@@ -33,6 +33,12 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
         <div className="space-y-4">
           <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
             <h4 className="font-semibold">Basic Wash</h4>
+            <ul className="text-sm text-muted-foreground mt-2 space-y-1 text-left mb-2">
+                <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Interior &amp; exterior</span>
+                </li>
+            </ul>
             <div className='my-2'>
                 <p className="text-2xl font-bold flex items-baseline gap-2">
                 <span className="text-base font-normal text-muted-foreground line-through">{originalBasic}</span>
@@ -46,6 +52,20 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
           </div>
           <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
             <h4 className="font-semibold">Premium Wash</h4>
+            <ul className="text-sm text-muted-foreground mt-2 space-y-1 text-left mb-2">
+                <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Interior &amp; exterior</span>
+                </li>
+                 <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Dashboard polish</span>
+                </li>
+                 <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Tyre polish</span>
+                </li>
+            </ul>
             <div className='my-2'>
                 <p className="text-2xl font-bold flex items-baseline gap-2">
                 <span className="text-base font-normal text-muted-foreground line-through">{originalPremium}</span>
