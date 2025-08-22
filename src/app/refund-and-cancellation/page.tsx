@@ -52,7 +52,7 @@ export default function RefundAndCancellationPage() {
                             <p>For all cancellation, rescheduling, or refund requests, please contact our support team:</p>
                              <ul className="list-none space-y-1">
                                 <li><strong>Email:</strong> <a href="mailto:panjiyarbajrangi@gmail.com" className="text-primary">panjiyarbajrangi@gmail.com</a></li>
-                                <li><strong>Phone:</strong> <a href="tel:+916003151047" className="text-primary">+91 6003151047</a></li>
+                                <li><strong>Phone:</strong> <a href="tel:+916003151047" className="text-primary">+91 6003151047</a>, <a href="tel:+919365520395" className="text-primary">+91 9365520395</a></li>
                                 <li><strong>Support Hours:</strong> 9:00 AM – 7:00 PM (IST), Monday to Sunday.</li>
                             </ul>
                         </div>
