@@ -56,7 +56,7 @@ const faqs = [
     },
     {
         question: 'What are the payment options?',
-        answer: '👉 We currently accept online payments only.'
+        answer: '👉 We accept both online payments (via Razorpay) and Cash on Service for your convenience.'
     }
 ]
 
