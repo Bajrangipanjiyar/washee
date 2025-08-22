@@ -121,7 +121,7 @@ export default function MyBookingsPage() {
                               <div className="text-sm text-muted-foreground">{booking.timeSlot}</div>
                           </TableCell>
                           <TableCell>{booking.carType} ({booking.planGroup})</TableCell>
-                          <TableCell>{booking.price}</TableCell>
+                          <TableCell>₹{booking.price}</TableCell>
                           <TableCell>
                               <Badge className={cn("capitalize", statusColors[booking.status as keyof typeof statusColors])} variant="outline">
                                   {booking.status}

@@ -140,7 +140,7 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     }
     if (!user) {
         toast({ variant: 'destructive', title: 'Login Required', description: 'You must be logged in to make a booking.' });
-        router.push('/login');
+        router.push('/login?redirect=' + window.location.pathname + window.location.search);
         return;
     }
 
@@ -217,11 +217,11 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
             </div>
             <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Convenience Fee (2%):</span>
-                <span className="font-semibold">{convenienceFee}</span>
+                <span className="font-semibold">₹{convenienceFee}</span>
             </div>
              <div className="flex justify-between items-center text-xl font-bold border-t pt-2 mt-2">
                 <span>Total Payable:</span>
-                <span>{totalPrice}</span>
+                <span>₹{totalPrice}</span>
             </div>
         </div>
       </CardHeader>

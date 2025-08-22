@@ -1,6 +1,6 @@
 
 import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
-import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { getAuth, type User } from "firebase/auth";
 
 // IMPORTANT: This Firebase config object is now set up with your project details.
@@ -24,16 +24,24 @@ const createUserInFirestore = async (user: User) => {
     if (!user) return;
 
     const userRef = doc(db, 'users', user.uid);
-    const userData = {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        phoneNumber: user.phoneNumber,
-        lastLogin: new Date()
-    };
-    // Use setDoc with merge: true to create or update the document
-    await setDoc(userRef, userData, { merge: true });
+    const docSnap = await getDoc(userRef);
+
+    // Only create a new document if one doesn't already exist
+    if (!docSnap.exists()) {
+        const userData = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            phoneNumber: user.phoneNumber,
+            createdAt: new Date(),
+        };
+        // Use setDoc to create the document
+        await setDoc(userRef, userData);
+    } else {
+         // Optionally, update last login time if user already exists
+        await setDoc(userRef, { lastLogin: new Date() }, { merge: true });
+    }
 }
 
 
