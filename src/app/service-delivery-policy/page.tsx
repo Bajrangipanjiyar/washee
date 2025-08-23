@@ -25,7 +25,7 @@ export default function ServiceDeliveryPolicyPage() {
                             <h3 className="font-bold text-foreground text-lg">1. Service Delivery</h3>
                              <ul className="list-disc pl-5 space-y-2">
                                 <li>Our services are rendered directly at the location provided by you ("the customer") during the booking process.</li>
-                                <li>Delivery of our services is confirmed via your registered email ID and on your "My Bookings" page on our website.</li>
+                                <li>Delivery of our services will be confirmed via your registered email ID and on your "My Bookings" page on our website after a successful booking.</li>
                                 <li>The delivery of service is subject to the agreed-upon date and time slot, confirmed at the time of order placement.</li>
                             </ul>
                         </div>
@@ -39,8 +39,8 @@ export default function ServiceDeliveryPolicyPage() {
                             <h3 className="font-bold text-foreground text-lg">3. Scheduling and Timeliness</h3>
                              <ul className="list-disc pl-5 space-y-2">
                                 <li>All services must be booked through our official website.</li>
-                                <li>We guarantee to dispatch our service team to arrive at your location within the scheduled time slot. However, please allow for a grace period of 30 minutes due to potential traffic or other unforeseen delays.</li>
-                                <li>Washee is not liable for any delay in service delivery due to circumstances beyond our control, such as incorrect address provided by the customer, unavailability of the customer, or restricted access to the location.</li>
+                                <li>We strive to dispatch our service team to arrive at your location within the scheduled time slot. However, please allow for a grace period of up to 30 minutes due to potential traffic or other unforeseen delays.</li>
+                                <li>Washee is not liable for any delay in service delivery due to circumstances beyond our control, such as an incorrect address provided by the customer, unavailability of the customer, or restricted access to the location.</li>
                             </ul>
                         </div>
 
@@ -57,8 +57,8 @@ export default function ServiceDeliveryPolicyPage() {
                             <h3 className="font-bold text-foreground text-lg">5. Contact Us</h3>
                             <p>For any issues in utilizing our services or for rescheduling requests, you may contact our helpdesk:</p>
                              <ul className="list-none space-y-1">
-                                <li><strong>Helpdesk:</strong> <a href="tel:+919365520395" className="text-primary">+91 9365520395</a>, <a href="tel:+916003151047" className="text-primary">+91 6003151047</a></li>
                                 <li><strong>Email:</strong> <a href="mailto:panjiyarbajrangi@gmail.com" className="text-primary">panjiyarbajrangi@gmail.com</a></li>
+                                <li><strong>Phone:</strong> <a href="tel:+919365520395" className="text-primary">+91 9365520395</a>, <a href="tel:+916003151047" className="text-primary">+91 6003151047</a></li>
                             </ul>
                         </div>
                     </div>
