@@ -49,7 +49,7 @@ export default function ServiceDeliveryPolicyPage() {
                              <ul className="list-disc pl-5 space-y-2">
                                 <li>Ensure the vehicle is available at the specified address during the scheduled time.</li>
                                 <li>Provide a safe and accessible location for our team to work, with adequate space around the vehicle.</li>
-                                <li>If our team is unable to access the vehicle or location, the service may be considered forfeited. Please refer to our <a href="/refund-and-cancellation" className="text-primary underline">Refund & Cancellation Policy</a> for more details.</li>
+                                <li>If our team is unable to access the vehicle or location, the service may be considered forfeited. Please refer to our <a href="/refund-and-cancellation" className="text-primary underline">Refund &amp; Cancellation Policy</a> for more details.</li>
                             </ul>
                         </div>
 
@@ -59,6 +59,7 @@ export default function ServiceDeliveryPolicyPage() {
                              <ul className="list-none space-y-1">
                                 <li><strong>Email:</strong> <a href="mailto:panjiyarbajrangi@gmail.com" className="text-primary">panjiyarbajrangi@gmail.com</a></li>
                                 <li><strong>Phone:</strong> <a href="tel:+919365520395" className="text-primary">+91 9365520395</a>, <a href="tel:+916003151047" className="text-primary">+91 6003151047</a></li>
+                                <li><strong>Address:</strong> Rukmini Gao, S.K. Baruah Road, Kamrup, Assam – 781006</li>
                             </ul>
                         </div>
                     </div>
