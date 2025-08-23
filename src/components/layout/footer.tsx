@@ -77,6 +77,9 @@ export function Footer() {
                  <Button asChild variant="link" className="text-sm px-1 text-muted-foreground">
                   <Link href="/service-delivery-policy">Service Delivery Policy</Link>
                 </Button>
+                 <Button asChild variant="link" className="text-sm px-1 text-muted-foreground">
+                  <Link href="/disclaimer">Disclaimer</Link>
+                </Button>
             </div>
             <div className="flex justify-center items-center gap-4 mt-2">
               {socialLinks.map((social) => (
