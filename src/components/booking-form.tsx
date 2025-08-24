@@ -23,13 +23,6 @@ import { Calendar } from '@/components/ui/calendar';
 import { useToast } from '@/hooks/use-toast';
 import type { PlanGroup, CarType, OnetimeVariant, PaymentMethod } from '@/types';
 import { useCustomerAuth } from '@/context/customer-auth-context';
-import { RadioGroup, RadioGroupItem } from './ui/radio-group';
-
-declare global {
-    interface Window {
-        Razorpay: any;
-    }
-}
 
 interface BookingFormProps {
   planGroup: PlanGroup;
@@ -46,7 +39,6 @@ const bookingSchema = z.object({
   date: z.date({ required_error: 'A date is required.' }),
   timeSlot: z.string({ required_error: 'Please select a time slot.' }),
   notes: z.string().optional(),
-  paymentMethod: z.enum(['online', 'cash'], { required_error: 'Please select a payment method.' }),
 });
 
 const timeSlots = [
@@ -63,8 +55,6 @@ const timeSlots = [
     "04:00 PM - 05:00 PM",
 ];
 
-const CONVENIENCE_FEE_PERCENTAGE = 0.02;
-
 export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
@@ -80,17 +70,9 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
       city: '',
       pincode: '',
       notes: '',
-      paymentMethod: 'online',
     },
   });
   
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
   useEffect(() => {
     if (user) {
         form.setValue('name', user.displayName || '');
@@ -123,22 +105,13 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     return { planName, price };
   }, [planGroup, carType, variant]);
 
-  const { convenienceFee, totalPrice } = useMemo(() => {
-    const numericPrice = planPrice ? parseFloat(planPrice.replace(/[^0-9.]/g, '')) : 0;
-    if (numericPrice === 0) {
-        return { convenienceFee: 0, totalPrice: 0 };
-    }
-    const fee = numericPrice * CONVENIENCE_FEE_PERCENTAGE;
-    const total = numericPrice + fee;
-    return {
-        convenienceFee: Math.ceil(fee), // rounding up to nearest rupee
-        totalPrice: Math.ceil(total)
-    };
+  const numericPlanPrice = useMemo(() => {
+    return planPrice ? parseFloat(planPrice.replace(/[^0-9.]/g, '')) : 0;
   }, [planPrice]);
 
-  const saveBookingToFirestore = async (formData: z.infer<typeof bookingSchema>, paymentMethod: PaymentMethod, paymentId?: string) => {
+  const saveBookingToFirestore = async (formData: z.infer<typeof bookingSchema>) => {
     if (!user) throw new Error("User not authenticated.");
-    if (!totalPrice) throw new Error("Could not determine price.");
+    if (!numericPlanPrice) throw new Error("Could not determine price.");
 
     const fullAddress = `${formData.house}, ${formData.city}, ${formData.pincode}`;
     await addDoc(collection(db, 'bookings'), {
@@ -148,82 +121,34 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         planGroup,
         carType,
         variant: variant || null,
-        price: totalPrice.toString(),
+        price: numericPlanPrice.toString(),
         address: fullAddress,
         date: Timestamp.fromDate(formData.date),
         timeSlot: formData.timeSlot,
         notes: formData.notes || '',
         status: 'confirmed',
-        paymentMethod,
-        paymentId: paymentId || null,
+        paymentMethod: 'cash' as PaymentMethod,
+        paymentId: null,
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now(),
     });
     router.push('/booking-success');
   }
 
-  const handlePayment = async (formData: z.infer<typeof bookingSchema>) => {
-    if (!totalPrice || !planPrice) {
-        toast({ variant: 'destructive', title: 'Error', description: 'Could not determine price.' });
-        return;
-    }
-    if (!user) {
-        toast({ variant: 'destructive', title: 'Login Required', description: 'You must be logged in to make a booking.' });
-        router.push('/login?redirect=' + window.location.pathname + window.location.search);
-        return;
-    }
-
-    setLoading(true);
-
-    const options = {
-        key: 'rzp_test_R7d4vkja9D7Suq',
-        amount: totalPrice * 100, // Amount in paise
-        currency: 'INR',
-        name: 'Washee',
-        description: `Payment for ${planName}`,
-        handler: async (response: any) => {
-            try {
-                await saveBookingToFirestore(formData, 'online', response.razorpay_payment_id);
-            } catch (error) {
-                console.error("Error creating booking after payment:", error);
-                toast({ variant: 'destructive', title: 'Booking Failed', description: 'Payment was successful, but booking failed. Please contact support.' });
-            } finally {
-                setLoading(false);
-            }
-        },
-        prefill: {
-            name: formData.name,
-            contact: formData.phone,
-            email: user?.email || '',
-        },
-        theme: {
-            color: '#2563EB'
-        },
-        modal: {
-            ondismiss: () => {
-                setLoading(false);
-                toast({ variant: 'destructive', title: 'Payment Cancelled', description: 'You cancelled the payment.' });
-            }
-        }
-    };
-    
-    const rzp = new window.Razorpay(options);
-    rzp.open();
-  }
-
   const onSubmit: SubmitHandler<z.infer<typeof bookingSchema>> = async (data) => {
-    if (data.paymentMethod === 'online') {
-        handlePayment(data);
-    } else {
-        setLoading(true);
-        try {
-            await saveBookingToFirestore(data, 'cash');
-        } catch (error) {
-             console.error("Error creating cash booking:", error);
-             toast({ variant: 'destructive', title: 'Booking Failed', description: 'Could not create your booking. Please try again.' });
-        } finally {
-            setLoading(false);
+    setLoading(true);
+    try {
+        if (!user) {
+            toast({ variant: 'destructive', title: 'Login Required', description: 'You must be logged in to make a booking.' });
+            router.push('/login?redirect=' + window.location.pathname + window.location.search);
+            return;
         }
+        await saveBookingToFirestore(data);
+    } catch (error) {
+         console.error("Error creating cash booking:", error);
+         toast({ variant: 'destructive', title: 'Booking Failed', description: 'Could not create your booking. Please try again.' });
+    } finally {
+        setLoading(false);
     }
   };
   
@@ -233,18 +158,11 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
         <CardTitle>Book Your Wash</CardTitle>
         <CardDescription>You're booking: <span className="font-semibold text-primary">{planName}</span></CardDescription>
         <div className="space-y-2 pt-4">
-            <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Plan Price:</span>
-                <span className="font-semibold">{planPrice}</span>
-            </div>
-            <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Convenience Fee (2%):</span>
-                <span className="font-semibold">{convenienceFee}</span>
-            </div>
              <div className="flex justify-between items-center text-xl font-bold border-t pt-2 mt-2">
                 <span>Total Payable:</span>
-                <span>{totalPrice}</span>
+                <span>{planPrice}</span>
             </div>
+            <CardDescription>Payment will be collected upon service completion.</CardDescription>
         </div>
       </CardHeader>
       <CardContent>
@@ -398,48 +316,9 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
                 </FormItem>
               )}
             />
-
-            <FormField
-              control={form.control}
-              name="paymentMethod"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>Payment Method</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex flex-col space-y-1"
-                    >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="online" />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          Pay Online
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="cash" />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                         Cash on Service
-                        </FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="text-xs text-muted-foreground p-3 bg-accent/50 rounded-md">
-                A minimal 2% convenience fee is applied to every order to cover secure payment processing and platform maintenance. This small contribution helps us provide you with a smoother, faster, and more reliable car wash booking experience
-            </div>
             
             <Button type="submit" disabled={loading || userLoading} className="w-full">
-              {loading ? 'Processing...' : (form.getValues('paymentMethod') === 'online' ? 'Pay & Confirm Booking' : 'Confirm Booking')}
+              {loading ? 'Processing...' : 'Confirm Booking'}
             </Button>
           </form>
         </Form>
@@ -447,3 +326,5 @@ export function BookingForm({ planGroup, carType, variant }: BookingFormProps) {
     </Card>
   );
 }
+
+    
