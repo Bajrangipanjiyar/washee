@@ -2,7 +2,7 @@
 import { MetadataRoute } from 'next'
  
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://washee-online.vercel.app'; // Replace with your actual domain
+  const baseUrl = 'https://washee.in'; // Replace with your actual domain
 
   return [
     {
