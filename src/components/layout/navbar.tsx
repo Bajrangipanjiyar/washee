@@ -39,12 +39,6 @@ export function Navbar() {
           >
             Plans
           </Link>
-           <Link
-            href="/blogs"
-            className="transition-colors hover:text-primary"
-          >
-            Blogs
-          </Link>
           <Link
             href="/my-bookings"
             className="transition-colors hover:text-primary"
