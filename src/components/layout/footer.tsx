@@ -66,6 +66,9 @@ export function Footer() {
                   <Link href="/about-us">About Us</Link>
                 </Button>
                 <Button asChild variant="link" className="text-sm px-1 text-muted-foreground">
+                  <Link href="/blogs">Blogs</Link>
+                </Button>
+                <Button asChild variant="link" className="text-sm px-1 text-muted-foreground">
                   <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>
                 </Button>
                 <Button asChild variant="link" className="text-sm px-1 text-muted-foreground">

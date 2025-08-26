@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -37,6 +38,12 @@ export function Navbar() {
             className="transition-colors hover:text-primary"
           >
             Plans
+          </Link>
+           <Link
+            href="/blogs"
+            className="transition-colors hover:text-primary"
+          >
+            Blogs
           </Link>
           <Link
             href="/my-bookings"
