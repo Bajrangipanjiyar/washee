@@ -6,7 +6,7 @@ export const blogPosts = [
     description: 'गुवाहाटी में Washee के साथ अपनी कार वॉश बुक करने की चरण-दर-चरण प्रक्रिया जानें। यह सरल, तेज़ और सुविधाजनक है।',
     seo_description: 'गुवाहाटी में Washee के साथ अपनी कार वॉश बुक करने की पूरी प्रक्रिया जानें। हमारी ऑनलाइन बुकिंग प्रणाली का उपयोग करके आसानी से एक स्लॉट शेड्यूल करें।',
     keywords: ['book car wash Guwahati', 'Washee booking process', 'online car wash booking', 'Guwahati car service'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=1',
     imageHint: 'online booking',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">गुवाहाटी में Washee कार वॉश बुक करना: एक सरल गाइड</h2>
@@ -45,7 +45,7 @@ export const blogPosts = [
     description: 'Washee के सभी कार वॉश प्लान और पैकेजों की विस्तृत मूल्य सूची देखें। हैचबैक, एसयूवी और लक्जरी कारों के लिए हमारी सस्ती दरों का पता लगाएं।',
     seo_description: 'Washee की विस्तृत कार वॉश मूल्य सूची। गुवाहाटी में हैचबैक, एसयूवी और लक्जरी कारों के लिए मासिक सदस्यता और वन-टाइम वॉश की कीमतें जानें।',
     keywords: ['car wash price list', 'Washee price', 'car wash cost Guwahati', 'affordable car wash'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=2',
     imageHint: 'price tag',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee की पारदर्शी और किफायती मूल्य-सूची</h2>
@@ -96,7 +96,7 @@ export const blogPosts = [
     description: 'Washee की कुशल कार वॉश प्रक्रिया के बारे में जानें। हम आपकी कार को 30-45 मिनट के भीतर चमका देते हैं, जिससे आपका बहुमूल्य समय बचता है।',
     seo_description: 'जानें कि Washee कार वॉश में कितना समय लगता है। हमारी तेज़ और कुशल डोरस्टेप सेवा गुवाहाटी में 30-45 मिनट में आपकी कार को साफ कर देती है।',
     keywords: ['car wash time', 'fast car wash', 'Washee service duration', 'quick car cleaning'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=3',
     imageHint: 'stopwatch clock',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee कार वॉश: समय की बचत, बेहतरीन सफाई</h2>
@@ -126,8 +126,8 @@ export const blogPosts = [
     description: 'हाँ! Washee की मुख्य विशेषता ही डोरस्टेप कार वॉश सेवा है। हम आपके घर, कार्यालय, या किसी भी पसंदीदा स्थान पर आकर आपकी कार धोते हैं।',
     seo_description: 'Washee गुवाहाटी में एक अग्रणी होम कार वॉश सेवा है। अपनी सुविधानुसार अपने दरवाजे पर पेशेवर कार सफाई प्राप्त करें। कोई विज़िट शुल्क नहीं।',
     keywords: ['home car wash service', 'doorstep car wash Guwahati', 'Washee at home', 'convenient car wash'],
-    imageUrl: 'https://picsum.photos/600/400',
-    imageHint: 'house car',
+    imageUrl: 'https://picsum.photos/600/400?random=4',
+    imageHint: 'car at home',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">हाँ, Washee की पहचान ही होम कार वॉश सर्विस है!</h2>
       <p>Washee की स्थापना का मूल विचार ही ग्राहकों को उनके घर पर एक सुविधाजनक और उच्च-गुणवत्ता वाली कार वॉश सेवा प्रदान करना था। हम पारंपरिक कार वॉश की परेशानियों को समझते हैं - लंबी कतारें, आने-जाने में समय की बर्बादी, और असुविधा। Washee इन सभी समस्याओं का समाधान है।</p>
@@ -158,7 +158,7 @@ export const blogPosts = [
     description: 'Washee की डोरस्टेप सेवा और पारंपरिक गैरेज वॉश के बीच मुख्य अंतरों की खोज करें। सुविधा, गुणवत्ता और समय की बचत में हम कैसे बेहतर हैं, यह जानें।',
     seo_description: 'Washee डोरस्टेप कार वॉश बनाम पारंपरिक गैरेज वॉश। सुविधा, समय, लागत, पानी के उपयोग और गुणवत्ता के मामले में तुलना देखें। जानें कि Washee बेहतर क्यों है।',
     keywords: ['doorstep vs garage wash', 'Washee benefits', 'car wash comparison', 'professional car wash'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=5',
     imageHint: 'comparison chart',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee बनाम पारंपरिक गैरेज वॉश: एक स्पष्ट तुलना</h2>
@@ -218,7 +218,7 @@ export const blogPosts = [
     description: 'हाँ, हमारी सभी योजनाएं, बेसिक से लेकर प्रीमियम तक, व्यापक आंतरिक सफाई प्रदान करती हैं। जानें कि हमारी इंटीरियर क्लीनिंग सेवा में क्या-क्या शामिल है।',
     seo_description: 'Washee की कार वॉश सेवाओं में आंतरिक सफाई शामिल है। हम वैक्यूमिंग, डैशबोर्ड सफाई, और बहुत कुछ प्रदान करते हैं। जानें कि हमारे पैकेज में क्या है।',
     keywords: ['interior car cleaning', 'Washee services', 'car vacuuming Guwahati', 'complete car wash'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=6',
     imageHint: 'car interior',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">हाँ, व्यापक आंतरिक सफाई हमारी सभी योजनाओं का एक प्रमुख हिस्सा है!</h2>
@@ -248,7 +248,7 @@ export const blogPosts = [
     description: 'Washee के साथ ऑनलाइन कार वॉश बुक करना बहुत आसान है। हमारी चरण-दर-चरण मार्गदर्शिका का पालन करके कुछ ही मिनटों में अपना स्लॉट आरक्षित करें।',
     seo_description: 'Washee से कार वॉश बुकिंग की पूरी प्रक्रिया। हमारी वेबसाइट पर जाएं, योजना चुनें, विवरण भरें और गुवाहाटी में अपनी डोरस्टेप कार वॉश की पुष्टि करें।',
     keywords: ['car wash booking process', 'how to book Washee', 'online car wash steps', 'Guwahati car cleaning'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=7',
     imageHint: 'step by step',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee बुकिंग प्रक्रिया: सरल, तेज़ और सुविधाजनक</h2>
@@ -281,7 +281,7 @@ export const blogPosts = [
     description: 'वर्तमान में, हमारी सेवाएं गुवाहाटी शहर की सीमाओं के भीतर उपलब्ध हैं। जानें कि क्या आपका क्षेत्र हमारे सेवा नेटवर्क में आता है और हमारी विस्तार योजनाओं के बारे में अपडेट रहें।',
     seo_description: 'Washee गुवाहाटी शहर की सीमाओं के भीतर डोरस्टेप कार वॉश सेवाएं प्रदान करता है। पता करें कि क्या हम आपके क्षेत्र की सेवा करते हैं और हमारी विस्तार योजनाओं पर अपडेट प्राप्त करें।',
     keywords: ['Washee service area', 'car wash Guwahati locations', 'doorstep service area', 'Guwahati car care'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=8',
     imageHint: 'city map',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">गुवाहाटी में Washee का सेवा क्षेत्र</h2>
@@ -307,7 +307,7 @@ export const blogPosts = [
     description: 'समय की बचत से लेकर गारंटीकृत स्लॉट तक, Washee के साथ ऑनलाइन कार वॉश बुक करने के कई फायदों की खोज करें। अपनी कार की देखभाल को सरल बनाएं।',
     seo_description: 'Washee के साथ ऑनलाइन कार वॉश बुकिंग के लाभ। समय बचाएं, स्लॉट की गारंटी पाएं, योजनाओं की तुलना करें और एक सहज, संपर्क रहित अनुभव का आनंद लें।',
     keywords: ['online booking benefits', 'why book car wash online', 'Washee advantages', 'convenient car care'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=9',
     imageHint: 'man relaxing',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">ऑनलाइन बुकिंग के साथ कार की देखभाल को आसान बनाएं</h2>
@@ -337,7 +337,7 @@ export const blogPosts = [
     description: 'अपनी कार को कितनी बार धोना चाहिए, इस पर विशेषज्ञ की सलाह। ड्राइविंग की आदतों, मौसम और कार के रंग जैसे कारकों के आधार पर आदर्श आवृत्ति जानें।',
     seo_description: 'अपनी कार को कितनी बार धोना है? गुवाहाटी की स्थितियों के लिए आदर्श कार वॉश शेड्यूल जानें। अपनी कार के पेंट और फिनिश को Washee के साथ सुरक्षित रखें।',
     keywords: ['how often car wash', 'car wash frequency', 'car care schedule', 'Washee maintenance'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=10',
     imageHint: 'calendar car',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">आपकी कार के लिए आदर्श वॉश शेड्यूल</h2>
@@ -367,7 +367,7 @@ export const blogPosts = [
     description: 'Washee की सेवाओं के बारे में जानकारी। वर्तमान में हम कार वॉश पर ध्यान केंद्रित करते हैं, लेकिन भविष्य में बाइक वॉश सेवाओं के लिए हमारी योजनाओं पर अपडेट रहें।',
     seo_description: 'क्या Washee बाइक वॉश प्रदान करता है? वर्तमान में, हम कारों में विशेषज्ञ हैं। गुवाहाटी में भविष्य की बाइक वॉश सेवाओं के लिए हमारी घोषणाओं पर नज़र रखें।',
     keywords: ['bike wash service', 'Washee services', 'motorcycle cleaning Guwahati', 'two-wheeler wash'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=11',
     imageHint: 'motorcycle question',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee की वर्तमान सेवा पेशकश</h2>
@@ -392,7 +392,7 @@ export const blogPosts = [
     description: 'Washee के कार वॉश पैकेजों का विस्तृत विवरण। जानें कि हमारी बेसिक और प्रीमियम योजनाओं में कौन सी सेवाएं शामिल हैं, आंतरिक से बाहरी तक।',
     seo_description: 'Washee के कार वॉश पैकेज में क्या शामिल है? हमारी बेसिक और प्रीमियम सेवाओं का पूरा विवरण, जिसमें आंतरिक वैक्यूमिंग, बाहरी धुलाई और पॉलिशिंग शामिल है।',
     keywords: ['car wash packages', 'Washee inclusions', 'what is in a car wash', 'car cleaning services'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=12',
     imageHint: 'checklist services',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee के पैकेज: आपकी कार के लिए संपूर्ण देखभाल</h2>
@@ -431,7 +431,7 @@ export const blogPosts = [
     description: 'Washee की वर्तमान सेवाओं और भविष्य की योजनाओं के बारे में जानें। हम प्रीमियम वॉश में पॉलिशिंग शामिल करते हैं और भविष्य में पूर्ण डिटेलिंग सेवाओं पर विचार कर रहे हैं।',
     seo_description: 'क्या Washee कार डिटेलिंग और पॉलिशिंग प्रदान करता है? हमारी प्रीमियम योजनाओं में डैशबोर्ड और टायर पॉलिशिंग शामिल है। विस्तृत कार डिटेलिंग सेवाओं के लिए बने रहें।',
     keywords: ['car detailing Guwahati', 'car polishing service', 'Washee detailing', 'professional car care'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=13',
     imageHint: 'car polishing',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee की पॉलिशिंग और डिटेलिंग सेवाएं</h2>
@@ -460,7 +460,7 @@ export const blogPosts = [
     description: 'Washee आपकी सुविधा के लिए कई भुगतान विधियां प्रदान करता है। वर्तमान में हम "कैश ऑन सर्विस" स्वीकार करते हैं। भविष्य के भुगतान विकल्पों के बारे में जानें।',
     seo_description: 'Washee के लिए उपलब्ध भुगतान विधियां। वर्तमान में हम "कैश ऑन सर्विस" (COD) स्वीकार करते हैं। ऑनलाइन भुगतान और अन्य विकल्प जल्द ही आ रहे हैं।',
     keywords: ['Washee payment methods', 'cash on service car wash', 'car wash payment', 'Guwahati car service'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=14',
     imageHint: 'cash payment',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee पर भुगतान: सरल और सीधा</h2>
@@ -495,7 +495,7 @@ export const blogPosts = [
     description: 'हाँ! Washee समझता है कि सप्ताहांत आपकी कार की देखभाल के लिए सबसे अच्छा समय होता है। हमारी सेवाएं रविवार सहित सप्ताह के सभी दिन उपलब्ध हैं।',
     seo_description: 'Washee कार वॉश सेवा रविवार को उपलब्ध है। हम सप्ताह के सातों दिन, आपके दरवाजे पर सुविधाजनक कार सफाई प्रदान करते हैं। आज ही अपना सप्ताहांत स्लॉट बुक करें।',
     keywords: ['sunday car wash', 'weekend car service', 'Washee availability', 'car wash open on sunday'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=15',
     imageHint: 'weekend calendar',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">हाँ, आपकी सुविधा के लिए हम रविवार को भी खुले हैं!</h2>
@@ -521,7 +521,7 @@ export const blogPosts = [
     description: 'Washee पर्यावरण की परवाह करता है। जानें कि हमारी कार वॉश प्रक्रिया पानी का संरक्षण कैसे करती है और हम पर्यावरण के अनुकूल उत्पादों का उपयोग कैसे करते हैं।',
     seo_description: 'Washee की पर्यावरण-अनुकूल कार वॉश सेवा। हम पानी बचाने की तकनीकों और बायोडिग्रेडेबल सफाई समाधानों का उपयोग करके पर्यावरण पर प्रभाव को कम करते हैं।',
     keywords: ['eco-friendly car wash', 'water saving car wash', 'green car care', 'Washee sustainability'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=16',
     imageHint: 'nature leaf',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee: एक स्वच्छ कार और एक स्वच्छ पर्यावरण के लिए प्रतिबद्ध</h2>
@@ -554,7 +554,7 @@ export const blogPosts = [
     description: 'Washee की जल-बचत तकनीकों के बारे में जानें। हालांकि हम पूरी तरह से जल रहित नहीं हैं, हमारी प्रक्रिया पारंपरिक तरीकों की तुलना में 80% तक कम पानी का उपयोग करती है।',
     seo_description: 'क्या Washee जल रहित कार वॉश प्रदान करता है? हम एक अत्यधिक कुशल, कम पानी वाली कार वॉश विधि का उपयोग करते हैं जो पर्यावरण-अनुकूल है। विवरण जानें।',
     keywords: ['waterless car wash', 'low water car wash', 'eco-friendly car cleaning', 'Washee methods'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=17',
     imageHint: 'water drop',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee की जल-कुशल सफाई तकनीक</h2>
@@ -581,7 +581,7 @@ export const blogPosts = [
     description: 'Washee की बुकिंग नीति के बारे में जानें। हम उसी दिन की बुकिंग को समायोजित करने की पूरी कोशिश करते हैं, जो स्लॉट की उपलब्धता पर निर्भर करता है।',
     seo_description: 'Washee के साथ उसी दिन या आपातकालीन कार वॉश बुकिंग। उपलब्धता के आधार पर हम तत्काल अनुरोधों को समायोजित करने का प्रयास करते हैं। ऑनलाइन स्लॉट देखें।',
     keywords: ['same day car wash', 'emergency car cleaning', 'Washee booking policy', 'last minute car wash'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=18',
     imageHint: 'urgent clock',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee की तत्काल बुकिंग नीति</h2>
@@ -610,7 +610,7 @@ export const blogPosts = [
     description: 'Washee में, ग्राहक पहले आते हैं। हमारी समर्पित ग्राहक सहायता टीम आपकी सहायता के लिए उपलब्ध है। जानें कि हमसे कैसे संपर्क करें।',
     seo_description: 'Washee की ग्राहक सहायता के बारे में जानें। हम आपकी बुकिंग, प्रश्नों और प्रतिक्रिया में सहायता के लिए फोन और ईमेल के माध्यम से उपलब्ध हैं।',
     keywords: ['Washee customer support', 'car wash helpdesk', 'contact Washee', 'customer service'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=19',
     imageHint: 'customer support',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee की ग्राहक-केंद्रित सहायता सेवा</h2>
@@ -643,7 +643,7 @@ export const blogPosts = [
     description: 'Washee पर नवीनतम ऑफ़र और छूट प्राप्त करें। हमारी परिचयात्मक कीमतों और मासिक योजनाओं के साथ पैसे बचाएं। विशेष सौदों के लिए हमारे साथ बने रहें।',
     seo_description: 'Washee कार वॉश पर सर्वोत्तम ऑफ़र और छूट। हमारी रियायती परिचयात्मक कीमतों और मूल्य-पैक मासिक सदस्यताओं का लाभ उठाएं।',
     keywords: ['car wash offers', 'Washee discounts', 'car cleaning deals Guwahati', 'save on car wash'],
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/600/400?random=20',
     imageHint: 'discount offer',
     content: `
       <h2 class="text-2xl font-bold text-foreground mb-4">Washee के साथ अपनी कार वॉश पर बचत करें</h2>
