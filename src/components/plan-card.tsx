@@ -15,6 +15,71 @@ const FreeVisitCharge = () => (
     <p className="text-sm font-medium text-green-600">Visit Charge Free</p>
 )
 
+const OneTimePlanDetails = ({ getBookingLink, originalBasic, basic, originalPremium, premium }: { getBookingLink: (variant: 'basic' | 'premium') => string; originalBasic?: string; basic?: string; originalPremium?: string; premium?: string; }) => (
+    <div className="space-y-4">
+        <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
+        <h4 className="font-semibold">Basic Wash</h4>
+        <ul className="text-sm text-muted-foreground mt-2 space-y-1 text-left mb-2">
+            <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-primary" />
+                <span>Interior &amp; exterior</span>
+            </li>
+        </ul>
+        <div className='my-2'>
+            <p className="text-2xl font-bold flex items-baseline gap-2">
+            <span className="text-base font-normal text-muted-foreground line-through">{originalBasic}</span>
+            <span>{basic}</span>
+            </p>
+            <FreeVisitCharge />
+        </div>
+        <Button asChild className="w-full mt-2">
+            <Link href={getBookingLink('basic')}>Book Basic</Link>
+        </Button>
+        </div>
+        <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
+        <h4 className="font-semibold">Premium Wash</h4>
+        <ul className="text-sm text-muted-foreground mt-2 space-y-1 text-left mb-2">
+            <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-primary" />
+                <span>Interior &amp; exterior</span>
+            </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-primary" />
+                <span>Dashboard polish</span>
+            </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-primary" />
+                <span>Tyre polish</span>
+            </li>
+        </ul>
+        <div className='my-2'>
+            <p className="text-2xl font-bold flex items-baseline gap-2">
+            <span className="text-base font-normal text-muted-foreground line-through">{originalPremium}</span>
+            <span>{premium}</span>
+            </p>
+            <FreeVisitCharge />
+        </div>
+        <Button asChild className="w-full mt-2">
+            <Link href={getBookingLink('premium')}>Book Premium</Link>
+        </Button>
+        </div>
+    </div>
+);
+
+const SubscriptionPlanDetails = ({ split }: { split: { exterior: number; full: number } }) => (
+    <ul className="space-y-2 text-sm text-muted-foreground">
+        <li className="flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-primary" />
+            <span>{split.exterior}x exterior wash</span>
+        </li>
+        <li className="flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-primary" />
+            <span>{split.full}x interior+exterior + polish</span>
+        </li>
+    </ul>
+);
+
+
 export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps) {
   const { carType, price, originalPrice, split, basic, premium, originalBasic, originalPremium } = plan;
 
@@ -25,80 +90,6 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
       link += `&variant=${variant}`;
     }
     return link;
-  };
-
-  const renderContent = () => {
-    if (planGroup === 'onetime') {
-      return (
-        <div className="space-y-4">
-          <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
-            <h4 className="font-semibold">Basic Wash</h4>
-            <ul className="text-sm text-muted-foreground mt-2 space-y-1 text-left mb-2">
-                <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Interior &amp; exterior</span>
-                </li>
-            </ul>
-            <div className='my-2'>
-                <p className="text-2xl font-bold flex items-baseline gap-2">
-                <span className="text-base font-normal text-muted-foreground line-through">{originalBasic}</span>
-                <span>{basic}</span>
-                </p>
-                <FreeVisitCharge />
-            </div>
-            <Button asChild className="w-full mt-2">
-              <Link href={getBookingLink('basic')}>Book Basic</Link>
-            </Button>
-          </div>
-          <div className="p-4 border rounded-lg bg-accent/50 transition-all hover:shadow-md hover:border-primary/50">
-            <h4 className="font-semibold">Premium Wash</h4>
-            <ul className="text-sm text-muted-foreground mt-2 space-y-1 text-left mb-2">
-                <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Interior &amp; exterior</span>
-                </li>
-                 <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Dashboard polish</span>
-                </li>
-                 <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Tyre polish</span>
-                </li>
-            </ul>
-            <div className='my-2'>
-                <p className="text-2xl font-bold flex items-baseline gap-2">
-                <span className="text-base font-normal text-muted-foreground line-through">{originalPremium}</span>
-                <span>{premium}</span>
-                </p>
-                <FreeVisitCharge />
-            </div>
-            <Button asChild className="w-full mt-2">
-              <Link href={getBookingLink('premium')}>Book Premium</Link>
-            </Button>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <ul className="space-y-2 text-sm text-muted-foreground">
-        {split && (
-          <>
-            <li className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              <span>{split.exterior}x exterior wash</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              <span>
-                {split.full}x interior+exterior + polish
-              </span>
-            </li>
-          </>
-        )}
-      </ul>
-    );
   };
 
   return (
@@ -121,7 +112,18 @@ export function PlanCard({ plan, planGroup, isFeatured = false }: PlanCardProps)
             <FreeVisitCharge />
           </div>
         )}
-        {renderContent()}
+        
+        {planGroup === 'onetime' ? (
+            <OneTimePlanDetails 
+                getBookingLink={getBookingLink}
+                originalBasic={originalBasic}
+                basic={basic}
+                originalPremium={originalPremium}
+                premium={premium}
+            />
+        ) : (
+            split && <SubscriptionPlanDetails split={split} />
+        )}
       </CardContent>
       {planGroup !== 'onetime' && (
         <CardFooter>

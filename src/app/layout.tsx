@@ -1,11 +1,20 @@
+
 import type { Metadata } from 'next';
+import { PT_Sans } from 'next/font/google';
 import './globals.css';
 import { CustomerAuthProvider } from '@/context/customer-auth-context';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 
-const siteUrl = 'https://washee-online.vercel.app';
+const ptSans = PT_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-pt-sans',
+  display: 'swap',
+});
+
+const siteUrl = 'https://washee.in';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -55,12 +64,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={`${ptSans.variable}`} suppressHydrationWarning>
+      <head />
       <body className="font-body antialiased min-h-screen bg-background flex flex-col">
         <CustomerAuthProvider>
           <Navbar />
