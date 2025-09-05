@@ -2,7 +2,6 @@
 import { blogPosts } from '@/lib/blogPosts';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import Image from 'next/image';
 import type { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
@@ -22,6 +21,9 @@ export async function generateMetadata(
     };
   }
 
+  const siteUrl = 'https://washee.in';
+  const postImage = `${siteUrl}/api/og?title=${encodeURIComponent(post.title)}`;
+
   return {
     title: `${post.title} | Washee Blogs`,
     description: post.seo_description,
@@ -29,13 +31,15 @@ export async function generateMetadata(
     openGraph: {
       title: post.title,
       description: post.seo_description,
-      images: [post.imageUrl],
+      images: [postImage],
+      url: `${siteUrl}/blogs/${post.slug}`,
+      type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.seo_description,
-      images: [post.imageUrl],
+      images: [postImage],
     },
   };
 }

@@ -1,6 +1,5 @@
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { blogPosts } from '@/lib/blogPosts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import type { Metadata } from 'next';
@@ -8,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Washee Car Wash Blogs',
     description: 'Find answers to all your questions about Washee car wash services in Guwahati. Explore our blogs for tips, guides, and detailed information.',
-    keywords: ['car wash blog', 'Guwahati car care', 'Washee FAQ', 'car maintenance tips'],
+    keywords: ['car wash blog', 'Guwahati car care', 'Washee FAQ', 'car maintenance tips', 'car cleaning', 'doorstep car wash'],
 };
 
 export default function BlogListPage() {
