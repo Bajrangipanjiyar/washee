@@ -62,16 +62,6 @@ export default function BlogPostPage({ params }: Props) {
           <CardDescription className="text-lg text-muted-foreground">{post.description}</CardDescription>
         </header>
 
-        <div className="relative w-full h-64 md:h-96 rounded-lg overflow-hidden mb-8">
-            <Image
-                src={post.imageUrl}
-                alt={post.title}
-                fill
-                style={{objectFit: 'cover'}}
-                data-ai-hint={post.imageHint}
-            />
-        </div>
-
         <Card>
             <CardContent className="p-6">
                 <div

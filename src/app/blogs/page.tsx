@@ -23,18 +23,6 @@ export default function BlogListPage() {
         {blogPosts.map((post) => (
           <Link key={post.slug} href={`/blogs/${post.slug}`} className="block group">
             <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <CardHeader className="p-0">
-                <div className="relative w-full h-48">
-                    <Image
-                        src={post.imageUrl}
-                        alt={post.title}
-                        layout="fill"
-                        objectFit="cover"
-                        className="transition-transform duration-500 group-hover:scale-105"
-                        data-ai-hint={post.imageHint}
-                    />
-                </div>
-              </CardHeader>
               <CardContent className="p-6 flex-grow flex flex-col">
                 <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors">{post.title}</CardTitle>
                 <CardDescription className="mt-2 text-sm text-muted-foreground flex-grow">{post.description}</CardDescription>
