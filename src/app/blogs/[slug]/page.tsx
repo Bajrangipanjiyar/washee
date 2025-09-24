@@ -70,7 +70,7 @@ export default function BlogPostPage({ params }: Props) {
             <CardContent className="p-6">
                 <div
                     className="prose prose-lg max-w-none text-muted-foreground space-y-4 [&_table]:w-full [&_table]:overflow-x-auto [&_table]:block"
-                    dangerouslySetInnerHTML={{ __html: post.content }}
+                    dangerouslySetInnerHTML={{ __html: post.content || '' }}
                 />
             </CardContent>
         </Card>

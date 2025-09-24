@@ -7,6 +7,7 @@ export const blogPosts = [
     seo_description: 'गुवाहाटी में Washee के साथ अपनी कार वॉश बुक करने की पूरी प्रक्रिया जानें। हमारी ऑनलाइन बुकिंग प्रणाली का उपयोग करके आसानी से एक स्लॉट शेड्यूल करें।',
     keywords: ['book car wash Guwahati', 'Washee booking process', 'online car wash booking', 'Guwahati car service'],
     imageHint: 'Guwahati car booking',
+    content: '',
   },
   {
     slug: 'washee-car-wash-price-list',
@@ -15,6 +16,7 @@ export const blogPosts = [
     seo_description: 'Washee की विस्तृत कार वॉश मूल्य सूची। गुवाहाटी में हैचबैक, एसयूवी और लक्जरी कारों के लिए मासिक सदस्यता और वन-टाइम वॉश की कीमतें जानें।',
     keywords: ['car wash price list', 'Washee price', 'car wash cost Guwahati', 'affordable car wash'],
     imageHint: 'Guwahati price list',
+    content: '',
   },
    {
     slug: 'how-much-time-for-car-wash',
@@ -23,6 +25,7 @@ export const blogPosts = [
     seo_description: 'जानें कि Washee कार वॉश में कितना समय लगता है। हमारी तेज़ और कुशल डोरस्टेप सेवा गुवाहाटी में 30-45 मिनट में आपकी कार को साफ कर देती है।',
     keywords: ['car wash time', 'fast car wash', 'Washee service duration', 'quick car cleaning'],
     imageHint: 'Guwahati fast carwash',
+    content: '',
   },
   {
     slug: 'washee-home-car-wash-service',
@@ -31,6 +34,7 @@ export const blogPosts = [
     seo_description: 'Washee गुवाहाटी में एक अग्रणी होम कार वॉश सेवा है। अपनी सुविधानुसार अपने दरवाजे पर पेशेवर कार सफाई प्राप्त करें। कोई विज़िट शुल्क नहीं।',
     keywords: ['home car wash service', 'doorstep car wash Guwahati', 'Washee at home', 'convenient car wash'],
     imageHint: 'Guwahati home carwash',
+    content: '',
   },
   {
     slug: 'washee-vs-normal-garage-wash',
@@ -39,6 +43,7 @@ export const blogPosts = [
     seo_description: 'Washee डोरस्टेप कार वॉश बनाम पारंपरिक गैरेज वॉश। सुविधा, समय, लागत, पानी के उपयोग और गुणवत्ता के मामले में तुलना देखें। जानें कि Washee बेहतर क्यों है।',
     keywords: ['doorstep vs garage wash', 'Washee benefits', 'car wash comparison', 'professional car wash'],
     imageHint: 'Guwahati car comparison',
+    content: '',
   },
   {
     slug: 'washee-interior-cleaning-included',
@@ -47,6 +52,7 @@ export const blogPosts = [
     seo_description: 'Washee की कार वॉश सेवाओं में आंतरिक सफाई शामिल है। हम वैक्यूमिंग, डैशबोर्ड सफाई, और बहुत कुछ प्रदान करते हैं। जानें कि हमारे पैकेज में क्या है।',
     keywords: ['interior car cleaning', 'Washee services', 'car vacuuming Guwahati', 'complete car wash'],
     imageHint: 'Guwahati car interior',
+    content: '',
   },
     {
     slug: 'washee-car-wash-booking-process',
@@ -55,6 +61,7 @@ export const blogPosts = [
     seo_description: 'Washee से कार वॉश बुकिंग की पूरी प्रक्रिया। हमारी वेबसाइट पर जाएं, योजना चुनें, विवरण भरें और गुवाहाटी में अपनी डोरस्टेप कार वॉश की पुष्टि करें।',
     keywords: ['car wash booking process', 'how to book Washee', 'online car wash steps', 'Guwahati car cleaning'],
     imageHint: 'Guwahati car process',
+    content: '',
   },
   {
     slug: 'washee-service-areas-in-guwahati',
@@ -63,6 +70,7 @@ export const blogPosts = [
     seo_description: 'Washee गुवाहाटी शहर की सीमाओं के भीतर डोरस्टेप कार वॉश सेवाएं प्रदान करता है। पता करें कि क्या हम आपके क्षेत्र की सेवा करते हैं और हमारी विस्तार योजनाओं पर अपडेट प्राप्त करें।',
     keywords: ['Washee service area', 'car wash Guwahati locations', 'doorstep service area', 'Guwahati car care'],
     imageHint: 'Guwahati map service',
+    content: '',
   },
   {
     slug: 'benefits-of-online-car-wash-booking',
@@ -71,6 +79,7 @@ export const blogPosts = [
     seo_description: 'Washee के साथ ऑनलाइन कार वॉश बुकिंग के लाभ। समय बचाएं, स्लॉट की गारंटी पाएं, योजनाओं की तुलना करें और एक सहज, संपर्क रहित अनुभव का आनंद लें।',
     keywords: ['online booking benefits', 'why book car wash online', 'Washee advantages', 'convenient car care'],
     imageHint: 'Guwahati car online',
+    content: '',
   },
   {
     slug: 'how-often-to-get-car-wash',
@@ -79,6 +88,7 @@ export const blogPosts = [
     seo_description: 'अपनी कार को कितनी बार धोना है? गुवाहाटी की स्थितियों के लिए आदर्श कार वॉश शेड्यूल जानें। अपनी कार के पेंट और फिनिश को Washee के साथ सुरक्षित रखें।',
     keywords: ['how often car wash', 'car wash frequency', 'car care schedule', 'Washee maintenance'],
     imageHint: 'Guwahati car schedule',
+    content: '',
   },
   {
     slug: 'washee-bike-wash-service',
@@ -87,6 +97,7 @@ export const blogPosts = [
     seo_description: 'क्या Washee बाइक वॉश प्रदान करता है? वर्तमान में, हम कारों में विशेषज्ञ हैं। गुवाहाटी में भविष्य की बाइक वॉश सेवाओं के लिए हमारी घोषणाओं पर नज़र रखें।',
     keywords: ['bike wash service', 'Washee services', 'motorcycle cleaning Guwahati', 'two-wheeler wash'],
     imageHint: 'Guwahati bike wash',
+    content: '',
   },
    {
     slug: 'washee-car-wash-package-inclusions',
@@ -95,6 +106,7 @@ export const blogPosts = [
     seo_description: 'Washee के कार वॉश पैकेज में क्या शामिल है? हमारी बेसिक और प्रीमियम सेवाओं का पूरा विवरण, जिसमें आंतरिक वैक्यूमिंग, बाहरी धुलाई और पॉलिशिंग शामिल है।',
     keywords: ['car wash packages', 'Washee inclusions', 'what is in a car wash', 'car cleaning services'],
     imageHint: 'Guwahati car package',
+    content: '',
   },
   {
     slug: 'washee-car-detailing-polishing-services',
@@ -103,6 +115,7 @@ export const blogPosts = [
     seo_description: 'क्या Washee कार डिटेलिंग और पॉलिशिंग प्रदान करता है? हमारी प्रीमियम योजनाओं में डैशबोर्ड और टायर पॉलिशिंग शामिल है। विस्तृत कार डिटेलिंग सेवाओं के लिए बने रहें।',
     keywords: ['car detailing Guwahati', 'car polishing service', 'Washee detailing', 'professional car care'],
     imageHint: 'Guwahati car polishing',
+    content: '',
   },
   {
     slug: 'washee-payment-methods',
@@ -111,6 +124,7 @@ export const blogPosts = [
     seo_description: 'Washee के लिए उपलब्ध भुगतान विधियां। वर्तमान में हम "कैश ऑन सर्विस" (COD) स्वीकार करते हैं। ऑनलाइन भुगतान और अन्य विकल्प जल्द ही आ रहे हैं।',
     keywords: ['Washee payment methods', 'cash on service car wash', 'car wash payment', 'Guwahati car service'],
     imageHint: 'Guwahati cash payment',
+    content: '',
   },
   {
     slug: 'washee-sunday-service-availability',
@@ -119,6 +133,7 @@ export const blogPosts = [
     seo_description: 'Washee कार वॉश सेवा रविवार को उपलब्ध है। हम सप्ताह के सातों दिन, आपके दरवाजे पर सुविधाजनक कार सफाई प्रदान करते हैं। आज ही अपना सप्ताहांत स्लॉट बुक करें।',
     keywords: ['sunday car wash', 'weekend car service', 'Washee availability', 'car wash open on sunday'],
     imageHint: 'Guwahati weekend carwash',
+    content: '',
   },
   {
     slug: 'washee-eco-friendly-car-wash',
@@ -127,6 +142,7 @@ export const blogPosts = [
     seo_description: 'Washee की पर्यावरण-अनुकूल कार वॉश सेवा। हम पानी बचाने की तकनीकों और बायोडिग्रेडेबल सफाई समाधानों का उपयोग करके पर्यावरण पर प्रभाव को कम करते हैं।',
     keywords: ['eco-friendly car wash', 'water saving car wash', 'green car care', 'Washee sustainability'],
     imageHint: 'Guwahati eco car',
+    content: '',
   },
   {
     slug: 'washee-waterless-car-wash-option',
@@ -135,6 +151,7 @@ export const blogPosts = [
     seo_description: 'क्या Washee जल रहित कार वॉश प्रदान करता है? हम एक अत्यधिक कुशल, कम पानी वाली कार वॉश विधि का उपयोग करते हैं जो पर्यावरण-अनुकूल है। विवरण जानें।',
     keywords: ['waterless car wash', 'low water car wash', 'eco-friendly car cleaning', 'Washee methods'],
     imageHint: 'Guwahati waterless wash',
+    content: '',
   },
   {
     slug: 'washee-emergency-same-day-booking',
@@ -143,6 +160,7 @@ export const blogPosts = [
     seo_description: 'Washee के साथ उसी दिन या आपातकालीन कार वॉश बुकिंग। उपलब्धता के आधार पर हम तत्काल अनुरोधों को समायोजित करने का प्रयास करते हैं। ऑनलाइन स्लॉट देखें।',
     keywords: ['same day car wash', 'emergency car cleaning', 'Washee booking policy', 'last minute car wash'],
     imageHint: 'Guwahati emergency wash',
+    content: '',
   },
   {
     slug: 'washee-customer-support',
@@ -151,6 +169,7 @@ export const blogPosts = [
     seo_description: 'Washee की ग्राहक सहायता के बारे में जानें। हम आपकी बुकिंग, प्रश्नों और प्रतिक्रिया में सहायता के लिए फोन और ईमेल के माध्यम से उपलब्ध हैं।',
     keywords: ['Washee customer support', 'car wash helpdesk', 'contact Washee', 'customer service'],
     imageHint: 'Guwahati customer service',
+    content: '',
   },
   {
     slug: 'washee-offers-and-discounts',
@@ -159,6 +178,7 @@ export const blogPosts = [
     seo_description: 'Washee कार वॉश पर सर्वोत्तम ऑफ़र और छूट। हमारी रियायती परिचयात्मक कीमतों और मूल्य-पैक मासिक सदस्यताओं का लाभ उठाएं।',
     keywords: ['car wash offers', 'Washee discounts', 'car cleaning deals Guwahati', 'save on car wash'],
     imageHint: 'Guwahati car discount',
+    content: '',
   },
   {
     slug: 'washee-mission-making-car-care-easy',
@@ -167,6 +187,7 @@ export const blogPosts = [
     seo_description: 'Washee के मिशन की खोज करें। हम गुवाहाटी में हर कार मालिक के लिए डोरस्टेप कार वॉश को सुविधाजनक, विश्वसनीय और सुलभ बनाने के लिए समर्पित हैं।',
     keywords: ['Washee mission', 'car care vision', 'about Washee', 'convenient car wash'],
     imageHint: 'Guwahati car mission',
+    content: '',
   },
   {
     slug: 'meet-the-founders-of-washee',
@@ -175,6 +196,7 @@ export const blogPosts = [
     seo_description: 'Washee के संस्थापकों, धर्मराज राम (संस्थापक) और बजरंगी पंजियार (सीईओ) का परिचय। जानें कि कैसे उनकी दृष्टि ने गुवाहाटी में डोरस्टेप कार केयर को बदल दिया है।',
     keywords: ['Washee founders', 'Dharmaraj Ram', 'Bajrangi Panjiyar', 'about Washee team'],
     imageHint: 'Guwahati car founders',
+    content: '',
   },
   {
     slug: 'the-story-of-washee',
@@ -183,6 +205,7 @@ export const blogPosts = [
     seo_description: 'Washee की प्रेरणादायक कहानी। जानें कि कैसे हमने कार मालिकों के लिए समय की कमी की समस्या को पहचाना और एक सुविधाजनक, उच्च-गुणवत्ता वाले समाधान का निर्माण किया।',
     keywords: ['Washee story', 'about Washee', 'car wash startup', 'Guwahati business'],
     imageHint: 'Guwahati car story',
+    content: '',
   },
   {
     slug: 'our-commitment-to-quality',
@@ -191,6 +214,7 @@ export const blogPosts = [
     seo_description: 'Washee की गुणवत्ता के प्रति प्रतिबद्धता। हम प्रशिक्षित पेशेवरों, प्रीमियम उत्पादों और ग्राहक प्रतिक्रिया के माध्यम से असाधारण कार वॉश सेवाएं प्रदान करते हैं।',
     keywords: ['quality car wash', 'Washee standards', 'professional car cleaning', 'customer satisfaction'],
     imageHint: 'Guwahati car quality',
+    content: '',
   },
   {
     slug: 'washee-deep-seat-shampooing',
@@ -264,5 +288,3 @@ export const blogPosts = [
     `,
   },
 ]
-
-    
