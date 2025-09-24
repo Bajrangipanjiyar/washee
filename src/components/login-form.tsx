@@ -149,7 +149,6 @@ export function LoginForm() {
         )}
         
         <div className="relative">
-          <Separator />
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t"></span>
           </div>
