@@ -47,15 +47,12 @@ export default function NewsLayout({
   return (
     // This is a completely separate layout for the /news route
     // It does not inherit from the root layout's structure with Navbar/Footer
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-slate-50 flex flex-col">
         <NewsHeader />
         <main className="flex-grow">
             {children}
         </main>
         <NewsFooter />
-      </body>
-    </html>
+    </div>
   );
 }
