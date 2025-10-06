@@ -25,6 +25,7 @@ function NewsHeader() {
           </div>
           <div className="hidden md:flex items-center space-x-4">
             <Search className="h-6 w-6 text-gray-600 cursor-pointer hover:text-news-accent" />
+            <Button variant="outline" size="sm">Sign In</Button>
           </div>
           <div className="md:hidden flex items-center space-x-4">
             <Search className="h-6 w-6 text-gray-600" />
