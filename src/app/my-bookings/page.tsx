@@ -17,6 +17,8 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { useCustomerAuth } from '@/context/customer-auth-context';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 const statusColors: Record<BookingStatus, string> = {
     pending: 'bg-yellow-100 text-yellow-800',
@@ -105,54 +107,60 @@ export default function MyBookingsPage() {
   }
 
   return (
-    <div className="container py-12">
-      <h1 className="text-3xl font-bold mb-8">My Bookings</h1>
-      <Card>
-          <CardContent className="p-6">
-              {bookings.length > 0 ? (
-              <Table>
-                  <TableHeader>
-                  <TableRow>
-                      <TableHead>Service Date</TableHead>
-                      <TableHead>Plan</TableHead>
-                      <TableHead>Price</TableHead>
-                      <TableHead>Payment</TableHead>
-                      <TableHead>Status</TableHead>
-                  </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                  {bookings.map((booking) => (
-                      <TableRow key={booking.id}>
-                          <TableCell>
-                              {format(booking.date, 'dd MMM yyyy')}
-                              <div className="text-sm text-muted-foreground">{booking.timeSlot}</div>
-                          </TableCell>
-                          <TableCell>{booking.carType} ({booking.planGroup})</TableCell>
-                          <TableCell>₹{booking.price}</TableCell>
-                          <TableCell>
-                              <Badge className={cn("capitalize", paymentMethodColors[booking.paymentMethod as keyof typeof paymentMethodColors])} variant="outline">
-                                  {booking.paymentMethod}
-                              </Badge>
-                          </TableCell>
-                          <TableCell>
-                              <Badge className={cn("capitalize", statusColors[booking.status as keyof typeof statusColors])} variant="outline">
-                                  {booking.status}
-                              </Badge>
-                          </TableCell>
-                      </TableRow>
-                  ))}
-                  </TableBody>
-              </Table>
-              ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                  <p>You haven't made any bookings yet.</p>
-                  <Button asChild variant="link" className="mt-2">
-                    <a href="/plans">Book a wash</a>
-                  </Button>
-              </div>
-              )}
-          </CardContent>
-      </Card>
-    </div>
+    <>
+        <Navbar />
+        <main className="flex-grow">
+            <div className="container py-12">
+              <h1 className="text-3xl font-bold mb-8">My Bookings</h1>
+              <Card>
+                  <CardContent className="p-6">
+                      {bookings.length > 0 ? (
+                      <Table>
+                          <TableHeader>
+                          <TableRow>
+                              <TableHead>Service Date</TableHead>
+                              <TableHead>Plan</TableHead>
+                              <TableHead>Price</TableHead>
+                              <TableHead>Payment</TableHead>
+                              <TableHead>Status</TableHead>
+                          </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                          {bookings.map((booking) => (
+                              <TableRow key={booking.id}>
+                                  <TableCell>
+                                      {format(booking.date, 'dd MMM yyyy')}
+                                      <div className="text-sm text-muted-foreground">{booking.timeSlot}</div>
+                                  </TableCell>
+                                  <TableCell>{booking.carType} ({booking.planGroup})</TableCell>
+                                  <TableCell>₹{booking.price}</TableCell>
+                                  <TableCell>
+                                      <Badge className={cn("capitalize", paymentMethodColors[booking.paymentMethod as keyof typeof paymentMethodColors])} variant="outline">
+                                          {booking.paymentMethod}
+                                      </Badge>
+                                  </TableCell>
+                                  <TableCell>
+                                      <Badge className={cn("capitalize", statusColors[booking.status as keyof typeof statusColors])} variant="outline">
+                                          {booking.status}
+                                      </Badge>
+                                  </TableCell>
+                              </TableRow>
+                          ))}
+                          </TableBody>
+                      </Table>
+                      ) : (
+                      <div className="text-center py-8 text-muted-foreground">
+                          <p>You haven't made any bookings yet.</p>
+                          <Button asChild variant="link" className="mt-2">
+                            <a href="/plans">Book a wash</a>
+                          </Button>
+                      </div>
+                      )}
+                  </CardContent>
+              </Card>
+            </div>
+        </main>
+        <Footer />
+    </>
   );
 }

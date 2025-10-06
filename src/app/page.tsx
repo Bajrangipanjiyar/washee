@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Navbar } from '@/components/layout/navbar';
+import { Footer } from '@/components/layout/footer';
 
 // Dynamically import sections that are below the fold
 const FeaturesSection = dynamic(() => import('@/components/landing/features-section'), {
@@ -77,58 +79,62 @@ const SectionSkeleton = () => (
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="container grid lg:grid-cols-2 place-items-center py-20 md:py-32 gap-10">
-        <div className="text-center lg:text-start space-y-6">
-          <main className="text-5xl md:text-6xl font-bold font-headline">
-            <h1>Doorstep Car Wash – Fast, Easy & Hassle-Free</h1>
-          </main>
+      <Navbar />
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="container grid lg:grid-cols-2 place-items-center py-20 md:py-32 gap-10">
+          <div className="text-center lg:text-start space-y-6">
+            <main className="text-5xl md:text-6xl font-bold font-headline">
+              <h1>Doorstep Car Wash – Fast, Easy & Hassle-Free</h1>
+            </main>
 
-          <p className="text-xl text-muted-foreground md:w-10/12 mx-auto lg:mx-0">
-            Premium car wash at your door. Hassle-free booking and professional service.
-          </p>
+            <p className="text-xl text-muted-foreground md:w-10/12 mx-auto lg:mx-0">
+              Premium car wash at your door. Hassle-free booking and professional service.
+            </p>
 
-          <div className="space-y-4 md:space-y-0 md:space-x-4">
-            <Button className="w-full md:w-1/3" asChild>
-              <Link href="/plans">View Plans & Book</Link>
-            </Button>
+            <div className="space-y-4 md:space-y-0 md:space-x-4">
+              <Button className="w-full md:w-1/3" asChild>
+                <Link href="/plans">View Plans & Book</Link>
+              </Button>
+            </div>
+            
+            <div className="space-y-2 text-center lg:text-start">
+                <p className="text-sm text-muted-foreground">Follow us on:</p>
+                <div className="flex justify-center lg:justify-start items-center gap-4">
+                    {socialLinks.map((social) => (
+                        <a 
+                          key={social.name}
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {social.icon}
+                          <span className="sr-only">{social.name}</span>
+                        </a>
+                    ))}
+                </div>
+            </div>
           </div>
-          
-          <div className="space-y-2 text-center lg:text-start">
-              <p className="text-sm text-muted-foreground">Follow us on:</p>
-              <div className="flex justify-center lg:justify-start items-center gap-4">
-                  {socialLinks.map((social) => (
-                      <a 
-                        key={social.name}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {social.icon}
-                        <span className="sr-only">{social.name}</span>
-                      </a>
-                  ))}
-              </div>
+
+          <div className="relative group flex items-center justify-center w-full h-full">
+              <WLogo className="w-48 h-48 lg:w-96 lg:h-96 text-primary drop-shadow-2xl" />
           </div>
-        </div>
+        </section>
 
-        <div className="relative group flex items-center justify-center w-full h-full">
-            <WLogo className="w-48 h-48 lg:w-96 lg:h-96 text-primary drop-shadow-2xl" />
-        </div>
-      </section>
+        <Suspense fallback={<SectionSkeleton />}>
+          <FeaturesSection />
+        </Suspense>
+        
+        <Suspense fallback={<SectionSkeleton />}>
+          <HowItWorksSection />
+        </Suspense>
 
-      <Suspense fallback={<SectionSkeleton />}>
-        <FeaturesSection />
-      </Suspense>
-      
-      <Suspense fallback={<SectionSkeleton />}>
-        <HowItWorksSection />
-      </Suspense>
-
-      <Suspense fallback={<SectionSkeleton />}>
-        <FaqSection />
-      </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <FaqSection />
+        </Suspense>
+      </main>
+      <Footer />
     </>
   );
 }

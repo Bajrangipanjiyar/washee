@@ -7,6 +7,8 @@ import { BookingForm } from '@/components/booking-form';
 import type { PlanGroup, CarType, OnetimeVariant } from '@/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useCustomerAuth } from '@/context/customer-auth-context';
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 function BookingPageContent() {
   const searchParams = useSearchParams();
@@ -15,7 +17,7 @@ function BookingPageContent() {
 
   const planGroup = searchParams.get('planGroup') as PlanGroup;
   const carType = searchParams.get('carType') as CarType;
-  const variant = search-params.get('variant') as OnetimeVariant | undefined;
+  const variant = searchParams.get('variant') as OnetimeVariant | undefined;
   
   useEffect(() => {
     if (!loading && !user) {
@@ -53,7 +55,13 @@ function BookingPageContent() {
 export default function BookPage() {
     return (
         <Suspense fallback={<div className="container py-12"><p>Loading...</p></div>}>
-            <BookingPageContent />
+            <>
+                <Navbar />
+                <main className="flex-grow">
+                    <BookingPageContent />
+                </main>
+                <Footer />
+            </>
         </Suspense>
     )
 }

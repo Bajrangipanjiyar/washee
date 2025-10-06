@@ -1,8 +1,11 @@
 
+
 import { blogPosts } from '@/lib/blogPosts';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import type { Metadata, ResolvingMetadata } from 'next';
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 type Props = {
   params: { slug: string };
@@ -59,22 +62,28 @@ export default function BlogPostPage({ params }: Props) {
   }
 
   return (
-    <div className="container py-12 max-w-4xl mx-auto">
-      <article>
-        <header className="mb-8">
-          <CardTitle className="text-3xl md:text-4xl font-bold font-headline mb-2">{post.title}</CardTitle>
-          <CardDescription className="text-lg text-muted-foreground">{post.description}</CardDescription>
-        </header>
+    <>
+        <Navbar />
+        <main className="flex-grow">
+            <div className="container py-12 max-w-4xl mx-auto">
+              <article>
+                <header className="mb-8">
+                  <CardTitle className="text-3xl md:text-4xl font-bold font-headline mb-2">{post.title}</CardTitle>
+                  <CardDescription className="text-lg text-muted-foreground">{post.description}</CardDescription>
+                </header>
 
-        <Card>
-            <CardContent className="p-6">
-                <div
-                    className="prose prose-lg max-w-none text-muted-foreground space-y-4 [&_table]:w-full [&_table]:overflow-x-auto [&_table]:block"
-                    dangerouslySetInnerHTML={{ __html: post.content || '' }}
-                />
-            </CardContent>
-        </Card>
-      </article>
-    </div>
+                <Card>
+                    <CardContent className="p-6">
+                        <div
+                            className="prose prose-lg max-w-none text-muted-foreground space-y-4 [&_table]:w-full [&_table]:overflow-x-auto [&_table]:block"
+                            dangerouslySetInnerHTML={{ __html: post.content || '' }}
+                        />
+                    </CardContent>
+                </Card>
+              </article>
+            </div>
+        </main>
+        <Footer />
+    </>
   );
 }

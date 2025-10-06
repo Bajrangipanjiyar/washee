@@ -3,6 +3,8 @@
 
 import { Suspense } from 'react';
 import { LoginForm } from '@/components/login-form';
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 function LoginPageContent() {
   return (
@@ -16,7 +18,13 @@ function LoginPageContent() {
 export default function LoginPage() {
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <LoginPageContent />
+            <>
+                <Navbar />
+                <main className="flex-grow">
+                    <LoginPageContent />
+                </main>
+                <Footer />
+            </>
         </Suspense>
     )
 }
