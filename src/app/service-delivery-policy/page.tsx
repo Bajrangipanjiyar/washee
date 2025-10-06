@@ -14,7 +14,7 @@ export default function ServiceDeliveryPolicyPage() {
                 <CardHeader>
                     <CardTitle className="text-3xl">Service Delivery Policy</CardTitle>
                     <CardDescription>
-                        Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        Last Updated: July 20, 2024
                     </CardDescription>
                 </CardHeader>
                 <CardContent>

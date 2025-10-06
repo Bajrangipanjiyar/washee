@@ -13,7 +13,7 @@ export default function RefundAndCancellationPage() {
                 <CardHeader>
                     <CardTitle className="text-3xl">Refund &amp; Cancellation Policy</CardTitle>
                     <CardDescription>
-                        Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        Last Updated: July 20, 2024
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
