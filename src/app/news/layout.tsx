@@ -13,7 +13,7 @@ function NewsHeader() {
         <header className="sticky top-0 z-50 w-full bg-black">
             <div className="container flex h-16 items-center justify-center">
                 <Link href="/news" className="flex items-center space-x-2">
-                    <span className="font-bold font-headline text-2xl text-blue-500">Washee News</span>
+                    <span className="font-bold font-headline text-3xl text-blue-400">Washee News</span>
                 </Link>
             </div>
         </header>
