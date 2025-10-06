@@ -40,6 +40,12 @@ export function Navbar() {
             Plans
           </Link>
           <Link
+            href="/news"
+            className="transition-colors hover:text-primary"
+          >
+            News
+          </Link>
+          <Link
             href="/my-bookings"
             className="transition-colors hover:text-primary"
           >

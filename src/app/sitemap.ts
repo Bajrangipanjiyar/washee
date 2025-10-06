@@ -1,12 +1,12 @@
 
 import { MetadataRoute } from 'next'
-import { blogPosts } from '@/lib/blogPosts';
+import { newsArticles } from '@/lib/newsArticles';
  
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://washee.in';
 
-  const postUrls = blogPosts.map(post => ({
-    url: `${baseUrl}/blogs/${post.slug}`,
+  const postUrls = newsArticles.map(post => ({
+    url: `${baseUrl}/news/${post.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-        url: `${baseUrl}/blogs`,
+        url: `${baseUrl}/news`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
