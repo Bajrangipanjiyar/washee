@@ -17,7 +17,7 @@ const navCategories = [
 ];
 
 function NewsHeader() {
-  const { user, loading, logout } = useCustomerAuth();
+  const { user, loading, signInWithGoogle, logout } = useCustomerAuth();
 
   return (
     <header className="bg-white text-black sticky top-0 z-50 w-full border-b">
@@ -45,8 +45,8 @@ function NewsHeader() {
                     </Button>
                   </div>
                 ) : (
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="/login">Sign In</Link>
+                  <Button onClick={signInWithGoogle} variant="outline" size="sm">
+                    Sign In
                   </Button>
                 )}
               </>
