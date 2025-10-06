@@ -13,16 +13,15 @@ export const metadata: Metadata = {
     keywords: ['news', 'lifestyle', 'entertainment', 'breaking news', 'design', 'home', 'business'],
 };
 
-const SocialFollowCard = ({ icon, platform, count, cta, bgColor, href }: { icon: React.ReactNode; platform: string; count: string; cta: string; bgColor: string; href: string; }) => (
-    <Link href={href} target="_blank" rel="noopener noreferrer" className={`flex-1 ${bgColor} text-white p-4 rounded-lg flex items-center justify-between transition-transform hover:scale-105`}>
+const SocialShareCard = ({ icon, platform, cta, bgColor, href }: { icon: React.ReactNode; platform: string; cta: string; bgColor: string; href: string; }) => (
+    <Link href={href} target="_blank" rel="noopener noreferrer" className={`flex-1 ${bgColor} text-white p-4 rounded-lg flex items-center justify-center transition-transform hover:scale-105`}>
         <div className="flex items-center space-x-3">
             {icon}
             <div>
-                <p className="font-bold text-lg">{count}</p>
+                <p className="font-bold text-lg">{cta}</p>
                 <p className="text-sm opacity-90">{platform}</p>
             </div>
         </div>
-        <p className="font-semibold text-sm">{cta} &rarr;</p>
     </Link>
 );
 
@@ -33,6 +32,8 @@ export default function NewsListPage() {
   const tertiaryFeatured = newsArticles.find(a => a.slug === 'how-to-book-car-wash-in-guwahati');
   
   const mainGridArticles = newsArticles.filter(a => ![featuredArticle?.slug, secondaryFeatured?.slug, tertiaryFeatured?.slug].includes(a.slug)).slice(0, 6);
+
+  const shareUrl = "https://washee.in/news";
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -106,9 +107,9 @@ export default function NewsListPage() {
       
       {/* Social Engagement Bar */}
       <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 my-12">
-        <SocialFollowCard icon={<Facebook className="h-8 w-8"/>} platform="Followers" count="34.8K" cta="Follow" bgColor="bg-blue-600" href="#"/>
-        <SocialFollowCard icon={<Twitter className="h-8 w-8"/>} platform="Followers" count="5.8K" cta="Follow" bgColor="bg-cyan-500" href="#"/>
-        <SocialFollowCard icon={<Youtube className="h-8 w-8"/>} platform="Subscribers" count="33,400" cta="Subscribe" bgColor="bg-red-600" href="#"/>
+        <SocialShareCard icon={<Facebook className="h-8 w-8"/>} platform="Share on Facebook" cta="Share" bgColor="bg-blue-600" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}/>
+        <SocialShareCard icon={<Twitter className="h-8 w-8"/>} platform="Share on X" cta="Tweet" bgColor="bg-cyan-500" href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent('Check out Washee News!')}`}/>
+        <SocialShareCard icon={<Youtube className="h-8 w-8"/>} platform="Share on YouTube" cta="Share" bgColor="bg-red-600" href={`https://www.youtube.com/share?url=${encodeURIComponent(shareUrl)}`}/>
       </div>
       
       {/* Main Content Grid */}
