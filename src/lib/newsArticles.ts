@@ -1,435 +1,153 @@
 
 export const newsArticles = [
   {
-    slug: 'how-to-book-car-wash-in-guwahati',
-    title: 'Guwahati में Washee car wash service कैसे book करें?',
-    description: 'गुवाहाटी में Washee के साथ अपनी कार वॉश बुक करने की चरण-दर-चरण प्रक्रिया जानें। यह सरल, तेज़ और सुविधाजनक है।',
-    seo_description: 'गुवाहाटी में Washee के साथ अपनी कार वॉश बुक करने की पूरी प्रक्रिया जानें। हमारी ऑनलाइन बुकिंग प्रणाली का उपयोग करके आसानी से एक स्लॉट शेड्यूल करें।',
-    keywords: ['book car wash Guwahati', 'Washee booking process', 'online car wash booking', 'Guwahati car service'],
-    imageHint: 'Guwahati car booking',
+    slug: 'increase-resale-value-with-washee',
+    title: 'How a Clean Car Can Dramatically Increase Its Resale Value',
+    description: 'A well-maintained car fetches a higher resale price. Discover how regular cleaning from services like Washee can boost your car\'s value.',
+    seo_description: 'Boost your car\'s resale value with regular professional cleaning. Learn how a clean interior and protected paint make a big difference.',
+    keywords: ['increase car resale value', 'car maintenance tips', 'professional car wash benefits'],
+    imageHint: 'luxury car interior',
+    category: 'Lifestyle',
+    date: 'July 24, 2024',
     content: `
-      <h2 class="text-2xl font-bold text-foreground mb-4">Washee के साथ अपनी कार वॉश बुक करना: एक सरल गाइड</h2>
-      <p>गुवाहाटी की भागदौड़ भरी जिंदगी में, अपनी कार के लिए समय निकालना मुश्किल हो सकता है। इसीलिए हमने Washee में बुकिंग प्रक्रिया को इतना सरल बना दिया है कि आप इसे कुछ ही मिनटों में कर सकते हैं। नीचे दिए गए चरणों का पालन करें और अपनी कार को वह चमक दें जिसका वह हकदार है।</p>
-      
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">चरण 1: हमारी वेबसाइट पर जाएं</h3>
-      <p>सबसे पहले, अपने कंप्यूटर या मोबाइल ब्राउज़र में <a href="https://washee.in" class="text-primary">washee.in</a> खोलें। हमारा होमपेज आपको हमारी सेवाओं का एक त्वरित अवलोकन देगा।</p>
+      <h2 class="text-2xl font-bold text-foreground mb-4">A Small Habit, a Big Return: Washee and Your Car's Resale Value</h2>
+      <p>When you decide to sell your car, you want to get the best possible price. While mechanical condition is crucial, the first thing a potential buyer notices is the car's appearance. A clean, well-maintained vehicle not only makes a better first impression but can actually command a higher resale price.</p>
+      <p class="mt-2">Using Washee's regular services is one of the simplest and most effective ways to maintain and enhance your car's value. Here's how:</p>
 
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">चरण 2: हमारी योजनाएं देखें</h3>
-      <p>नेविगेशन बार में 'Plans' पर क्लिक करें। यहां, आपको हमारी सभी विस्तृत योजनाएं मिलेंगी:</p>
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">1. Paint Protection</h3>
+      <p>Your car's paint isn't just cosmetic; it protects the underlying metal from rust and the elements. Dust, bird droppings, tree sap, and road grime contain acidic elements that can eat away at the paint's clear coat over time.</p>
       <ul class="list-disc pl-5 space-y-2 mt-2">
-        <li><strong>One-Time Wash:</strong> यदि आप हमारी सेवा को आज़माना चाहते हैं या केवल एक बार सफाई की आवश्यकता है।</li>
-        <li><strong>Monthly Subscriptions:</strong> नियमित रखरखाव के लिए हमारे पैसे बचाने वाले मासिक पैकेज।</li>
+        <li><strong>Regular Washing:</strong> Washee's regular washes remove these harmful contaminants before they can cause permanent damage.</li>
+        <li><strong>Quality Products:</strong> We use pH-balanced shampoos that are gentle on the paint, protecting it from fading or dulling.</li>
       </ul>
-      <p class="mt-2">अपनी कार के प्रकार (Hatchback, SUV, Luxury) के अनुसार सही योजना चुनें।</p>
-      
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">चरण 3: अपनी पसंदीदा योजना बुक करें</h3>
-      <p>एक बार जब आप अपनी योजना तय कर लेते हैं, तो 'Book Now' या 'Book Basic/Premium' बटन पर क्लिक करें। यह आपको बुकिंग फॉर्म पर ले जाएगा।</p>
+      <p class="mt-2">A car with a glossy, well-protected paint job will always be more valuable than one with faded, stained paint.</p>
 
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">चरण 4: बुकिंग विवरण भरें</h3>
-      <p>बुकिंग फॉर्म पर, आपको निम्नलिखित जानकारी प्रदान करने की आवश्यकता होगी:</p>
-      <ol class="list-decimal pl-5 space-y-2 mt-2">
-        <li><strong>व्यक्तिगत जानकारी:</strong> अपना नाम और फ़ोन नंबर।</li>
-        <li><strong>पता:</strong> वह पूरा पता जहाँ आप सेवा चाहते हैं।</li>
-        <li><strong>पसंदीदा तिथि और समय:</strong> अपनी सुविधानुसार एक तारीख और समय स्लॉट चुनें।</li>
-        <li><strong>कोई विशेष निर्देश (वैकल्पिक):</strong> यदि आपके पास कोई विशेष अनुरोध है।</li>
-      </ol>
-
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">चरण 5: बुकिंग की पुष्टि करें</h3>
-      <p>सभी विवरण भरने के बाद, 'Confirm Booking' बटन पर क्लिक करें। आपकी बुकिंग सफलतापूर्वक हो जाएगी, और आपको एक पुष्टिकरण संदेश दिखाई देगा। हमारी टीम जल्द ही आपसे संपर्क करेगी।</p>
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">2. A Spotless Interior</h3>
+      <p>The interior is where the driver and passengers spend their time. Stained seats, dirty carpets, and dusty dashboards signal that the car hasn't been properly cared for.</p>
+       <ul class="list-disc pl-5 space-y-2 mt-2">
+        <li><strong>Deep Cleaning:</strong> Our regular interior cleaning and vacuuming prevent dirt from becoming ingrained.</li>
+        <li><strong>Premium Care:</strong> Our premium plans include dashboard polishing, which protects plastic and vinyl from cracking and fading, keeping the interior looking new.</li>
+        <li><strong>Odor Removal:</strong> A clean interior also means a fresh-smelling interior, a major plus for buyers.</li>
+      </ul>
       
-      <p class="mt-4">बस! अब आप आराम कर सकते हैं। हमारी टीम नियत समय पर आपके दरवाजे पर होगी। Washee चुनने के लिए धन्यवाद!</p>
-    `
-  },
-  {
-    slug: 'washee-car-wash-price-list',
-    title: 'Washee car wash की price list क्या है?',
-    description: 'Washee के सभी कार वॉश प्लान और पैकेजों की विस्तृत मूल्य सूची देखें। हैचबैक, एसयूवी और लक्जरी कारों के लिए हमारी सस्ती दरों का पता लगाएं।',
-    seo_description: 'Washee की विस्तृत कार वॉश मूल्य सूची। गुवाहाटी में हैचबैक, एसयूवी और लक्जरी कारों के लिए मासिक सदस्यता और वन-टाइम वॉश की कीमतें जानें।',
-    keywords: ['car wash price list', 'Washee price', 'car wash cost Guwahati', 'affordable car wash'],
-    imageHint: 'Guwahati price list',
-    content: `
-      <h2 class="text-2xl font-bold text-foreground mb-4">Washee की पारदर्शी मूल्य-सूची</h2>
-      <p>Washee में, हम मानते हैं कि उच्च-गुणवत्ता वाली कार देखभाल सभी के लिए सुलभ होनी चाहिए। हमारी मूल्य-निर्धारण सरल, पारदर्शी और हर बजट के अनुरूप डिज़ाइन की गई है। कोई छिपी हुई फीस नहीं, कोई आश्चर्य नहीं - बस शानदार सेवा उचित मूल्य पर।</p>
-      <p class="mt-2">नीचे गुवाहाटी के लिए हमारी वर्तमान मूल्य-सूची दी गई है।</p>
-
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">एकमुश्त धुलाई (One-Time Wash)</h3>
-      <p>हमारी सेवा को आज़माने या एक त्वरित ताज़गी के लिए बिल्कुल सही।</p>
-      <table class="w-full mt-2 border-collapse">
-        <thead>
-          <tr class="bg-secondary">
-            <th class="border p-2 text-left">Car Type</th>
-            <th class="border p-2 text-left">Basic Wash</th>
-            <th class="border p-2 text-left">Premium Wash</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="border p-2">Hatchback</td>
-            <td class="border p-2">₹199</td>
-            <td class="border p-2">₹399</td>
-          </tr>
-          <tr>
-            <td class="border p-2">Luxury Cars</td>
-            <td class="border p-2">₹299</td>
-            <td class="border p-2">₹499</td>
-          </tr>
-          <tr>
-            <td class="border p-2">SUV</td>
-            <td class="border p-2">₹399</td>
-            <td class="border p-2">₹599</td>
-          </tr>
-        </tbody>
-      </table>
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">3. Attention to Detail</h3>
+      <p>We pay attention to the little things that buyers notice. Clean tires and rims, spotless windows, and clean door jambs all add up to present a picture of a car that has been well cared for. This gives the buyer confidence that the parts of the car they can't see have also been maintained.</p>
       
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">मासिक सदस्यता (6 सेवाएँ)</h3>
-      <p>अपनी कार को लगातार बनाए रखने और पैसे बचाने का सबसे अच्छा तरीका।</p>
-      <table class="w-full mt-2 border-collapse">
-        <thead>
-          <tr class="bg-secondary">
-            <th class="border p-2 text-left">Car Type</th>
-            <th class="border p-2 text-left">Price/Month</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="border p-2">Hatchback</td>
-            <td class="border p-2">₹1499</td>
-          </tr>
-          <tr>
-            <td class="border p-2">Luxury Cars</td>
-            <td class="border p-2">₹2099</td>
-          </tr>
-          <tr>
-            <td class="border p-2">SUV</td>
-            <td class="border p-2">₹2599</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">मासिक सदस्यता (4 सेवाएँ)</h3>
-      <p>उन लोगों के लिए एक बढ़िया विकल्प जिन्हें थोड़ी कम लगातार सेवा की आवश्यकता है।</p>
-       <table class="w-full mt-2 border-collapse">
-        <thead>
-          <tr class="bg-secondary">
-            <th class="border p-2 text-left">Car Type</th>
-            <th class="border p-2 text-left">Price/Month</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="border p-2">Hatchback</td>
-            <td class="border p-2">₹1099</td>
-          </tr>
-          <tr>
-            <td class="border p-2">Luxury Cars</td>
-            <td class="border p-2">₹1299</td>
-          </tr>
-          <tr>
-            <td class="border p-2">SUV</td>
-            <td class="border p-2">₹1499</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="mt-4 text-sm text-muted-foreground">*सभी कीमतें परिचयात्मक हैं और परिवर्तन के अधीन हो सकती हैं। सभी कीमतों में कर शामिल हैं।</p>
-    `
-  },
-   {
-    slug: 'how-much-time-for-car-wash',
-    title: 'Washee से car wash करवाने में कितना समय लगता है?',
-    description: 'Washee की कुशल कार वॉश प्रक्रिया के बारे में जानें। हम आपकी कार को 30-45 मिनट के भीतर चमका देते हैं, जिससे आपका बहुमूल्य समय बचता है।',
-    seo_description: 'जानें कि Washee कार वॉश में कितना समय लगता है। हमारी तेज़ और कुशल डोरस्टेप सेवा गुवाहाटी में 30-45 मिनट में आपकी कार को साफ कर देती है।',
-    keywords: ['car wash time', 'fast car wash', 'Washee service duration', 'quick car cleaning'],
-    imageHint: 'Guwahati fast carwash',
-    content: ''
-  },
-  {
-    slug: 'washee-home-car-wash-service',
-    title: 'क्या Washee home car wash service प्रदान करता है?',
-    description: 'हाँ! Washee की मुख्य विशेषता ही डोरस्टेप कार वॉश सेवा है। हम आपके घर, कार्यालय, या किसी भी पसंदीदा स्थान पर आकर आपकी कार धोते हैं।',
-    seo_description: 'Washee गुवाहाटी में एक अग्रणी होम कार वॉश सेवा है। अपनी सुविधानुसार अपने दरवाजे पर पेशेवर कार सफाई प्राप्त करें। कोई विज़िट शुल्क नहीं।',
-    keywords: ['home car wash service', 'doorstep car wash Guwahati', 'Washee at home', 'convenient car wash'],
-    imageHint: 'Guwahati home carwash',
-    content: ''
-  },
-  {
-    slug: 'washee-vs-normal-garage-wash',
-    title: 'Washee car wash और normal garage wash में क्या अंतर है?',
-    description: 'Washee की डोरस्टेप सेवा और पारंपरिक गैरेज वॉश के बीच मुख्य अंतरों की खोज करें। सुविधा, गुणवत्ता और समय की बचत में हम कैसे बेहतर हैं, यह जानें।',
-    seo_description: 'Washee डोरस्टेप कार वॉश बनाम पारंपरिक गैरेज वॉश। सुविधा, समय, लागत, पानी के उपयोग और गुणवत्ता के मामले में तुलना देखें। जानें कि Washee बेहतर क्यों है।',
-    keywords: ['doorstep vs garage wash', 'Washee benefits', 'car wash comparison', 'professional car wash'],
-    imageHint: 'Guwahati car comparison',
-    content: ''
-  },
-  {
-    slug: 'washee-interior-cleaning-included',
-    title: 'क्या Washee car wash में interior cleaning भी शामिल है?',
-    description: 'हाँ, हमारी सभी योजनाएं, बेसिक से लेकर प्रीमियम तक, व्यापक आंतरिक सफाई प्रदान करती हैं। जानें कि हमारी इंटीरियर क्लीनिंग सेवा में क्या-क्या शामिल है।',
-    seo_description: 'Washee की कार वॉश सेवाओं में आंतरिक सफाई शामिल है। हम वैक्यूमिंग, डैशबोर्ड सफाई, और बहुत कुछ प्रदान करते हैं। जानें कि हमारे पैकेज में क्या है।',
-    keywords: ['interior car cleaning', 'Washee services', 'car vacuuming Guwahati', 'complete car wash'],
-    imageHint: 'Guwahati car interior',
-    content: ''
-  },
-    {
-    slug: 'washee-car-wash-booking-process',
-    title: 'Washee से car wash booking करने की process क्या है?',
-    description: 'Washee के साथ ऑनलाइन कार वॉश बुक करना बहुत आसान है। हमारी चरण-दर-चरण मार्गदर्शिका का पालन करके कुछ ही मिनटों में अपना स्लॉट आरक्षित करें।',
-    seo_description: 'Washee से कार वॉश बुकिंग की पूरी प्रक्रिया। हमारी वेबसाइट पर जाएं, योजना चुनें, विवरण भरें और गुवाहाटी में अपनी डोरस्टेप कार वॉश की पुष्टि करें।',
-    keywords: ['car wash booking process', 'how to book Washee', 'online car wash steps', 'Guwahati car cleaning'],
-    imageHint: 'Guwahati car process',
-    content: ''
-  },
-  {
-    slug: 'washee-service-areas-in-guwahati',
-    title: 'क्या Washee Guwahati के सभी areas में service देता है?',
-    description: 'वर्तमान में, हमारी सेवाएं गुवाहाटी शहर की सीमाओं के भीतर उपलब्ध हैं। जानें कि क्या आपका क्षेत्र हमारे सेवा नेटवर्क में आता है और हमारी विस्तार योजनाओं के बारे में अपडेट रहें।',
-    seo_description: 'Washee गुवाहाटी शहर की सीमाओं के भीतर डोरस्टेप कार वॉश सेवाएं प्रदान करता है। पता करें कि क्या हम आपके क्षेत्र की सेवा करते हैं और हमारी विस्तार योजनाओं पर अपडेट प्राप्त करें।',
-    keywords: ['Washee service area', 'car wash Guwahati locations', 'doorstep service area', 'Guwahati car care'],
-    imageHint: 'Guwahati map service',
-    content: ''
-  },
-  {
-    slug: 'benefits-of-online-car-wash-booking',
-    title: 'Washee से car wash online booking करने के क्या फायदे हैं?',
-    description: 'समय की बचत से लेकर गारंटीकृत स्लॉट तक, Washee के साथ ऑनलाइन कार वॉश बुक करने के कई फायदों की खोज करें। अपनी कार की देखभाल को सरल बनाएं।',
-    seo_description: 'Washee के साथ ऑनलाइन कार वॉश बुकिंग के लाभ। समय बचाएं, स्लॉट की गारंटी पाएं, योजनाओं की तुलना करें और एक सहज, संपर्क रहित अनुभव का आनंद लें।',
-    keywords: ['online booking benefits', 'why book car wash online', 'Washee advantages', 'convenient car care'],
-    imageHint: 'Guwahati car online',
-    content: ''
-  },
-  {
-    slug: 'how-often-to-get-car-wash',
-    title: 'कितनी बार Washee car wash करवाना चाहिए?',
-    description: 'अपनी कार को कितनी बार धोना चाहिए, इस पर विशेषज्ञ की सलाह। ड्राइविंग की आदतों, मौसम और कार के रंग जैसे कारकों के आधार पर आदर्श आवृत्ति जानें।',
-    seo_description: 'अपनी कार को कितनी बार धोना है? गुवाहाटी की स्थितियों के लिए आदर्श कार वॉश शेड्यूल जानें। अपनी कार के पेंट और फिनिश को Washee के साथ सुरक्षित रखें।',
-    keywords: ['how often car wash', 'car wash frequency', 'car care schedule', 'Washee maintenance'],
-    imageHint: 'Guwahati car schedule',
-    content: ''
-  },
-  {
-    slug: 'washee-bike-wash-service',
-    title: 'क्या Washee bike wash service भी प्रदान करता है?',
-    description: 'Washee की सेवाओं के बारे में जानकारी। वर्तमान में हम कार वॉश पर ध्यान केंद्रित करते हैं, लेकिन भविष्य में बाइक वॉश सेवाओं के लिए हमारी योजनाओं पर अपडेट रहें।',
-    seo_description: 'क्या Washee बाइक वॉश प्रदान करता है? वर्तमान में, हम कारों में विशेषज्ञ हैं। गुवाहाटी में भविष्य की बाइक वॉश सेवाओं के लिए हमारी घोषणाओं पर नज़र रखें।',
-    keywords: ['bike wash service', 'Washee services', 'motorcycle cleaning Guwahati', 'two-wheeler wash'],
-    imageHint: 'Guwahati bike wash',
-    content: ''
-  },
-   {
-    slug: 'washee-car-wash-package-inclusions',
-    title: 'Washee car wash packages में क्या-क्या included है?',
-    description: 'Washee के कार वॉश पैकेजों का विस्तृत विवरण। जानें कि हमारी बेसिक और प्रीमियम योजनाओं में कौन सी सेवाएं शामिल हैं, आंतरिक से बाहरी तक।',
-    seo_description: 'Washee के कार वॉश पैकेज में क्या शामिल है? हमारी बेसिक और प्रीमियम सेवाओं का पूरा विवरण, जिसमें आंतरिक वैक्यूमिंग, बाहरी धुलाई और पॉलिशिंग शामिल है।',
-    keywords: ['car wash packages', 'Washee inclusions', 'what is in a car wash', 'car cleaning services'],
-    imageHint: 'Guwahati car package',
-    content: ''
-  },
-  {
-    slug: 'washee-car-detailing-polishing-services',
-    title: 'क्या Washee car detailing और polishing services भी देता है?',
-    description: 'Washee की वर्तमान सेवाओं और भविष्य की योजनाओं के बारे में जानें। हम प्रीमियम वॉश में पॉलिशिंग शामिल करते हैं और भविष्य में पूर्ण डिटेलिंग सेवाओं पर विचार कर रहे हैं।',
-    seo_description: 'क्या Washee कार डिटेलिंग और पॉलिशिंग प्रदान करता है? हमारी प्रीमियम योजनाओं में डैशबोर्ड और टायर पॉलिशिंग शामिल है। विस्तृत कार डिटेलिंग सेवाओं के लिए बने रहें।',
-    keywords: ['car detailing Guwahati', 'car polishing service', 'Washee detailing', 'professional car care'],
-    imageHint: 'Guwahati car polishing',
-    content: ''
-  },
-  {
-    slug: 'washee-payment-methods',
-    title: 'Washee car wash के लिए payment methods कौन-कौन से हैं?',
-    description: 'Washee आपकी सुविधा के लिए कई भुगतान विधियां प्रदान करता है। वर्तमान में हम "कैश ऑन सर्विस" स्वीकार करते हैं। भविष्य के भुगतान विकल्पों के बारे में जानें।',
-    seo_description: 'Washee के लिए उपलब्ध भुगतान विधियां। वर्तमान में हम "कैश ऑन सर्विस" (COD) स्वीकार करते हैं। ऑनलाइन भुगतान और अन्य विकल्प जल्द ही आ रहे हैं।',
-    keywords: ['Washee payment methods', 'cash on service car wash', 'car wash payment', 'Guwahati car service'],
-    imageHint: 'Guwahati cash payment',
-    content: ''
-  },
-  {
-    slug: 'washee-sunday-service-availability',
-    title: 'क्या Washee car wash service Sunday को भी available है?',
-    description: 'हाँ! Washee समझता है कि सप्ताहांत आपकी कार की देखभाल के लिए सबसे अच्छा समय होता है। हमारी सेवाएं रविवार सहित सप्ताह के सभी दिन उपलब्ध हैं।',
-    seo_description: 'Washee कार वॉश सेवा रविवार को उपलब्ध है। हम सप्ताह के सातों दिन, आपके दरवाजे पर सुविधाजनक कार सफाई प्रदान करते हैं। आज ही अपना सप्ताहांत स्लॉट बुक करें।',
-    keywords: ['sunday car wash', 'weekend car service', 'Washee availability', 'car wash open on sunday'],
-    imageHint: 'Guwahati weekend carwash',
-    content: ''
-  },
-  {
-    slug: 'washee-eco-friendly-car-wash',
-    title: 'Washee car wash service eco-friendly कैसे है?',
-    description: 'Washee पर्यावरण की परवाह करता है। जानें कि हमारी कार वॉश प्रक्रिया पानी का संरक्षण कैसे करती है और हम पर्यावरण के अनुकूल उत्पादों का उपयोग कैसे करते हैं।',
-    seo_description: 'Washee की पर्यावरण-अनुकूल कार वॉश सेवा। हम पानी बचाने की तकनीकों और बायोडिग्रेडेबल सफाई समाधानों का उपयोग करके पर्यावरण पर प्रभाव को कम करते हैं।',
-    keywords: ['eco-friendly car wash', 'water saving car wash', 'green car care', 'Washee sustainability'],
-    imageHint: 'Guwahati eco car',
-    content: ''
-  },
-  {
-    slug: 'washee-waterless-car-wash-option',
-    title: 'क्या Washee waterless car wash option भी देता है?',
-    description: 'Washee की जल-बचत तकनीकों के बारे में जानें। हालांकि हम पूरी तरह से जल रहित नहीं हैं, हमारी प्रक्रिया पारंपरिक तरीकों की तुलना में 80% तक कम पानी का उपयोग करती है।',
-    seo_description: 'क्या Washee जल रहित कार वॉश प्रदान करता है? हम एक अत्यधिक कुशल, कम पानी वाली कार वॉश विधि का उपयोग करते हैं जो पर्यावरण-अनुकूल है। विवरण जानें।',
-    keywords: ['waterless car wash', 'low water car wash', 'eco-friendly car cleaning', 'Washee methods'],
-    imageHint: 'Guwahati waterless wash',
-    content: ''
-  },
-  {
-    slug: 'washee-emergency-same-day-booking',
-    title: 'Washee से emergency या same-day car wash booking हो सकती है क्या?',
-    description: 'Washee की बुकिंग नीति के बारे में जानें। हम उसी दिन की बुकिंग को समायोजित करने की पूरी कोशिश करते हैं, जो स्लॉट की उपलब्धता पर निर्भर करता है।',
-    seo_description: 'Washee के साथ उसी दिन या आपातकालीन कार वॉश बुकिंग। उपलब्धता के आधार पर हम तत्काल अनुरोधों को समायोजित करने का प्रयास करते हैं। ऑनलाइन स्लॉट देखें।',
-    keywords: ['same day car wash', 'emergency car cleaning', 'Washee booking policy', 'last minute car wash'],
-    imageHint: 'Guwahati emergency wash',
-    content: ''
-  },
-  {
-    slug: 'washee-customer-support',
-    title: 'Washee car wash service की customer support कैसी है?',
-    description: 'Washee में, ग्राहक पहले आते हैं। हमारी समर्पित ग्राहक सहायता टीम आपकी सहायता के लिए उपलब्ध है। जानें कि हमसे कैसे संपर्क करें।',
-    seo_description: 'Washee की ग्राहक सहायता के बारे में जानें। हम आपकी बुकिंग, प्रश्नों और प्रतिक्रिया में सहायता के लिए फोन और ईमेल के माध्यम से उपलब्ध हैं।',
-    keywords: ['Washee customer support', 'car wash helpdesk', 'contact Washee', 'customer service'],
-    imageHint: 'Guwahati customer service',
-    content: ''
-  },
-  {
-    slug: 'washee-offers-and-discounts',
-    title: 'Washee car wash में कौन-कौन से offers और discounts available हैं?',
-    description: 'Washee पर नवीनतम ऑफ़र और छूट प्राप्त करें। हमारी परिचयात्मक कीमतों और मासिक योजनाओं के साथ पैसे बचाएं। विशेष सौदों के लिए हमारे साथ बने रहें।',
-    seo_description: 'Washee कार वॉश पर सर्वोत्तम ऑफ़र और छूट। हमारी रियायती परिचयात्मक कीमतों और मूल्य-पैक मासिक सदस्यताओं का लाभ उठाएं।',
-    keywords: ['car wash offers', 'Washee discounts', 'car cleaning deals Guwahati', 'save on car wash'],
-    imageHint: 'Guwahati car discount',
-    content: ''
-  },
-  {
-    slug: 'washee-mission-making-car-care-easy',
-    title: 'Washee का मिशन: आपकी कार की देखभाल को आसान बनाना',
-    description: 'Washee सिर्फ एक कार वॉश सेवा नहीं है; यह एक वादा है। हमारे मिशन के बारे में जानें कि हम सुविधा, गुणवत्ता और विश्वास के साथ कार की देखभाल को कैसे बदल रहे हैं।',
-    seo_description: 'Washee के मिशन की खोज करें। हम गुवाहाटी में हर कार मालिक के लिए डोरस्टेप कार वॉश को सुविधाजनक, विश्वसनीय और सुलभ बनाने के लिए समर्पित हैं।',
-    keywords: ['Washee mission', 'car care vision', 'about Washee', 'convenient car wash'],
-    imageHint: 'Guwahati car mission',
-    content: `
-      <h2 class="text-2xl font-bold text-foreground mb-4">Washee का मिशन: सुविधा, गुणवत्ता और विश्वास के साथ कार देखभाल को पुनर्परिभाषित करना</h2>
-      <p>आज की तेज़-तर्रार दुनिया में, समय एक कीमती वस्तु है। हम समझते हैं कि आपकी कार को साफ और बनाए रखने के लिए समय निकालना एक चुनौती हो सकती है। गैरेज में घंटों इंतजार करना या खुद सफाई करना अक्सर अव्यावहारिक लगता है।</p>
-      <p class="mt-2">इसी समस्या को हल करने के लिए Washee का जन्म हुआ।</p>
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">हमारा मिशन सरल लेकिन शक्तिशाली है: गुवाहाटी में हर कार मालिक के लिए कार की देखभाल को सहज, सुलभ और तनाव मुक्त बनाना।</h3>
-      <p>हम इसे तीन मुख्य स्तंभों के माध्यम से प्राप्त करते हैं:</p>
-      
-      <h4 class="text-lg font-bold text-foreground mt-4">1. बेजोड़ सुविधा (Unmatched Convenience)</h4>
-      <p>हम पारंपरिक कार वॉश मॉडल को खत्म कर देते हैं। आपको हमारे पास आने की ज़रूरत नहीं है; हम आपके पास आते हैं। चाहे आप घर पर हों, ऑफिस में हों, या कहीं और, हमारी पेशेवर टीम आपके स्थान पर पहुंचकर आपकी कार को चमका देगी। हमारी आसान ऑनलाइन बुकिंग प्रक्रिया आपको कुछ ही क्लिक में अपनी धुलाई शेड्यूल करने की अनुमति देती है, जिससे आपका बहुमूल्य समय और प्रयास बचता है।</p>
-      
-      <h4 class="text-lg font-bold text-foreground mt-4">2. बिना समझौता गुणवत्ता (Uncompromising Quality)</h4>
-      <p>सुविधा का मतलब गुणवत्ता से समझौता करना नहीं है। हम हर धुलाई में सर्वोत्तम परिणाम देने के लिए जुनून से भरे हैं। हमारे तकनीशियन अच्छी तरह से प्रशिक्षित हैं और नवीनतम तकनीकों और उच्च-गुणवत्ता वाले, पर्यावरण-अनुकूल उत्पादों का उपयोग करते हैं। हम यह सुनिश्चित करते हैं कि आपकी कार न केवल साफ दिखे, बल्कि उसके पेंट और इंटीरियर की भी रक्षा हो।</p>
-
-      <h4 class="text-lg font-bold text-foreground mt-4">3. विश्वास और पारदर्शिता (Trust and Transparency)</h4>
-      <p>हम अपने ग्राहकों के साथ स्थायी संबंध बनाने में विश्वास करते हैं। हमारी मूल्य-निर्धारण पारदर्शी है, जिसमें कोई छिपा हुआ शुल्क नहीं है। हम जो कहते हैं, वही करते हैं। आप भरोसा कर सकते हैं कि Washee आपकी कार के साथ उतनी ही देखभाल करेगा जितनी आप करते हैं।</p>
-      
-      <p class="mt-6 font-semibold">Washee सिर्फ एक सेवा नहीं है; यह एक बेहतर जीवन शैली का वादा है जहां कार का रखरखाव बोझ नहीं, बल्कि एक सहज अनुभव है।</p>
-    `
-  },
-  {
-    slug: 'meet-the-founders-of-washee',
-    title: 'हमारे संस्थापक: Washee के पीछे के चेहरे',
-    description: 'Washee के संस्थापकों, धर्मराज राम और बजरंगी पंजियार से मिलें। उनके जुनून, दृष्टि और समर्पण के बारे में जानें जिसने Washee को एक विश्वसनीय नाम बनाया है।',
-    seo_description: 'Washee के संस्थापकों, धर्मराज राम (संस्थापक) और बजरंगी पंजियार (सीईओ) का परिचय। जानें कि कैसे उनकी दृष्टि ने गुवाहाटी में डोरस्टेप कार केयर को बदल दिया है।',
-    keywords: ['Washee founders', 'Dharmaraj Ram', 'Bajrangi Panjiyar', 'about Washee team'],
-    imageHint: 'Guwahati car founders',
-    content: `
-      <h2 class="text-2xl font-bold text-foreground mb-4">Washee के पीछे की प्रेरक शक्ति से मिलें</h2>
-      <p>हर सफल उद्यम के पीछे एक कहानी और भावुक व्यक्ति होते हैं। Washee कोई अपवाद नहीं है। हमारी कंपनी दो दूरदर्शी व्यक्तियों, धर्मराज राम और बजरंगी पंजियार के साझा जुनून और समर्पण का परिणाम है, जो गुवाहाटी में कार देखभाल के अनुभव को बदलना चाहते थे।</p>
-
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">धर्मराज राम - संस्थापक (The Visionary)</h3>
-      <p>धर्मराज, Washee के संस्थापक, एक प्राकृतिक प्रर्वतक और समस्या-समाधानकर्ता हैं। उन्होंने शहरी कार मालिकों के सामने आने वाली एक आम चुनौती को पहचाना: समय की कमी। उन्होंने देखा कि लोग अपनी कारों को साफ रखना चाहते हैं, लेकिन पारंपरिक कार वॉश की असुविधा अक्सर एक बाधा बन जाती है।</p>
-      <p class="mt-2">इसी अंतर्दृष्टि से Washee का विचार पैदा हुआ - एक ऐसी सेवा जो पेशेवर कार वॉश को सीधे ग्राहक के दरवाजे पर लाए। धर्मराज का दृष्टिकोण ग्राहक-केंद्रित प्रौद्योगिकी का निर्माण करना था जो बुकिंग को सहज बनाता है और सेवा को विश्वसनीय बनाता है। गुणवत्ता और सुविधा के प्रति उनकी अटूट प्रतिबद्धता Washee के हर पहलू को प्रेरित करती है।</p>
-      
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">बजरंगी पंजियार - सीईओ (The Strategist)</h3>
-      <p>बजरंगी, हमारे सीईओ, Washee के रणनीतिकार और संचालक शक्ति हैं। व्यवसाय संचालन और ग्राहक संबंधों की गहरी समझ के साथ, वह धर्मराज के दृष्टिकोण को वास्तविकता में बदलने के लिए जिम्मेदार हैं।</p>
-      <p class="mt-2">बजरंगी यह सुनिश्चित करते हैं कि हमारी टीम अच्छी तरह से प्रशिक्षित हो, हमारे संचालन सुचारू रूप से चलें, और हमारे ग्राहकों को लगातार एक असाधारण अनुभव मिले। उनका नेतृत्व Washee को एक विश्वसनीय ब्रांड के रूप में स्थापित करने में महत्वपूर्ण रहा है, जो सिर्फ कार धोने से कहीं बढ़कर है - यह मन की शांति प्रदान करने के बारे में है।</p>
-      
-      <p class="mt-6 font-semibold">साथ में, धर्मराज और बजरंगी एक आदर्श टीम बनाते हैं, जो नवाचार के लिए एक साझा जुनून और ग्राहक संतुष्टि के लिए एक अथक समर्पण से एकजुट हैं। उनका नेतृत्व Washee को आगे बढ़ा रहा है, जिसका लक्ष्य गुवाहाटी में डोरस्टेप कार देखभाल के लिए स्वर्ण मानक बनना है।</p>
-    `
-  },
-  {
-    slug: 'the-story-of-washee',
-    title: 'Washee की कहानी: एक विचार जो आपकी सुविधा के लिए पैदा हुआ',
-    description: 'Washee की शुरुआत कैसे हुई? हमारी यात्रा के बारे में जानें, एक साधारण विचार से लेकर गुवाहाटी की पसंदीदा डोरस्टेप कार वॉश सेवा बनने तक।',
-    seo_description: 'Washee की प्रेरणादायक कहानी। जानें कि कैसे हमने कार मालिकों के लिए समय की कमी की समस्या को पहचाना और एक सुविधाजनक, उच्च-गुणवत्ता वाले समाधान का निर्माण किया।',
-    keywords: ['Washee story', 'about Washee', 'car wash startup', 'Guwahati business'],
-    imageHint: 'Guwahati car story',
-    content: ''
-  },
-  {
-    slug: 'our-commitment-to-quality',
-    title: 'गुणवत्ता के प्रति हमारी प्रतिबद्धता: हर वॉश में उत्कृष्टता',
-    description: 'Washee में गुणवत्ता सिर्फ एक शब्द नहीं, बल्कि हमारा वादा है। जानें कि हम प्रशिक्षित कर्मचारियों, बेहतर उत्पादों और निरंतर सुधार के माध्यम से हर वॉश में उत्कृष्टता कैसे सुनिश्चित करते हैं।',
-    seo_description: 'Washee की गुणवत्ता के प्रति प्रतिबद्धता। हम प्रशिक्षित पेशेवरों, प्रीमियम उत्पादों और ग्राहक प्रतिक्रिया के माध्यम से असाधारण कार वॉश सेवाएं प्रदान करते हैं।',
-    keywords: ['quality car wash', 'Washee standards', 'professional car cleaning', 'customer satisfaction'],
-    imageHint: 'Guwahati car quality',
-    content: ''
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">Conclusion</h3>
+      <p>Investing in a Washee monthly subscription isn't just about convenience; it's a smart investment in your asset. By spending a small amount on regular professional cleaning, you can protect and increase your car's resale value by thousands. It's one of the simplest ways to ensure your car holds its value for years to come.</p>
+    `,
   },
   {
     slug: 'washee-deep-seat-shampooing',
-    title: 'क्या Washee कार की सीटों की गहरी सफाई (shampooing) करता है?',
-    description: 'Washee की सीट शैम्पूइंग सेवाओं के बारे में जानें। हम दाग-धब्बों को हटाने और आपके कार के इंटीरियर को फिर से नया जैसा बनाने के लिए गहरी सफाई प्रदान करते हैं।',
-    seo_description: 'Washee गुवाहाटी में पेशेवर कार सीट शैम्पूइंग और गहरी सफाई सेवाएं प्रदान करता है। दाग, गंदगी और गंध को हटाकर अपनी कार के इंटीरियर को ताज़ा करें।',
+    title: 'The Ultimate Guide to Professional Car Seat Shampooing',
+    description: 'Washee\'s seat shampooing services explained. We offer deep cleaning to remove stains and restore your car\'s interior.',
+    seo_description: 'Washee offers professional car seat shampooing and deep cleaning services in Guwahati. Refresh your car\'s interior by removing stains, dirt, and odors.',
     keywords: ['car seat shampooing', 'deep cleaning car', 'fabric seat cleaning', 'Guwahati car detailing'],
-    imageHint: 'Guwahati seat cleaning',
+    imageHint: 'car seat cleaning',
+    category: 'Design & Home',
+    date: 'July 23, 2024',
     content: `
-      <h2 class="text-2xl font-bold text-foreground mb-4">Washee की डीप सीट क्लीनिंग और शैम्पूइंग सेवाएं</h2>
-      <p>समय के साथ, कार की सीटें धूल, गंदगी, खाने के दाग और पसीने को सोख लेती हैं, जिससे वे मैली और अस्वच्छ हो जाती हैं। एक मानक वैक्यूम केवल सतह की गंदगी को हटा सकता है। यहीं पर पेशेवर सीट शैम्पूइंग की भूमिका आती है।</p>
+      <h2 class="text-2xl font-bold text-foreground mb-4">Washee's Deep Seat Cleaning and Shampooing Services</h2>
+      <p>Over time, car seats absorb dust, dirt, food stains, and sweat, making them look grimy and unhygienic. A standard vacuum can only remove surface-level dirt. This is where professional seat shampooing comes in.</p>
 
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">हाँ, हम सीट शैम्पूइंग सेवाएं प्रदान करते हैं!</h3>
-      <p>यह घोषणा करते हुए हमें खुशी हो रही है कि Washee अब एक ऐड-ऑन सेवा के रूप में <strong>विशेषज्ञ कार सीट शैम्पूइंग</strong> प्रदान करता है। यह सेवा हमारे नियमित वॉश पैकेज का हिस्सा नहीं है, लेकिन इसे किसी भी वॉश के साथ जोड़ा जा सकता है ताकि आपके कार के इंटीरियर को पूरी तरह से नया रूप दिया जा सके।</p>
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">Yes, We Offer Seat Shampooing!</h3>
+      <p>We are excited to announce that Washee now offers <strong>expert car seat shampooing</strong> as an add-on service. This service is not part of our regular wash packages but can be combined with any wash to give your car's interior a complete makeover.</p>
       
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">हमारी सीट शैम्पूइंग प्रक्रिया में क्या शामिल है?</h3>
-      <p>हमारी गहरी सफाई प्रक्रिया को आपकी सीटों से सबसे जिद्दी गंदगी और दाग को हटाने के लिए डिज़ाइन किया गया है:</p>
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">What Does Our Seat Shampooing Process Involve?</h3>
+      <p>Our deep cleaning process is designed to remove the most stubborn dirt and stains from your seats:</p>
       <ol class="list-decimal pl-5 space-y-2 mt-2">
-        <li><strong>गहन वैक्यूमिंग:</strong> हम किसी भी ढीली गंदगी और मलबे को हटाने के लिए सीटों को अच्छी तरह से वैक्यूम करके शुरू करते हैं।</li>
-        <li><strong>प्री-ट्रीटमेंट:</strong> हम विशेष रूप से दाग वाले क्षेत्रों पर एक विशेष प्री-ट्रीटमेंट सॉल्युशन लगाते हैं ताकि दाग को ढीला किया जा सके।</li>
-        <li><strong>फोम एप्लिकेशन:</strong> हम एक उच्च-गुणवत्ता, कपड़े के लिए सुरक्षित शैम्पू का उपयोग करते हैं जिसे फोम के रूप में लगाया जाता है ताकि गंदगी को बिना कपड़े को भिगोए घोला जा सके।</li>
-        <li><strong>ब्रशिंग और एजीटेशन:</strong> हमारी टीम गंदगी को पूरी तरह से हटाने के लिए नरम ब्रश के साथ धीरे-धीरे कपड़े को रगड़ती है।</li>
-        <li><strong>एक्सट्रैक्शन:</strong> हम एक शक्तिशाली वेट-एंड-ड्राई वैक्यूम (एक्सट्रैक्टर) का उपयोग करते हैं जो शैम्पू, गंदगी और अधिकांश नमी को बाहर निकालता है।</li>
-        <li><strong>सुखाना:</strong> हालांकि एक्सट्रैक्टर अधिकांश पानी को हटा देता है, सीटों को पूरी तरह से सूखने में कुछ घंटे लग सकते हैं। हम अच्छी तरह हवादार क्षेत्र में सेवा करने की सलाह देते हैं।</li>
+        <li><strong>Thorough Vacuuming:</strong> We start by thoroughly vacuuming the seats to remove any loose dirt and debris.</li>
+        <li><strong>Pre-Treatment:</strong> We apply a special pre-treatment solution to heavily stained areas to loosen the stains.</li>
+        <li><strong>Foam Application:</strong> We use a high-quality, fabric-safe shampoo that is applied as a foam to dissolve dirt without soaking the fabric.</li>
+        <li><strong>Brushing and Agitation:</strong> Our team gently scrubs the fabric with soft brushes to completely remove the dirt.</li>
+        <li><strong>Extraction:</strong> We use a powerful wet-and-dry vacuum (extractor) that pulls out the shampoo, dirt, and most of the moisture.</li>
+        <li><strong>Drying:</strong> While the extractor removes most of the water, the seats may take a few hours to dry completely. We recommend servicing in a well-ventilated area.</li>
       </ol>
 
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">सीट शैम्पूइंग के लाभ</h3>
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">Benefits of Seat Shampooing</h3>
       <ul class="list-disc pl-5 space-y-2 mt-2">
-        <li>जिद्दी दाग और धब्बे हटाता है (चाय, कॉफी, तेल, आदि)।</li>
-        <li>दुर्गंध को खत्म करता है।</li>
-        <li>एलर्जी पैदा करने वाले धूल के कण और बैक्टीरिया को हटाता है।</li>
-        <li>आपकी कार के इंटीरियर के मूल रंग और बनावट को पुनर्स्थापित करता है।</li>
-        <li>आपकी कार के पुनर्विक्रय मूल्य को बढ़ाता है।</li>
+        <li>Removes stubborn stains (tea, coffee, oil, etc.).</li>
+        <li>Eliminates odors.</li>
+        <li>Removes allergy-causing dust mites and bacteria.</li>
+        <li>Restores the original color and texture of your car's interior.</li>
+        <li>Increases your car's resale value.</li>
       </ul>
-      <p class="mt-6">इस सेवा को अपनी अगली कार वॉश में जोड़ने के लिए, कृपया बुकिंग करते समय नोट्स में इसका उल्लेख करें या हमारी ग्राहक सहायता टीम से संपर्क करें।</p>
+      <p class="mt-6">To add this service to your next car wash, please mention it in the notes during booking or contact our customer support team.</p>
+    `,
+  },
+  {
+    slug: 'how-to-book-car-wash-in-guwahati',
+    title: 'How to Book a Car Wash Service in Minutes with Washee',
+    description: 'Learn the step-by-step process to book your car wash with Washee in Guwahati. It\'s simple, fast, and convenient.',
+    seo_description: 'Learn the complete process for booking your car wash with Washee in Guwahati. Easily schedule a slot using our online booking system.',
+    keywords: ['book car wash Guwahati', 'Washee booking process', 'online car wash booking', 'Guwahati car service'],
+    imageHint: 'booking online on phone',
+    category: 'Guides',
+    date: 'July 22, 2024',
+    content: `
+      <h2 class="text-2xl font-bold text-foreground mb-4">Booking Your Car Wash with Washee: A Simple Guide</h2>
+      <p>In the hustle and bustle of Guwahati life, finding time for your car can be tough. That's why at Washee, we've made the booking process so simple you can do it in minutes. Follow the steps below and give your car the shine it deserves.</p>
+      
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">Step 1: Visit Our Website</h3>
+      <p>First, open <a href="https://washee.in" class="text-primary">washee.in</a> on your computer or mobile browser. Our homepage will give you a quick overview of our services.</p>
+
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">Step 2: View Our Plans</h3>
+      <p>Click on 'Plans' in the navigation bar. Here, you'll find all our detailed plans:</p>
+      <ul class="list-disc pl-5 space-y-2 mt-2">
+        <li><strong>One-Time Wash:</strong> Perfect if you want to try our service or just need a single clean.</li>
+        <li><strong>Monthly Subscriptions:</strong> Our money-saving monthly packages for regular maintenance.</li>
+      </ul>
+      <p class="mt-2">Choose the right plan for your car type (Hatchback, SUV, Luxury).</p>
+      
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">Step 3: Book Your Preferred Plan</h3>
+      <p>Once you've decided on your plan, click the 'Book Now' or 'Book Basic/Premium' button. This will take you to the booking form.</p>
+
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">Step 4: Fill in Booking Details</h3>
+      <p>On the booking form, you'll need to provide the following information:</p>
+      <ol class="list-decimal pl-5 space-y-2 mt-2">
+        <li><strong>Personal Information:</strong> Your name and phone number.</li>
+        <li><strong>Address:</strong> The full address where you want the service.</li>
+        <li><strong>Preferred Date and Time:</strong> Choose a date and time slot that works for you.</li>
+        <li><strong>Any Special Instructions (Optional):</strong> If you have any special requests.</li>
+      </ol>
+
+      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">Step 5: Confirm Your Booking</h3>
+      <p>After filling in all the details, click the 'Confirm Booking' button. Your booking will be successful, and you'll see a confirmation message. Our team will contact you shortly.</p>
+      
+      <p class="mt-4">That's it! Now you can relax. Our team will be at your doorstep at the appointed time. Thank you for choosing Washee!</p>
     `
   },
   {
-    slug: 'increase-resale-value-with-washee',
-    title: 'Washee का उपयोग करके अपनी कार के पुनर्विक्रय मूल्य (resale value) को कैसे बढ़ाएं?',
-    description: 'एक अच्छी तरह से रखरखाव की गई कार का पुनर्विक्रय मूल्य अधिक होता है। जानें कि Washee की नियमित सेवाएं आपकी कार को बेहतरीन स्थिति में रखकर उसका मूल्य कैसे बढ़ा सकती हैं।',
-    seo_description: 'Washee की नियमित कार वॉश सेवाओं के साथ अपनी कार का पुनर्विक्रय मूल्य बढ़ाएँ। जानें कि कैसे एक साफ इंटीरियर और संरक्षित पेंट आपकी कार के मूल्य को अधिकतम कर सकता है।',
-    keywords: ['increase car resale value', 'car maintenance tips', 'professional car wash benefits', 'Washee value'],
-    imageHint: 'Guwahati resale value',
-    content: `
-      <h2 class="text-2xl font-bold text-foreground mb-4">एक छोटी सी आदत, एक बड़ा रिटर्न: Washee और आपकी कार का पुनर्विक्रय मूल्य</h2>
-      <p>जब आप अपनी कार बेचने का फैसला करते हैं, तो आप सर्वोत्तम संभव कीमत प्राप्त करना चाहते हैं। मैकेनिकल स्थिति महत्वपूर्ण है, लेकिन संभावित खरीदार पहली चीज जो नोटिस करते हैं, वह है कार का दिखना। एक साफ, अच्छी तरह से रखरखाव की गई कार न केवल बेहतर पहली छाप डालती है, बल्कि वास्तव में एक उच्च पुनर्विक्रय मूल्य भी प्राप्त कर सकती है।</p>
-      <p class="mt-2">Washee की नियमित सेवाओं का उपयोग करना आपकी कार के मूल्य को बनाए रखने और बढ़ाने के लिए सबसे सरल और सबसे प्रभावी तरीकों में से एक है। यहाँ बताया गया है कैसे:</p>
-
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">1. पेंट संरक्षण (Paint Protection)</h3>
-      <p>आपकी कार का पेंट सिर्फ कॉस्मेटिक नहीं है; यह नीचे की धातु को जंग और तत्वों से बचाता है। धूल, पक्षियों की बीट, पेड़ का रस और सड़क की गंदगी में अम्लीय तत्व होते हैं जो समय के साथ पेंट के क्लियर कोट को नष्ट कर सकते हैं।</p>
-      <ul class="list-disc pl-5 space-y-2 mt-2">
-        <li><strong>नियमित धुलाई:</strong> Washee की नियमित धुलाई इन हानिकारक दूषित पदार्थों को हटा देती है, इससे पहले कि वे स्थायी नुकसान पहुंचाएं।</li>
-        <li><strong>गुणवत्ता वाले उत्पाद:</strong> हम पीएच-संतुलित शैंपू का उपयोग करते हैं जो पेंट पर कोमल होते हैं, इसे फीका पड़ने या सुस्त होने से बचाते हैं।</li>
-      </ul>
-      <p class="mt-2">एक चमकदार, अच्छी तरह से संरक्षित पेंट वाली कार हमेशा एक फीकी, दागदार पेंट वाली कार की तुलना में अधिक मूल्यवान होगी।</p>
-
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">2. एक बेदाग इंटीरियर (A Spotless Interior)</h3>
-      <p>इंटीरियर वह जगह है जहाँ ड्राइवर और यात्री अपना समय बिताते हैं। दागदार सीटें, गंदे कालीन और धूल भरे डैशबोर्ड यह संकेत देते हैं कि कार का ठीक से रखरखाव नहीं किया गया है।</p>
-       <ul class="list-disc pl-5 space-y-2 mt-2">
-        <li><strong>गहरी सफाई:</strong> हमारी नियमित आंतरिक सफाई और वैक्यूमिंग गंदगी को जमने से रोकती है।</li>
-        <li><strong>प्रीमियम देखभाल:</strong> हमारी प्रीमियम योजनाओं में डैशबोर्ड पॉलिशिंग शामिल है, जो प्लास्टिक और विनाइल को टूटने और फीका पड़ने से बचाता है, जिससे इंटीरियर नया दिखता है।</li>
-        <li><strong>गंध हटाना:</strong> एक साफ इंटीरियर का मतलब एक ताजा महक वाला इंटीरियर भी है, जो खरीदारों के लिए एक बड़ा प्लस पॉइंट है।</li>
-      </ul>
-      
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">3. विस्तार पर ध्यान (Attention to Detail)</h3>
-      <p>हम उन छोटी-छोटी चीजों पर ध्यान देते हैं जिन्हें खरीदार नोटिस करते हैं। साफ टायर और रिम्स, बेदाग खिड़कियां, और साफ दरवाज़े के जैम - ये सभी एक साथ मिलकर एक ऐसी कार की तस्वीर पेश करते हैं जिसकी अच्छी तरह से देखभाल की गई है। यह खरीदार को विश्वास दिलाता है कि कार के उन हिस्सों का भी ध्यान रखा गया है जो दिखाई नहीं देते।</p>
-      
-      <h3 class="text-xl font-bold text-foreground mt-6 mb-3">निष्कर्ष</h3>
-      <p>Washee की मासिक सदस्यता योजनाओं में निवेश करना केवल सुविधा के बारे में नहीं है; यह आपकी संपत्ति में एक स्मार्ट निवेश है। नियमित पेशेवर सफाई पर एक छोटी सी राशि खर्च करके, आप अपनी कार के पुनर्विक्रय मूल्य में हजारों रुपये की रक्षा और वृद्धि कर सकते हैं। यह सबसे सरल तरीकों में से एक है जिससे यह सुनिश्चित किया जा सके कि आपकी कार आने वाले वर्षों तक अपना मूल्य बनाए रखे।</p>
-    `
+    slug: 'scandinavian-style-essentials',
+    title: 'The Essentials of Scandinavian Interior Design',
+    description: 'Discover the core principles of Scandinavian design: minimalism, natural light, and functionality. Create a serene and stylish home.',
+    seo_description: 'A guide to achieving the Scandinavian look in your home. Focus on minimalism, functionality, and natural elements for a cozy and modern space.',
+    keywords: ['scandinavian design', 'interior design', 'minimalism', 'home decor'],
+    imageHint: 'scandinavian interior living room',
+    category: 'Design & Home',
+    date: 'July 21, 2024',
+    content: ''
+  },
+  {
+    slug: 'modern-penthouse-tour',
+    title: 'Interiors Tour: A Breathtaking Modern Penthouse in the City',
+    description: 'Step inside a luxurious modern penthouse featuring panoramic city views, bespoke furniture, and state-of-the-art technology.',
+    seo_description: 'Take a virtual tour of a stunning modern penthouse. Explore its minimalist architecture, luxurious finishes, and smart home features.',
+    keywords: ['penthouse tour', 'luxury interiors', 'modern architecture', 'city living'],
+    imageHint: 'modern penthouse city view',
+    category: 'Design & Home',
+    date: 'July 20, 2024',
+    content: ''
+  },
+  {
+    slug: 'future-of-remote-work',
+    title: 'The Future of Work is Hybrid: How Companies are Adapting',
+    description: 'Explore how businesses are shifting to hybrid work models, combining remote flexibility with in-office collaboration for a new way of working.',
+    seo_description: 'An analysis of the rise of hybrid work models. Learn the benefits, challenges, and strategies companies are using to succeed in the new work landscape.',
+    keywords: ['remote work', 'hybrid model', 'future of work', 'business strategy'],
+    imageHint: 'person working on laptop cafe',
+    category: 'Business',
+    date: 'July 19, 2024',
+    content: ''
   },
 ]
