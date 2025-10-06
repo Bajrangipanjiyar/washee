@@ -15,7 +15,7 @@ function BookingPageContent() {
 
   const planGroup = searchParams.get('planGroup') as PlanGroup;
   const carType = searchParams.get('carType') as CarType;
-  const variant = searchParams.get('variant') as OnetimeVariant | undefined;
+  const variant = search-params.get('variant') as OnetimeVariant | undefined;
   
   useEffect(() => {
     if (!loading && !user) {
