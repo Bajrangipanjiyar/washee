@@ -18,8 +18,8 @@ export default function NewsListPage() {
   return (
     <div className="container py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold font-headline tracking-tight">Washee News</h1>
-        <p className="mt-2 text-lg text-muted-foreground">Your Ultimate Guide to Car Care in Guwahati</p>
+        <h1 className="text-4xl md:text-5xl font-bold font-headline tracking-tight">The Washee Chronicle</h1>
+        <p className="mt-2 text-lg text-muted-foreground">Your Ultimate Guide to Car Care and Beyond</p>
       </div>
       
       {/* Featured Article */}
@@ -27,7 +27,7 @@ export default function NewsListPage() {
         <div className="mb-16">
             <Link href={`/news/${featuredArticle.slug}`} className="block group">
                 <Card className="grid md:grid-cols-2 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <div className="relative h-64 md:h-auto">
+                    <div className="relative h-64 md:h-auto min-h-[300px]">
                         <Image
                             src={`https://picsum.photos/seed/${featuredArticle.imageHint.replace(/\s+/g, '-')}/800/600`}
                             alt={featuredArticle.title}
@@ -37,7 +37,7 @@ export default function NewsListPage() {
                     </div>
                     <div className="flex flex-col justify-center p-8">
                         <CardHeader className="p-0">
-                            <CardDescription className="text-sm text-primary font-semibold mb-2">Featured Article</CardDescription>
+                            <CardDescription className="text-sm text-primary font-semibold mb-2">Featured Story</CardDescription>
                             <CardTitle className="text-2xl lg:text-3xl font-bold group-hover:text-primary transition-colors">{featuredArticle.title}</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 mt-4">
@@ -53,6 +53,7 @@ export default function NewsListPage() {
       )}
 
       {/* Other Articles */}
+      <h2 className="text-3xl font-bold font-headline mb-8 border-b pb-4">Latest Articles</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {otherArticles.map((post) => (
           <Link key={post.slug} href={`/news/${post.slug}`} className="block group">
