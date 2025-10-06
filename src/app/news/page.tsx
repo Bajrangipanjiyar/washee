@@ -135,17 +135,6 @@ export default function NewsListPage() {
           </div>
         ))}
       </div>
-      
-        {/* Advertisement/Banner Space */}
-        <div className="my-12 bg-gray-900 text-white p-8 rounded-lg text-center flex flex-col md:flex-row justify-between items-center">
-            <div>
-                <h3 className="text-2xl font-bold">Best Selling BLOG and MAGAZINE</h3>
-                <p className="text-gray-300">Experience the difference with our premium themes.</p>
-            </div>
-            <Button variant="destructive" className="mt-4 md:mt-0 bg-news-accent hover:bg-red-700">
-                BUY NOW
-            </Button>
-        </div>
 
     </div>
   );
