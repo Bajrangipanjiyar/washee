@@ -1,7 +1,11 @@
 
+'use client';
 import Link from 'next/link';
-import { Facebook, Twitter, Youtube, Search, Menu, Instagram } from 'lucide-react';
+import { Facebook, Twitter, Youtube, Search, Menu, Instagram, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useCustomerAuth } from '@/context/customer-auth-context';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 
 const navCategories = [
     { name: 'HOME', href: '/news' },
@@ -13,6 +17,8 @@ const navCategories = [
 ];
 
 function NewsHeader() {
+  const { user, loading, logout } = useCustomerAuth();
+
   return (
     <header className="bg-white text-black sticky top-0 z-50 w-full border-b">
       <div className="container mx-auto px-4">
@@ -25,7 +31,26 @@ function NewsHeader() {
           </div>
           <div className="hidden md:flex items-center space-x-4">
             <Search className="h-6 w-6 text-gray-600 cursor-pointer hover:text-news-accent" />
-            <Button variant="outline" size="sm">Sign In</Button>
+            {!loading && (
+              <>
+                {user ? (
+                  <div className="flex items-center space-x-4">
+                     <Avatar className="h-8 w-8">
+                        <AvatarImage src={user.photoURL ?? ''} alt={user.displayName ?? 'User'} />
+                        <AvatarFallback>{user.displayName?.charAt(0) || <User/>}</AvatarFallback>
+                    </Avatar>
+                    <Button onClick={logout} variant="ghost" size="sm">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Logout
+                    </Button>
+                  </div>
+                ) : (
+                  <Button asChild variant="outline" size="sm">
+                    <Link href="/login">Sign In</Link>
+                  </Button>
+                )}
+              </>
+            )}
           </div>
           <div className="md:hidden flex items-center space-x-4">
             <Search className="h-6 w-6 text-gray-600" />
