@@ -1,43 +1,11 @@
 
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import '../globals.css'; // Import global styles here
-import { Search } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: 'Washee News',
     description: 'The latest news, articles, and updates from Washee.',
 };
-
-function NewsHeader() {
-    return (
-        <header className="sticky top-0 z-50 w-full bg-black">
-            <div className="container flex h-16 items-center justify-between">
-                <Link href="/news" className="flex items-center space-x-2">
-                    <span className="font-bold font-headline text-3xl text-blue-400">Washee News</span>
-                </Link>
-                <button className="text-white p-2 hover:text-blue-400 transition-colors">
-                    <Search className="h-6 w-6" />
-                    <span className="sr-only">Search</span>
-                </button>
-            </div>
-        </header>
-    );
-}
-
-function NewsFooter() {
-    return (
-        <footer className="border-t bg-secondary">
-            <div className="container py-6 text-center text-sm text-muted-foreground">
-                <p>&copy; 2024 Washee News. All rights reserved.</p>
-                <p className="mt-1">
-                    Part of the <Link href="/" className="font-semibold text-primary hover:underline">Washee</Link> family.
-                </p>
-            </div>
-        </footer>
-    );
-}
-
 
 export default function NewsLayout({
   children,
@@ -45,14 +13,10 @@ export default function NewsLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // This is a completely separate layout for the /news route
-    // It does not inherit from the root layout's structure with Navbar/Footer
     <div className="min-h-screen bg-slate-50 flex flex-col">
-        <NewsHeader />
         <main className="flex-grow">
             {children}
         </main>
-        <NewsFooter />
     </div>
   );
 }
