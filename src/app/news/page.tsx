@@ -26,7 +26,7 @@ export default function NewsListPage() {
       {featuredArticle && (
         <div className="mb-16">
             <Link href={`/news/${featuredArticle.slug}`} className="block group">
-                <Card className="grid md:grid-cols-2 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <Card className="grid md:grid-cols-2 overflow-hidden transition-all duration-300 hover:shadow-xl border">
                     <div className="relative h-64 md:h-auto min-h-[300px]">
                         <Image
                             src={`https://picsum.photos/seed/${featuredArticle.imageHint.replace(/\s+/g, '-')}/800/600`}
@@ -57,7 +57,7 @@ export default function NewsListPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {otherArticles.map((post) => (
           <Link key={post.slug} href={`/news/${post.slug}`} className="block group">
-            <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+            <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl border">
               <div className="relative h-48 w-full">
                 <Image
                     src={`https://picsum.photos/seed/${post.imageHint.replace(/\s+/g, '-')}/600/400`}

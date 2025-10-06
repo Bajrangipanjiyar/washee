@@ -17,7 +17,7 @@ export async function generateMetadata(
 
   if (!post) {
     return {
-      title: 'Post Not Found | Washee',
+      title: 'Post Not Found | Washee News',
       description: 'The article you are looking for does not exist.',
     };
   }
@@ -63,20 +63,21 @@ export default function NewsArticlePage({ params }: Props) {
     <div className="container py-12 max-w-4xl mx-auto">
       <article>
         <header className="mb-8 text-center">
+            <p className="text-primary font-semibold mb-2">Article</p>
             <CardTitle className="text-3xl md:text-5xl font-bold font-headline mb-4">{post.title}</CardTitle>
             <CardDescription className="text-lg md:text-xl text-muted-foreground">{post.description}</CardDescription>
         </header>
 
-         <div className="relative h-80 rounded-lg overflow-hidden mb-8">
+         <div className="relative aspect-video rounded-lg overflow-hidden mb-8 shadow-lg">
             <Image
-                src={`https://picsum.photos/seed/${post.imageHint.replace(/\s+/g, '-')}/1200/800`}
+                src={`https://picsum.photos/seed/${post.imageHint.replace(/\s+/g, '-')}/1200/675`}
                 alt={post.title}
                 fill
                 className="object-cover"
             />
         </div>
 
-        <Card>
+        <Card className="border">
             <CardContent className="p-6 md:p-8">
                 <div
                     className="prose prose-lg max-w-none text-muted-foreground space-y-4 [&_h2]:text-foreground [&_h3]:text-foreground [&_strong]:text-foreground [&_table]:w-full [&_table]:overflow-x-auto [&_table]:block"

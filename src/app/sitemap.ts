@@ -1,15 +1,23 @@
 
 import { MetadataRoute } from 'next'
 import { newsArticles } from '@/lib/newsArticles';
+import { blogPosts } from '@/lib/blogPosts';
  
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://washee.in';
 
-  const postUrls = newsArticles.map(post => ({
+  const newsPostUrls = newsArticles.map(post => ({
     url: `${baseUrl}/news/${post.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
+  }));
+  
+  const blogPostUrls = blogPosts.map(post => ({
+    url: `${baseUrl}/blogs/${post.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
   }));
 
   const staticUrls = [
@@ -36,6 +44,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
+    },
+    {
+        url: `${baseUrl}/blogs`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
     },
     {
         url: `${baseUrl}/my-bookings`,
@@ -79,7 +93,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: 'yearly' as const,
         priority: 0.3,
     },
+    // News specific static pages
+    {
+        url: `${baseUrl}/news/about`,
+        lastModified: new Date(),
+        changeFrequency: 'yearly' as const,
+        priority: 0.4,
+    },
+    {
+        url: `${baseUrl}/news/contact`,
+        lastModified: new Date(),
+        changeFrequency: 'yearly' as const,
+        priority: 0.4,
+    },
+    {
+        url: `${baseUrl}/news/privacy-policy`,
+        lastModified: new Date(),
+        changeFrequency: 'yearly' as const,
+        priority: 0.2,
+    },
+    {
+        url: `${baseUrl}/news/disclaimer`,
+        lastModified: new Date(),
+        changeFrequency: 'yearly' as const,
+        priority: 0.2,
+    },
   ];
 
-  return [...staticUrls, ...postUrls];
+  return [...staticUrls, ...newsPostUrls, ...blogPostUrls];
 }
