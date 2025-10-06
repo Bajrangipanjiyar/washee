@@ -4,6 +4,8 @@ import { PT_Sans } from 'next/font/google';
 import './globals.css';
 import { CustomerAuthProvider } from '@/context/customer-auth-context';
 import { Toaster } from "@/components/ui/toaster";
+import { Navbar } from '@/components/layout/navbar';
+import { Footer } from '@/components/layout/footer';
 
 const ptSans = PT_Sans({
   subsets: ['latin'],
@@ -64,9 +66,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ptSans.variable}`} suppressHydrationWarning>
       <head />
-      <body className="font-body antialiased min-h-screen bg-background">
+      <body className="font-body antialiased min-h-screen bg-background flex flex-col">
         <CustomerAuthProvider>
-          <main>{children}</main>
+          <Navbar />
+          <main className="flex-grow">{children}</main>
+          <Footer />
           <Toaster />
         </CustomerAuthProvider>
       </body>
