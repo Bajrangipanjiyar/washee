@@ -10,14 +10,10 @@ export const metadata: Metadata = {
 
 function NewsHeader() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-16 items-center">
-                <Link href="/news" className="mr-6 flex items-center space-x-2">
-                    <span className="font-bold font-headline text-xl">Washee News</span>
-                </Link>
-                <div className="flex-grow" />
-                <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-primary">
-                    Back to Washee
+        <header className="sticky top-0 z-50 w-full bg-black">
+            <div className="container flex h-16 items-center justify-center">
+                <Link href="/news" className="flex items-center space-x-2">
+                    <span className="font-bold font-headline text-xl text-blue-500">Washee News</span>
                 </Link>
             </div>
         </header>
