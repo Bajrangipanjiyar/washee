@@ -1,6 +1,7 @@
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import '../globals.css'; // Import global styles here
 
 export const metadata: Metadata = {
     title: 'Washee News',
@@ -43,12 +44,17 @@ export default function NewsLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-screen flex flex-col">
+    // This is a completely separate layout for the /news route
+    // It does not inherit from the root layout's structure with Navbar/Footer
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className="min-h-screen bg-slate-50 flex flex-col">
         <NewsHeader />
-        <main className="flex-grow bg-slate-50">
+        <main className="flex-grow">
             {children}
         </main>
         <NewsFooter />
-    </div>
+      </body>
+    </html>
   );
 }
