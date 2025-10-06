@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import '../globals.css'; // Import global styles here
+import { Search } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: 'Washee News',
@@ -11,10 +12,14 @@ export const metadata: Metadata = {
 function NewsHeader() {
     return (
         <header className="sticky top-0 z-50 w-full bg-black">
-            <div className="container flex h-16 items-center justify-center">
+            <div className="container flex h-16 items-center justify-between">
                 <Link href="/news" className="flex items-center space-x-2">
                     <span className="font-bold font-headline text-3xl text-blue-400">Washee News</span>
                 </Link>
+                <button className="text-white p-2 hover:text-blue-400 transition-colors">
+                    <Search className="h-6 w-6" />
+                    <span className="sr-only">Search</span>
+                </button>
             </div>
         </header>
     );
