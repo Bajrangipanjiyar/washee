@@ -54,7 +54,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-4 px-8 md:px-0">
           <WLogo className="h-8 w-8 text-primary" />
           <p className="text-center text-sm leading-loose md:text-left text-muted-foreground">
-            © {new Date().getFullYear()} Washee. All rights reserved.
+            © 2024 Washee. All rights reserved.
           </p>
         </div>
         <div className="flex flex-col items-center gap-4">

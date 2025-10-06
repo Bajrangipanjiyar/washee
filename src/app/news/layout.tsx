@@ -24,7 +24,7 @@ function NewsFooter() {
     return (
         <footer className="border-t bg-secondary">
             <div className="container py-6 text-center text-sm text-muted-foreground">
-                <p>&copy; {new Date().getFullYear()} Washee News. All rights reserved.</p>
+                <p>&copy; 2024 Washee News. All rights reserved.</p>
                 <p className="mt-1">
                     Part of the <Link href="/" className="font-semibold text-primary hover:underline">Washee</Link> family.
                 </p>
