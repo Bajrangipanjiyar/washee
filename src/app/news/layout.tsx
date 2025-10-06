@@ -67,7 +67,7 @@ function NewsFooter() {
                 <Link href="#" className="text-gray-400 hover:text-white"><Twitter /></Link>
             </div>
              <div className="mt-8 border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2024 Washee News. All Rights Reserved.</p>
+                <p>&copy; 2025 Washee News. All Rights Reserved.</p>
                 <p className="mt-2">For inquiries, contact us at: <a href="mailto:contact@washeenews.com" className="underline hover:text-news-accent">contact@washeenews.com</a></p>
                 <div className="flex justify-center items-center gap-4 mt-4 text-xs">
                     <Link href="/news/about" className="hover:underline">About</Link>
