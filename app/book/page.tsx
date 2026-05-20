@@ -10,7 +10,7 @@ import Navbar from '@/components/Navbar';
 function BookingForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth(); // Auth context
 
   const car = searchParams.get('car') || 'Hatchback';
   const planName = searchParams.get('plan') || 'Monthly (6 Services)';
@@ -28,6 +28,15 @@ function BookingForm() {
     notes: ''
   });
 
+  // 🚨 SECURITY: Login ke bina booking nahi ho sakti
+  useEffect(() => {
+    if (!authLoading && !user) {
+      alert("⚠️ You must log in first to book a car wash!");
+      router.push('/login'); // Login page pe dhakka maar dega
+    }
+  }, [user, authLoading, router]);
+
+  // Form details auto-fill karne ke liye
   useEffect(() => {
     if (user) {
       setFormData(prev => ({
@@ -65,7 +74,6 @@ function BookingForm() {
     try {
       setLoading(true);
       
-      // 1. Firebase me order save karna
       await addDoc(collection(db, 'bookings'), {
         userId: user?.uid || 'guest',
         carType: car,
@@ -77,7 +85,7 @@ function BookingForm() {
         createdAt: new Date().toISOString()
       });
       
-      // 2. 🚨 TELEGRAM KO NOTIFICATION BHEJNA 🚨
+      // Telegram Notification
       try {
         await fetch('/api/notify', {
           method: 'POST',
@@ -89,9 +97,8 @@ function BookingForm() {
             customerDetails: formData
           })
         });
-        console.log("Telegram API hit successfully!");
       } catch (botError) {
-        console.error("Telegram bhejne me error aaya:", botError);
+        console.error("Telegram API Error:", botError);
       }
 
       alert('✅ Booking Confirmed Successfully!');
@@ -103,6 +110,11 @@ function BookingForm() {
       setLoading(false);
     }
   };
+
+  // Agar load ho raha hai ya user nahi hai toh form mat dikhao (Glitches se bachne ke liye)
+  if (authLoading || !user) {
+    return <div className="min-h-screen bg-gray-50 flex items-center justify-center font-bold text-xl text-blue-600">Checking Security...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">

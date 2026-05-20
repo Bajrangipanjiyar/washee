@@ -2,72 +2,46 @@
 
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
-import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
-  const { user, loading, logout } = useAuth();
-  const router = useRouter();
-
-  const handleLogout = async () => {
-    await logout();
-    router.push('/');
-  };
+  const { user, logOut } = useAuth(); // Exact logOut variable match ho raha hai
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
+    <nav className="bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-2xl font-extrabold text-blue-600">
-              Washee
-            </Link>
-          </div>
+        <div className="flex justify-between items-center h-16">
           
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8 items-center">
-            <Link href="/plans" className="text-gray-700 hover:text-blue-600 font-medium">Plans</Link>
-            
-            {/* Agar loading chal rahi hai toh kuch mat dikhao */}
-            {!loading && (
+          {/* LOGO */}
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-xl md:text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+              Washee
+            </span>
+          </Link>
+
+          {/* RIGHT SIDE BUTTONS (Direct mobile pe dikhenge bina kisii toggle ke) */}
+          <div className="flex items-center gap-3 md:gap-6">
+            {user ? (
               <>
-                {user ? (
-                  // User Logged In Hai
-                  <div className="flex items-center space-x-6">
-                    <Link href="/my-bookings" className="text-gray-700 hover:text-blue-600 font-medium">
-                      My Bookings
-                    </Link>
-                    <span className="text-sm text-gray-500">Hi, {user.name || 'User'}</span>
-                    <button 
-                      onClick={handleLogout}
-                      className="bg-red-50 text-red-600 px-4 py-2 rounded-lg font-medium hover:bg-red-100 transition"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                ) : (
-                  // User Logged Out Hai
-                  <Link href="/login">
-                    <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
-                      Login
-                    </button>
-                  </Link>
-                )}
+                <Link href="/my-bookings" className="text-sm font-extrabold text-gray-700 hover:text-blue-600 transition">
+                  My Orders
+                </Link>
+                <button 
+                  onClick={logOut}
+                  className="bg-red-50 border border-red-100 text-red-600 px-3 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold hover:bg-red-500 hover:text-white transition shadow-sm"
+                >
+                  Logout
+                </button>
               </>
+            ) : (
+              <Link 
+                href="/login" 
+                className="bg-blue-600 text-white px-5 md:px-6 py-2 rounded-full text-sm font-bold hover:bg-blue-700 transition shadow-[0_0_15px_rgba(37,99,235,0.3)]"
+              >
+                Login
+              </Link>
             )}
           </div>
 
-          {/* Mobile Menu Button - Abhi ke liye simple */}
-          <div className="md:hidden flex items-center">
-             {!loading && !user && (
-               <Link href="/login" className="mr-4 text-blue-600 font-medium">Login</Link>
-             )}
-            <button className="text-gray-700">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
         </div>
       </div>
     </nav>
