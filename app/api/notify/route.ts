@@ -4,11 +4,12 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
     
-    // 🚨 Quotes laga diye hain dono me (VERY IMPORTANT)
     const TELEGRAM_BOT_TOKEN = "8711088345:AAGO0GusGhZT6ccCmjismNwawjQss-vABIg";
-    const TELEGRAM_CHAT_ID = "7854748403"; 
     
-    // Message ka design jo Telegram pe dikhega
+    // 🚨 TEAM CONFIG: Tumhari aur Founder ki IDs ek sath array me
+    const TEAM_CHAT_IDS = ["7854748403", "8438027524"]; 
+    
+    // Message ka design jo dono ke phone pe chamkega
     const message = `
 🚨 *NEW WASHEE ORDER!* 🚨
 
@@ -26,18 +27,23 @@ export async function POST(req: Request) {
 
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     
-    const response = await fetch(telegramUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: message,
-        parse_mode: 'Markdown'
-      })
+    // Loop chalakar dono IDs par message bhej rahe hain
+    const notifications = TEAM_CHAT_IDS.map(async (chatId) => {
+      const response = await fetch(telegramUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: 'Markdown'
+        })
+      });
+      return response.json();
     });
 
-    const result = await response.json();
-    console.log("Telegram Response:", result); // Terminal me dekhne ke liye
+    // Dono requests ke complete hone ka wait karega system
+    const results = await Promise.all(notifications);
+    console.log("Telegram Team Notifications Sent:", results);
 
     return NextResponse.json({ success: true });
   } catch (error) {
